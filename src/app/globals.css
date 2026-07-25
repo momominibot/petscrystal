@@ -4,6 +4,7 @@
   --font-serif: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
 
+  /* Core brand */
   --color-cream: #FBF6EE;
   --color-cream-dark: #F3EDE3;
   --color-ink: #2A211B;
@@ -15,16 +16,56 @@
   --color-sage: #C5D5C0;
   --color-gold: #D4A84B;
   --color-gold-light: #F0D89C;
+
+  /* Editorial layer — deep indigo headings + cool tints */
+  --color-indigo: #2E2A47;
+  --color-indigo-soft: #4A4468;
+  --color-periwinkle: #DCD9EC;
+  --color-periwinkle-deep: #B7B2D8;
+  --color-blush: #F2E4E4;
+  --color-mist: #F7F5F1;
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* ============ Paw cursor ============ */
+/* Hotspot centred on the main pad so clicks land where they look. */
+html,
+body {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g fill='%234E2F5C' fill-opacity='.85'><ellipse cx='8.5' cy='11' rx='3.1' ry='4'/><ellipse cx='15.5' cy='8' rx='3.3' ry='4.3'/><ellipse cx='22.5' cy='11' rx='3.1' ry='4'/><path d='M15.5 15c4.6 0 7.8 3.4 7.8 6.6 0 3.1-3.5 4.6-7.8 4.6s-7.8-1.5-7.8-4.6C7.7 18.4 10.9 15 15.5 15z'/></g></svg>")
+      14 12,
+    auto;
+}
+
+/* Gold paw on anything clickable */
+a,
+button,
+[role="button"],
+summary,
+label {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 32 32'><g fill='%23C08A2E'><ellipse cx='8.5' cy='11' rx='3.3' ry='4.2'/><ellipse cx='15.5' cy='7.8' rx='3.5' ry='4.5'/><ellipse cx='22.5' cy='11' rx='3.3' ry='4.2'/><path d='M15.5 15c4.6 0 7.8 3.4 7.8 6.6 0 3.1-3.5 4.6-7.8 4.6s-7.8-1.5-7.8-4.6C7.7 18.4 10.9 15 15.5 15z'/></g></svg>")
+      15 12,
+    pointer;
+}
+
+/* Never override text-entry affordances */
+input,
+textarea,
+select {
+  cursor: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
@@ -35,4 +76,136 @@ h1, h2, h3, h4 {
 ::selection {
   background: var(--color-lavender);
   color: var(--color-ink);
+}
+
+/* ============ Editorial utilities ============ */
+
+/* Letterspaced uppercase micro-label */
+.eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Thin accent rule beneath a heading */
+.rule::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 1px;
+  margin-top: 1.5rem;
+  background: var(--color-gold);
+}
+.rule-center::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Display heading — tight tracking per brand book */
+.display {
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-weight: 300;
+}
+
+/* ============ Watercolour language ============ */
+
+/* Paper grain — sits under content, never over it */
+.paper {
+  position: relative;
+}
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image:
+    radial-gradient(circle at 18% 24%, rgba(196,181,212,0.10) 0 22%, transparent 55%),
+    radial-gradient(circle at 82% 12%, rgba(232,213,208,0.12) 0 20%, transparent 52%),
+    radial-gradient(circle at 62% 88%, rgba(212,168,75,0.07) 0 24%, transparent 58%);
+}
+
+/* Soft irregular wash blob behind a section */
+.wash {
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  filter: blur(28px);
+  opacity: 0.55;
+}
+
+/* Hand-painted edge for imagery — irregular, not a neat rectangle */
+.watercolor-edge {
+  -webkit-mask-image: radial-gradient(
+    ellipse 92% 90% at 50% 50%,
+    #000 62%,
+    rgba(0, 0, 0, 0.85) 76%,
+    transparent 97%
+  );
+  mask-image: radial-gradient(
+    ellipse 92% 90% at 50% 50%,
+    #000 62%,
+    rgba(0, 0, 0, 0.85) 76%,
+    transparent 97%
+  );
+}
+
+/* Bleed that grows on hover — the pigment spreading into the paper */
+.bleed {
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .bleed {
+  transform: scale(1.06);
+  filter: saturate(1.12);
+}
+
+/* Ink-drawn underline that paints itself in */
+.brushed {
+  background-image: linear-gradient(var(--color-gold), var(--color-gold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brushed:hover {
+  background-size: 100% 1px;
+}
+
+/* ============ Motion ============ */
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.rise {
+  animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Slow pigment drift for background washes */
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(2%, -3%, 0) scale(1.08); }
+}
+.drift {
+  animation: drift 22s ease-in-out infinite;
+}
+
+/* Scroll-reveal — JS adds .in-view */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .drift { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .bleed { transition: none; }
 }

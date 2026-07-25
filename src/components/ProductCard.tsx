@@ -1,70 +1,77 @@
 import { Product } from "@/lib/products";
+import Image from "next/image";
 import Link from "next/link";
 import CheckoutButton from "./CheckoutButton";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="group relative overflow-hidden rounded-2xl border border-ink/5 bg-cream-dark/50 transition-all hover:shadow-lg hover:-translate-y-0.5">
-      {/* Crystal color gradient placeholder */}
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-ink/5 bg-cream/70 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_-24px_rgba(46,42,71,0.35)]">
+      {/* Watercolour wash standing in for the stone */}
       <Link
         href={`/products/${product.id}`}
         aria-label={`${product.name} — matching ${product.crystal} crystal bracelet and pet collar charm set for human and dog`}
-        className="block aspect-[4/5] w-full transition-transform duration-500 group-hover:scale-[1.02]"
-        style={{
-          background: `linear-gradient(135deg, ${product.colors.join(", ")})`,
-        }}
+        className="relative block aspect-[4/5] w-full overflow-hidden"
       >
-        <div className="flex h-full items-center justify-center">
-          <span className="font-serif text-5xl text-white/40">✦</span>
-        </div>
+        {/* soft colour bloom behind the painting */}
+        <span
+          aria-hidden
+          className="absolute inset-0 block opacity-60"
+          style={{
+            background: `radial-gradient(ellipse 62% 52% at 48% 46%, ${product.colors[0]} 0%, transparent 68%)`,
+          }}
+        />
+        <Image
+          src={`/art/product-${product.id}.png`}
+          alt={`Watercolour illustration of the ${product.name} set — a ${product.crystal} bracelet and a matching pet collar charm`}
+          width={880}
+          height={1100}
+          className="bleed absolute inset-0 h-full w-full object-contain p-3"
+        />
       </Link>
 
-      <div className="p-5 space-y-3">
+      <div className="flex flex-1 flex-col gap-3 p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="font-serif text-lg text-ink">
-              <Link
-                href={`/products/${product.id}`}
-                className="transition-colors hover:text-ink-light"
-              >
+            <h3 className="font-serif text-xl leading-snug text-indigo">
+              <Link href={`/products/${product.id}`} className="brushed">
                 {product.name}
               </Link>
             </h3>
-            <p className="text-sm text-ink-light">{product.tagline}</p>
+            <p className="mt-1 text-sm text-ink-light">{product.tagline}</p>
           </div>
-          <span className="shrink-0 font-serif text-lg text-ink">
+          <span className="shrink-0 font-serif text-lg text-indigo">
             ${product.price}
           </span>
         </div>
 
         <div className="flex flex-wrap gap-1.5">
-          <span className="rounded-full bg-lavender/30 px-2.5 py-0.5 text-xs text-ink-light">
+          <span className="rounded-full bg-periwinkle/60 px-2.5 py-0.5 text-[11px] text-indigo-soft">
             {product.crystal}
           </span>
-          <span className="rounded-full bg-rose/30 px-2.5 py-0.5 text-xs text-ink-light">
+          <span className="rounded-full bg-blush/70 px-2.5 py-0.5 text-[11px] text-indigo-soft">
             {product.chakra}
           </span>
         </div>
 
-        <div className="space-y-1 pt-1 text-xs text-ink-light">
-          <p>
-            <span className="font-medium text-ink">🐾 Pet:</span>{" "}
-            {product.petBenefit}
-          </p>
-          <p>
-            <span className="font-medium text-ink">✨ You:</span>{" "}
-            {product.humanBenefit}
-          </p>
-        </div>
+        <dl className="mt-1 space-y-1.5 text-xs leading-relaxed text-ink-light">
+          <div className="flex gap-2">
+            <dt className="shrink-0 text-gold">For them</dt>
+            <dd>{product.petBenefit}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="shrink-0 text-gold">For you</dt>
+            <dd>{product.humanBenefit}</dd>
+          </div>
+        </dl>
 
-        <div className="flex flex-wrap items-center gap-3 pt-2">
+        <div className="mt-auto flex flex-wrap items-center gap-4 pt-3">
           <CheckoutButton
             priceId={product.stripePriceId}
             label={`Buy — $${product.price}`}
           />
           <Link
             href={`/products/${product.id}`}
-            className="text-sm text-ink-light underline underline-offset-4 transition-colors hover:text-ink"
+            className="brushed text-sm text-ink-light"
           >
             Details
           </Link>

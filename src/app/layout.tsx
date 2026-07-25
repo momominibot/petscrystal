@@ -49,7 +49,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    // Font variables must sit on <html>: Tailwind's @theme resolves
+    // --font-serif at :root, so a variable scoped to <body> is invisible to it
+    // and the font-family declaration silently falls back to system sans.
+    <html lang="en" className={`${fraunces.variable} ${jakarta.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -63,10 +66,13 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema()),
           }}
         />
+        {/* Scroll-reveal starts at opacity 0. Without JS nothing would ever
+            un-hide it, so guarantee the content is visible. */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
       </head>
-      <body
-        className={`${fraunces.variable} ${jakarta.variable} antialiased`}
-      >
+      <body className="antialiased">
         <Nav />
         <main>{children}</main>
       </body>

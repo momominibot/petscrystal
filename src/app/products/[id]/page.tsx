@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/lib/products";
 import { productSchema, breadcrumbListSchema } from "@/lib/schema";
@@ -114,17 +115,22 @@ export default async function ProductPage({
       {/* Hero */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <div className="grid gap-10 md:grid-cols-2 md:gap-14">
-          <div
-            className="aspect-[4/5] w-full rounded-3xl"
-            style={{
-              background: `linear-gradient(135deg, ${product.colors.join(", ")})`,
-            }}
-            role="img"
-            aria-label={`${product.name} — matching ${product.crystal} crystal bracelet and pet collar charm set for human and dog`}
-          >
-            <div className="flex h-full items-center justify-center">
-              <span className="font-serif text-6xl text-white/40">✦</span>
-            </div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
+            <span
+              aria-hidden
+              className="absolute inset-0 block opacity-55"
+              style={{
+                background: `radial-gradient(ellipse 60% 50% at 48% 46%, ${product.colors[0]} 0%, transparent 70%)`,
+              }}
+            />
+            <Image
+              src={`/art/product-${product.id}.png`}
+              alt={`${product.name} — matching ${product.crystal} crystal bracelet and pet collar charm set for human and dog`}
+              width={880}
+              height={1100}
+              priority
+              className="absolute inset-0 h-full w-full object-contain p-4"
+            />
           </div>
 
           <div className="flex flex-col justify-center">
