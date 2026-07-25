@@ -1,0 +1,22 @@
+# Pets Crystal — LLMs.txt
+# Matching crystal jewelry for humans & their animal companions.
+# 12 healing stones, one unbreakable bond.
+
+## Site Structure
+- Home: https://petscrystals.com
+- Wholesale: https://petscrystals.com/wholesale (login-gated)
+
+## Products (12 matching crystal sets)
+${require("./src/lib/products").products.map(p => `- ${p.name}: https://petscrystals.com/products/${p.id} — ${p.crystal}, ${p.chakra} chakra, $${p.price}`).join("\n")}
+
+## About
+Pets Crystal sells matching crystal jewelry sets — a bracelet for the human, a collar charm for the animal. Each set features a specific healing crystal with documented benefits for both species. Prices $79-89 USD. Wholesale pricing available for retailers and distributors.
+
+## Key Pages
+- Crystal Guide: https://petscrystals.com/crystals (coming soon)
+- FAQ: https://petscrystals.com/faq (coming soon)
+- Blog: https://petscrystals.com/blog (coming soon)
+
+## Contact
+- Email: wholesale@petscrystal.co
+- Stripe Checkout for retail purchases

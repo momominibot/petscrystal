@@ -1,0 +1,105 @@
+# Pets Crystal — Full Catalog
+
+## Brand
+Pets Crystal sells matching crystal jewelry for humans and their animal companions. Each set includes a human bracelet and a pet collar charm featuring the same healing crystal. 12 stones, one unbreakable bond.
+
+## All Products
+
+### Rainbow Spirit — $89
+- Crystal: Multi-gemstone
+- Chakra: Crown
+- Pet benefit: Eases nervous energy & promotes calm play
+- Human benefit: Balances mood & brings lightness
+
+### Amethyst Serenity — $89
+- Crystal: Amethyst
+- Chakra: Third Eye
+- Pet benefit: Soothes separation anxiety & fear of loud noises
+- Human benefit: Quiets racing thoughts & improves sleep
+
+### Starfall Galaxy — $89
+- Crystal: Labradorite & Moonstone
+- Chakra: Crown + Third Eye
+- Pet benefit: Shields sensitive pets from overwhelming stimuli
+- Human benefit: Enhances intuition & spiritual connection
+
+### Azure Lagoon — $89
+- Crystal: Aquamarine & Blue Lace Agate
+- Chakra: Throat
+- Pet benefit: Calms travel anxiety & car sickness
+- Human benefit: Eases communication & self-expression
+
+### Crimson Fortune — $89
+- Crystal: Red Agate & Garnet
+- Chakra: Root
+- Pet benefit: Grounds hyperactive pets & builds confidence
+- Human benefit: Ignites motivation & personal power
+
+### Tiger's Vigil — $89
+- Crystal: Tiger's Eye
+- Chakra: Solar Plexus
+- Pet benefit: Sharpens focus during training & builds bravery
+- Human benefit: Strengthens willpower & decisiveness
+
+### Frosted Crystal — $79
+- Crystal: Clear Quartz & Howlite
+- Chakra: Crown
+- Pet benefit: Calms reactive pets & reduces overstimulation
+- Human benefit: Amplifies mental clarity & purifies energy
+
+### Rosé Heart — $79
+- Crystal: Rose Quartz
+- Chakra: Heart
+- Pet benefit: Deepens the bond between you & heals rescue trauma
+- Human benefit: Opens the heart to give & receive love freely
+
+### Monet's Garden — $89
+- Crystal: Citrine & Green Aventurine
+- Chakra: Solar Plexus + Heart
+- Pet benefit: Lifts low energy & supports recovery after illness
+- Human benefit: Attracts abundance & creative inspiration
+
+### Stone Path — $89
+- Crystal: Smoky Quartz & Black Tourmaline
+- Chakra: Root
+- Pet benefit: Stabilizes mood swings & reduces environmental stress
+- Human benefit: Provides grounding during chaotic times
+
+### Amethyst Clarity — $79
+- Crystal: Lavender Amethyst & Lepidolite
+- Chakra: Third Eye + Crown
+- Pet benefit: Eases timid personalities & new-environment fear
+- Human benefit: Reduces overthinking & brings peaceful focus
+
+### Rose Quartz Latte — $79
+- Crystal: Rose Quartz & Cream Moonstone
+- Chakra: Heart
+- Pet benefit: Wraps anxious pets in a blanket of calm reassurance
+- Human benefit: Brings gentle self-love & emotional warmth
+
+## Pricing
+- Retail: $79-89 USD per set
+- Wholesale: 4-tier pricing — dropship, retail partner, boutique, distributor (login required at /wholesale)
+- Payment: Stripe Checkout
+
+## Shipping
+- International shipping available (SG, US, GB, AU, CA, MY, HK, JP, KR)
+- Free shipping on orders over $150 USD
+
+## Crystal Properties Reference
+- Amethyst: Calming, anti-anxiety, sleep support
+- Rose Quartz: Unconditional love, emotional healing, bonding
+- Tiger's Eye: Courage, focus, grounding, confidence
+- Clear Quartz: Amplification, clarity, purification
+- Citrine: Energy, abundance, vitality, joy
+- Black Tourmaline: Protection, grounding, negative energy absorption
+- Aquamarine: Communication, calm, travel protection
+- Labradorite: Intuition, transformation, spiritual protection
+- Moonstone: Emotional balance, intuition, new beginnings
+- Garnet: Passion, motivation, grounding
+- Howlite: Calm, patience, stress reduction
+- Green Aventurine: Growth, opportunity, emotional recovery
+- Lepidolite: Peace, transition support, anxiety relief
+
+## About Pets Crystal
+Founded 2026. Sole proprietor based in Singapore. Wholesale distributor of matching human-pet crystal jewelry. We believe the bond between a person and their animal is worth honoring — with intention, with beauty, with stone and light.
