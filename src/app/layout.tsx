@@ -22,18 +22,24 @@ export const metadata: Metadata = {
   description:
     "Matching pet crystal sets for humans and their animal companions. 12 healing stones — amethyst, rose quartz, tiger's eye and more. Bracelet for you, charm for them. Wholesale pricing available.",
   metadataBase: new URL("https://petscrystals.com"),
+  alternates: { canonical: "https://petscrystals.com" },
   openGraph: {
     title:
       "Matching Pet Crystal Jewelry — Crystal Sets for You & Your Companion",
     description:
       "Matching crystal sets for humans and their animal companions. Healing stones, timeless design. Wholesale distributor.",
-    images: ["/og.jpg"],
+    url: "https://petscrystals.com",
+    siteName: "Pets Crystal",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@petscrystal",
     title: "Matching Pet Crystal Jewelry | Pets Crystal",
     description:
       "Crystal sets for you and your animal. 12 healing stones. One unbreakable bond.",
+    images: ["/og.jpg"],
   },
 };
 

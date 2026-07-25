@@ -1,6 +1,7 @@
 import { products } from "@/lib/products";
 import { itemListSchema } from "@/lib/schema";
 import ProductCard from "@/components/ProductCard";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default function Home() {
@@ -31,40 +32,57 @@ export default function Home() {
             <br />
             <span className="text-lavender-dark">for you & your companion</span>
           </h1>
-          <p className="mt-1 text-sm text-ink/40">Wholesale distributor — partner pricing available</p>
           <p className="mx-auto mt-6 max-w-lg text-ink-light leading-relaxed">
-            Twelve healing stones. Two matching pieces — a bracelet for you, a
-            charm for their collar. One unbreakable bond. Handcrafted crystal
-            jewelry designed to be worn together.
+            Twelve stones. Two matching pieces — a bracelet for you, a charm for
+            their collar. One stone, cut in two, so that what you wear and what
+            they wear come from the same place.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4 text-sm text-ink-light">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-ink-light">
             <span className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-sage"></span>
-              Natural crystals
+              Natural gemstone
             </span>
             <span className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-rose-dark"></span>
-              Pet-safe design
+              Breakaway-safe design
             </span>
             <span className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-gold"></span>
-              Free shipping over $150
+              Ships worldwide
             </span>
           </div>
-          <p className="mt-6 font-serif text-2xl text-ink/20">✦</p>
+          <div className="mt-9">
+            <Link
+              href="#collection"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 text-sm font-medium text-cream transition-all hover:bg-ink/85"
+            >
+              Find your stone
+              <span className="text-lg leading-none">→</span>
+            </Link>
+          </div>
+          <p className="mt-8 font-serif text-2xl text-ink/20">✦</p>
         </div>
       </section>
 
-      {/* Filter bar */}
+      {/* Collection meta */}
       <section className="border-y border-ink/5 bg-cream-dark/30">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 text-sm text-ink-light">
           <span>{products.length} matching crystal sets</span>
-          <span>Filter by crystal · chakra · benefit (soon)</span>
+          <span>$79 – $89 · both pieces included</span>
         </div>
       </section>
 
       {/* Product grid */}
-      <section className="mx-auto max-w-6xl px-6 py-12">
+      <section id="collection" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-12">
+        <div className="mb-10 text-center">
+          <h2 className="font-serif text-3xl text-ink">
+            Twelve stones. One bond.
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-light">
+            Each set is a single stone cut into two pieces — a bracelet for you,
+            a charm for their collar.
+          </p>
+        </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
@@ -72,19 +90,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-ink/5 py-12 text-center text-sm text-ink-light">
-        <p className="font-serif text-lg text-ink">Pets Crystal</p>
-        <p className="mt-1">Wholesale Distributor</p>
-        <div className="mt-3 flex items-center justify-center gap-4 text-xs">
-          <Link href="/care" className="hover:text-ink transition-colors">Care Promise</Link>
-          <Link href="/wholesale" className="hover:text-ink transition-colors">Wholesale</Link>
+      {/* Reassurance */}
+      <section className="border-t border-ink/5 bg-cream-dark/30">
+        <div className="mx-auto grid max-w-5xl gap-8 px-6 py-14 sm:grid-cols-3 text-center">
+          <div>
+            <p className="font-serif text-xl text-ink">Made to be worn safely</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-light">
+              Smooth-polished stones, breakaway-safe hardware, and a three-day
+              introduction guide in every box.
+            </p>
+          </div>
+          <div>
+            <p className="font-serif text-xl text-ink">Honest about the science</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-light">
+              We don&apos;t claim crystals heal. We do believe a shared object is a
+              reminder to be present.{" "}
+              <Link href="/about" className="text-ink underline underline-offset-4">
+                Why
+              </Link>
+            </p>
+          </div>
+          <div>
+            <p className="font-serif text-xl text-ink">Thirty days to decide</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-light">
+              Ships worldwide from Singapore. If it isn&apos;t right for either of
+              you, send it back.
+            </p>
+          </div>
         </div>
-        <p className="mt-4 text-xs text-ink/30">
-          ✦ Crystal energy is complementary — not a substitute for veterinary
-          care ✦
-        </p>
-      </footer>
+      </section>
+
+      <Footer />
     </div>
   );
 }
