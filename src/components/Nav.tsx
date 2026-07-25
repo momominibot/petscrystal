@@ -11,6 +11,9 @@ export default function Nav() {
           <Link href="/" className="hover:text-ink transition-colors">
             Shop
           </Link>
+          <Link href="/care" className="hover:text-ink transition-colors">
+            Care
+          </Link>
           <Link
             href="/wholesale"
             className="rounded-full border border-ink/15 px-4 py-1.5 text-xs hover:border-ink/30 transition-colors"

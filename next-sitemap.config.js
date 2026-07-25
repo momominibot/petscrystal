@@ -4,7 +4,7 @@ module.exports = {
   siteUrl: "https://petscrystals.com",
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  exclude: ["/api/*"],
+  exclude: ["/api/*", "/success*"],
   additionalPaths: async () => {
     return products.map((p) => ({
       loc: `/products/${p.id}`,

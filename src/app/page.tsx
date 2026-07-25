@@ -1,6 +1,7 @@
 import { products } from "@/lib/products";
 import { itemListSchema } from "@/lib/schema";
 import ProductCard from "@/components/ProductCard";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -75,6 +76,10 @@ export default function Home() {
       <footer className="border-t border-ink/5 py-12 text-center text-sm text-ink-light">
         <p className="font-serif text-lg text-ink">Pets Crystal</p>
         <p className="mt-1">Wholesale Distributor</p>
+        <div className="mt-3 flex items-center justify-center gap-4 text-xs">
+          <Link href="/care" className="hover:text-ink transition-colors">Care Promise</Link>
+          <Link href="/wholesale" className="hover:text-ink transition-colors">Wholesale</Link>
+        </div>
         <p className="mt-4 text-xs text-ink/30">
           ✦ Crystal energy is complementary — not a substitute for veterinary
           care ✦
