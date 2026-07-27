@@ -57,16 +57,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hero painting — composed with its own negative space */}
-          <div className="relative overflow-hidden rounded-3xl shadow-[0_30px_70px_-40px_rgba(46,42,71,0.4)]">
+          {/* Hero painting — merges into the page, no frame */}
+          <div className="relative">
             <Image
               src="/art/hero.png"
-              alt="Watercolour illustration of a woman embracing her golden retriever"
+              alt="Watercolour illustration of a woman embracing her golden retriever, both wearing matching crystal jewelry"
               width={1376}
               height={768}
               priority
-              className="h-full w-full object-cover object-right"
-              style={{ aspectRatio: "4/3" }}
+              className="soft-blend w-full"
             />
           </div>
         </div>

@@ -221,6 +221,20 @@ h1, h2, h3, h4 {
     radial-gradient(ellipse 45% 40% at 10% 85%, rgba(240, 216, 156, 0.28) 0%, transparent 70%);
 }
 
+/* Feather a painting's edges so its cream paper dissolves into the page. */
+.soft-blend {
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 85% at 50% 50%,
+    black 55%,
+    transparent 97%
+  );
+  mask-image: radial-gradient(
+    ellipse 90% 85% at 50% 50%,
+    black 55%,
+    transparent 97%
+  );
+}
+
 /* Gentle bob for the painted jewelry and watercolor accents. */
 @keyframes floatSoft {
   0%, 100% { transform: translateY(0) rotate(0deg); }
