@@ -68,7 +68,10 @@ export default function Footer() {
           <p className="mt-2 text-xs text-ink/30">
             © {new Date().getFullYear()} Pets Crystal. Singapore.
           </p>
-          <p className="mt-2 text-xs text-ink/30">
+        </div>
+
+        <div className="mt-8 text-left">
+          <p className="text-[10px] leading-relaxed text-ink/30">
             Website powered by{" "}
             <a
               href="https://ranklore.ai"
@@ -77,8 +80,13 @@ export default function Footer() {
               className="underline underline-offset-2 hover:text-ink"
             >
               ranklore.ai
-            </a>{" "}
-            · Ranklore Pte Ltd
+            </a>
+            <br />
+            Ranklore Pte Ltd
+            <br />
+            UEN: 202629679H
+            <br />
+            7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987
           </p>
         </div>
       </div>

@@ -168,18 +168,25 @@ export default function Home() {
           <p className="mt-2 text-xs text-periwinkle/40">
             Designed by Bella&amp;Lisa
           </p>
-          <p className="mt-2 text-xs text-periwinkle/40">
-            Website powered by{" "}
-            <a
-              href="https://ranklore.ai"
-              target="_blank"
-              rel="noopener"
-              className="underline underline-offset-2 transition-colors hover:text-cream"
-            >
-              ranklore.ai
-            </a>{" "}
-            · Ranklore Pte Ltd
-          </p>
+          <div className="mx-auto mt-10 max-w-6xl px-6 text-left">
+            <p className="text-[10px] leading-relaxed text-periwinkle/40">
+              Website powered by{" "}
+              <a
+                href="https://ranklore.ai"
+                target="_blank"
+                rel="noopener"
+                className="underline underline-offset-2 transition-colors hover:text-cream"
+              >
+                ranklore.ai
+              </a>
+              <br />
+              Ranklore Pte Ltd
+              <br />
+              UEN: 202629679H
+              <br />
+              7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987
+            </p>
+          </div>
         </footer>
       </div>
     </div>
