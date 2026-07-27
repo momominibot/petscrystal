@@ -152,8 +152,8 @@ export default async function ProductPage({
 
             <p className="mt-6 font-serif text-xl text-ink">Partner pricing</p>
             <p className="mt-1 text-sm text-ink-light">
-              One bracelet, one collar charm — both pieces included. Pricing is
-              shared with approved partners in the distributor dashboard.
+              Bracelet and matching collar charm, priced per piece. Partner
+              pricing is shared in the distributor dashboard.
             </p>
 
             <div className="mt-7">

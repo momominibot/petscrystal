@@ -95,7 +95,7 @@ export const products: Product[] = [
     id: "frosted-crystal",
     name: "Frosted Crystal",
     tagline: "Pure clarity for sensitive spirits",
-    price: 79,
+    price: 89,
     crystal: "Clear Quartz & Howlite",
     chakra: "Crown",
     petBenefit: "Calms reactive pets & reduces overstimulation",
@@ -108,7 +108,7 @@ export const products: Product[] = [
     id: "rose-heart",
     name: "Rosé Heart",
     tagline: "Unconditional love, worn together",
-    price: 79,
+    price: 89,
     crystal: "Rose Quartz",
     chakra: "Heart",
     petBenefit: "Deepens the bond between you & heals rescue trauma",
@@ -147,7 +147,7 @@ export const products: Product[] = [
     id: "amethyst-clarity",
     name: "Amethyst Clarity",
     tagline: "Gentle confidence for uncertain paws",
-    price: 79,
+    price: 89,
     crystal: "Lavender Amethyst & Lepidolite",
     chakra: "Third Eye + Crown",
     petBenefit: "Eases timid personalities & new-environment fear",
@@ -160,7 +160,7 @@ export const products: Product[] = [
     id: "rose-latte",
     name: "Rose Quartz Latte",
     tagline: "Warmth & comfort for kindred spirits",
-    price: 79,
+    price: 89,
     crystal: "Rose Quartz & Cream Moonstone",
     chakra: "Heart",
     petBenefit: "Wraps anxious pets in a blanket of calm reassurance",
@@ -183,7 +183,7 @@ export const partnerPrograms = [
     description:
       "Tiered bulk pricing for retailers, boutiques, groomers, and vet clinics. The more you carry, the deeper your margin.",
     dashboardDetail:
-      "Four tiers from 10% to 40% off MSRP — see the tier table and full price list below. Shipping not included.",
+      "Three tiers from 20% to 40% off MSRP — see the tier table and full price list below. Shipping not included.",
   },
   {
     id: "dropship",
@@ -192,7 +192,7 @@ export const partnerPrograms = [
     description:
       "Pay a one-time partnership fee and we fulfil orders to your customers directly from our warehouse. No inventory, no minimums.",
     dashboardDetail:
-      "One-time partnership fee: US$499 (launch rate — placeholder, set your final fee). We ship each order under your brand. Per-order shipping billed at cost — not included.",
+      "Two ways in: US$199 one-time fee — 20% off MSRP on all dropship orders. US$499 one-time fee — 35% off MSRP, plus we create your own website for you. We ship each order under your brand. Per-order shipping billed at cost — not included.",
   },
   {
     id: "diy",
@@ -206,7 +206,6 @@ export const partnerPrograms = [
 ];
 
 export const wholesaleTiers = [
-  { name: "Dropship", discount: "10% off", minOrder: "None", price: "from $80", margin: "11%" },
   { name: "Retail Partner", discount: "20% off", minOrder: "20 pieces", price: "from $71", margin: "25%" },
   { name: "Boutique", discount: "30% off", minOrder: "50 pieces", price: "from $62", margin: "43%" },
   { name: "Distributor", discount: "40% off", minOrder: "100 pieces", price: "from $53", margin: "67%" },

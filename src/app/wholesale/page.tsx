@@ -11,7 +11,6 @@ export default async function WholesalePage() {
   }
 
   const discounts: Record<string, number> = {
-    Dropship: 0.1,
     "Retail Partner": 0.2,
     Boutique: 0.3,
     Distributor: 0.4,
@@ -65,7 +64,7 @@ export default async function WholesalePage() {
             <thead className="bg-cream-dark/60 text-ink">
               <tr>
                 <th className="px-5 py-3 font-medium">Set</th>
-                <th className="px-5 py-3 font-medium">MSRP</th>
+                <th className="px-5 py-3 font-medium">MSRP (per piece)</th>
                 {wholesaleTiers.map((t) => (
                   <th key={t.name} className="px-5 py-3 font-medium">{t.name}</th>
                 ))}
