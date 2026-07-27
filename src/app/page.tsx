@@ -20,7 +20,7 @@ export default function Home() {
         <div className="mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 pt-28 pb-16 lg:grid-cols-2">
           <div className="rise">
             <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
-              Pets Crystal · Wholesale distributor
+              Pets Crystal
             </p>
             <h1 className="mt-5 font-serif text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
               Crystal jewelry
@@ -31,7 +31,7 @@ export default function Home() {
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-light">
               Healing stones, hand-strung in pairs — a bracelet for you, a charm
-              for their collar. Cut from the same crystal. One unbreakable bond.
+              for their collar. One unbreakable bond.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-ink-light">
               <span className="rounded-full border border-ink/10 bg-cream/70 px-4 py-1.5">
@@ -57,15 +57,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hero painting — merges into the page, no frame */}
-          <div className="relative">
+          {/* Hero painting — transparent cutout, sits directly beside the headline */}
+          <div className="relative lg:-ml-6">
             <Image
-              src="/art/hero.png"
+              src="/art/hero-cutout.png"
               alt="Watercolour illustration of a woman embracing her golden retriever, both wearing matching crystal jewelry"
-              width={1376}
-              height={768}
+              width={862}
+              height={635}
               priority
-              className="soft-blend w-full"
+              className="mx-auto w-full max-w-xl"
             />
           </div>
         </div>
@@ -140,7 +140,6 @@ export default function Home() {
 
         <footer className="border-t border-cream/10 py-14 text-center text-sm text-periwinkle/80">
           <p className="font-serif text-lg text-cream">Pets Crystal</p>
-          <p className="mt-1">Wholesale Distributor</p>
           <div className="mt-3 flex items-center justify-center gap-4 text-xs">
             <Link href="/care" className="transition-colors hover:text-cream">
               Care Promise
