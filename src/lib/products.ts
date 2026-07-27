@@ -171,6 +171,40 @@ export const products: Product[] = [
   },
 ];
 
+/**
+ * The three partnership models. Public pages show only names + descriptions —
+ * numbers live in the approved-partner dashboard.
+ */
+export const partnerPrograms = [
+  {
+    id: "wholesale",
+    name: "Wholesale",
+    tagline: "Stock the collection in your store",
+    description:
+      "Tiered bulk pricing for retailers, boutiques, groomers, and vet clinics. The more you carry, the deeper your margin.",
+    dashboardDetail:
+      "Four tiers from 10% to 40% off MSRP — see the tier table and full price list below. Shipping not included.",
+  },
+  {
+    id: "dropship",
+    name: "Dropship Partnership",
+    tagline: "Sell without holding stock",
+    description:
+      "Pay a one-time partnership fee and we fulfil orders to your customers directly from our warehouse. No inventory, no minimums.",
+    dashboardDetail:
+      "One-time partnership fee: US$499 (launch rate — placeholder, set your final fee). We ship each order under your brand. Per-order shipping billed at cost — not included.",
+  },
+  {
+    id: "diy",
+    name: "DIY Sets",
+    tagline: "Straps & crystals, sold as components",
+    description:
+      "Buy straps and loose crystals separately and assemble sets under your own brand — or sell the DIY kits as an experience product.",
+    dashboardDetail:
+      "Component pricing (placeholder — set your final prices): straps from US$12, 12-stone crystal packs from US$28. Minimum 25 components per order. Shipping not included.",
+  },
+];
+
 export const wholesaleTiers = [
   { name: "Dropship", discount: "10% off", minOrder: "None", price: "from $80", margin: "11%" },
   { name: "Retail Partner", discount: "20% off", minOrder: "20 pieces", price: "from $71", margin: "25%" },

@@ -135,7 +135,11 @@ export default function CarePage() {
             </div>
             <div>
               <p className="font-serif text-lg text-gold">2</p>
-              <p className="mt-1">Ship your set to us (customer covers shipping)</p>
+              <p className="mt-1">
+                Ship your set to our Singapore headquarters — all hardware
+                changes and crystal cleansing are done in-house (shipping not
+                included)
+              </p>
             </div>
             <div>
               <p className="font-serif text-lg text-gold">3</p>

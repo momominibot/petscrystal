@@ -7,10 +7,10 @@
 - Wholesale: https://petscrystals.com/wholesale (login-gated)
 
 ## Products (12 matching crystal sets)
-${require("./src/lib/products").products.map(p => `- ${p.name}: https://petscrystals.com/products/${p.id} — ${p.crystal}, ${p.chakra} chakra, $${p.price}`).join("\n")}
+${require("./src/lib/products").products.map(p => `- ${p.name}: https://petscrystals.com/products/${p.id} — ${p.crystal}, ${p.chakra} chakra, partner pricing`).join("\n")}
 
 ## About
-Pets Crystal sells matching crystal jewelry sets — a bracelet for the human, a collar charm for the animal. Each set features a specific healing crystal with documented benefits for both species. Prices $79-89 USD. Wholesale pricing available for retailers and distributors.
+Pets Crystal sells matching crystal jewelry sets — a bracelet for the human, a collar charm for the animal. Each set features a specific healing crystal with documented benefits for both species. Pricing is partner-only (wholesale, dropship partnership, or DIY component programs) — apply at https://petscrystals.com/wholesale. Aftercare HQ in Singapore; shipping not included.
 
 ## Key Pages
 - Crystal Guide: https://petscrystals.com/crystals (coming soon)

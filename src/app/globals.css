@@ -209,3 +209,22 @@ h1, h2, h3, h4 {
   .reveal { opacity: 1; transform: none; transition: none; }
   .bleed { transition: none; }
 }
+
+/* ============ 3D watercolor hero ============ */
+/* Soft cream wash behind hero copy so text stays readable over the scene. */
+.copy-veil {
+  border-radius: 2rem;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(251, 246, 238, 0.82) 0%,
+    rgba(251, 246, 238, 0.55) 60%,
+    rgba(251, 246, 238, 0) 100%
+  );
+}
+
+/* The collection slides over the fixed 3D scene like a sheet of paper. */
+.collection-sheet {
+  background: var(--color-cream);
+  border-radius: 2.5rem 2.5rem 0 0;
+  box-shadow: 0 -30px 60px rgba(42, 33, 27, 0.08);
+}

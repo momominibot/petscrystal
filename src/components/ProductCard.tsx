@@ -1,7 +1,6 @@
 import { Product } from "@/lib/products";
 import Image from "next/image";
 import Link from "next/link";
-import CheckoutButton from "./CheckoutButton";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -39,8 +38,8 @@ export default function ProductCard({ product }: { product: Product }) {
             </h3>
             <p className="mt-1 text-sm text-ink-light">{product.tagline}</p>
           </div>
-          <span className="shrink-0 font-serif text-lg text-indigo">
-            ${product.price}
+          <span className="shrink-0 rounded-full bg-periwinkle/50 px-3 py-1 text-[11px] text-indigo-soft">
+            Partner pricing
           </span>
         </div>
 
@@ -65,10 +64,12 @@ export default function ProductCard({ product }: { product: Product }) {
         </dl>
 
         <div className="mt-auto flex flex-wrap items-center gap-4 pt-3">
-          <CheckoutButton
-            priceId={product.stripePriceId}
-            label={`Buy — $${product.price}`}
-          />
+          <Link
+            href="/wholesale"
+            className="rounded-full bg-ink px-5 py-2 text-sm text-cream transition-colors hover:bg-indigo"
+          >
+            Partner access
+          </Link>
           <Link
             href={`/products/${product.id}`}
             className="brushed text-sm text-ink-light"

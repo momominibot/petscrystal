@@ -38,20 +38,8 @@ export function productSchema(product: Product): object {
       name: "Pets Crystal",
     },
     category: "Matching Pet Crystal Jewelry",
-    offers: {
-      "@type": "Offer",
-      price: product.price.toString(),
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      url: `https://petscrystals.com/products/${product.id}`,
-      shippingDetails: {
-        "@type": "OfferShippingDetails",
-        shippingDestination: {
-          "@type": "DefinedRegion",
-          addressCountry: ["SG", "US", "GB", "AU", "CA", "MY", "HK", "JP", "KR"],
-        },
-      },
-    },
+    // B2B: pricing is partner-only, so no public Offer is published.
+    url: `https://petscrystals.com/products/${product.id}`,
   };
 }
 

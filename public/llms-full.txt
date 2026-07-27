@@ -5,86 +5,86 @@ Pets Crystal sells matching crystal jewelry for humans and their animal companio
 
 ## All Products
 
-### Rainbow Spirit — $89
+### Rainbow Spirit — partner pricing
 - Crystal: Multi-gemstone
 - Chakra: Crown
 - Pet benefit: Eases nervous energy & promotes calm play
 - Human benefit: Balances mood & brings lightness
 
-### Amethyst Serenity — $89
+### Amethyst Serenity — partner pricing
 - Crystal: Amethyst
 - Chakra: Third Eye
 - Pet benefit: Soothes separation anxiety & fear of loud noises
 - Human benefit: Quiets racing thoughts & improves sleep
 
-### Starfall Galaxy — $89
+### Starfall Galaxy — partner pricing
 - Crystal: Labradorite & Moonstone
 - Chakra: Crown + Third Eye
 - Pet benefit: Shields sensitive pets from overwhelming stimuli
 - Human benefit: Enhances intuition & spiritual connection
 
-### Azure Lagoon — $89
+### Azure Lagoon — partner pricing
 - Crystal: Aquamarine & Blue Lace Agate
 - Chakra: Throat
 - Pet benefit: Calms travel anxiety & car sickness
 - Human benefit: Eases communication & self-expression
 
-### Crimson Fortune — $89
+### Crimson Fortune — partner pricing
 - Crystal: Red Agate & Garnet
 - Chakra: Root
 - Pet benefit: Grounds hyperactive pets & builds confidence
 - Human benefit: Ignites motivation & personal power
 
-### Tiger's Vigil — $89
+### Tiger's Vigil — partner pricing
 - Crystal: Tiger's Eye
 - Chakra: Solar Plexus
 - Pet benefit: Sharpens focus during training & builds bravery
 - Human benefit: Strengthens willpower & decisiveness
 
-### Frosted Crystal — $79
+### Frosted Crystal — partner pricing
 - Crystal: Clear Quartz & Howlite
 - Chakra: Crown
 - Pet benefit: Calms reactive pets & reduces overstimulation
 - Human benefit: Amplifies mental clarity & purifies energy
 
-### Rosé Heart — $79
+### Rosé Heart — partner pricing
 - Crystal: Rose Quartz
 - Chakra: Heart
 - Pet benefit: Deepens the bond between you & heals rescue trauma
 - Human benefit: Opens the heart to give & receive love freely
 
-### Monet's Garden — $89
+### Monet's Garden — partner pricing
 - Crystal: Citrine & Green Aventurine
 - Chakra: Solar Plexus + Heart
 - Pet benefit: Lifts low energy & supports recovery after illness
 - Human benefit: Attracts abundance & creative inspiration
 
-### Stone Path — $89
+### Stone Path — partner pricing
 - Crystal: Smoky Quartz & Black Tourmaline
 - Chakra: Root
 - Pet benefit: Stabilizes mood swings & reduces environmental stress
 - Human benefit: Provides grounding during chaotic times
 
-### Amethyst Clarity — $79
+### Amethyst Clarity — partner pricing
 - Crystal: Lavender Amethyst & Lepidolite
 - Chakra: Third Eye + Crown
 - Pet benefit: Eases timid personalities & new-environment fear
 - Human benefit: Reduces overthinking & brings peaceful focus
 
-### Rose Quartz Latte — $79
+### Rose Quartz Latte — partner pricing
 - Crystal: Rose Quartz & Cream Moonstone
 - Chakra: Heart
 - Pet benefit: Wraps anxious pets in a blanket of calm reassurance
 - Human benefit: Brings gentle self-love & emotional warmth
 
 ## Pricing
-- Retail: $79-89 USD per set
+- Pricing: partner-only — revealed in the approved distributor dashboard
 - Wholesale: 4-tier pricing — dropship, retail partner, boutique, distributor (login required at /wholesale)
 - Payment: Stripe Checkout
 
 ## Shipping
 - International shipping available (SG, US, GB, AU, CA, MY, HK, JP, KR)
-- Free shipping on orders over $150 USD
+- Shipping not included in any program
 
 ## Crystal Properties Reference
 - Amethyst: Calming, anti-anxiety, sleep support

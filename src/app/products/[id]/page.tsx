@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/lib/products";
 import { productSchema, breadcrumbListSchema } from "@/lib/schema";
-import CheckoutButton from "@/components/CheckoutButton";
 import Footer from "@/components/Footer";
 
 const SITE = "https://petscrystals.com";
@@ -23,7 +22,7 @@ export async function generateMetadata({
   if (!product) return {};
 
   const title = `${product.name} Matching Pet Crystal Set — ${product.tagline} | Pets Crystal`;
-  const description = `${product.name} — a matching ${product.crystal} crystal set. A bracelet for you, a collar charm for them. ${product.petBenefit} for your companion; ${product.humanBenefit} for you. $${product.price}, ships worldwide.`;
+  const description = `${product.name} — a matching ${product.crystal} crystal set. A bracelet for you, a collar charm for them. ${product.petBenefit} for your companion; ${product.humanBenefit} for you. Partner pricing — apply for wholesale access.`;
 
   return {
     title,
@@ -151,16 +150,19 @@ export default async function ProductPage({
               </span>
             </div>
 
-            <p className="mt-6 font-serif text-3xl text-ink">${product.price}</p>
+            <p className="mt-6 font-serif text-xl text-ink">Partner pricing</p>
             <p className="mt-1 text-sm text-ink-light">
-              One bracelet, one collar charm — both pieces included.
+              One bracelet, one collar charm — both pieces included. Pricing is
+              shared with approved partners in the distributor dashboard.
             </p>
 
             <div className="mt-7">
-              <CheckoutButton
-                priceId={product.stripePriceId}
-                label={`Add to cart — $${product.price}`}
-              />
+              <Link
+                href="/wholesale"
+                className="inline-block rounded-full bg-ink px-6 py-3 text-sm text-cream transition-colors hover:bg-indigo"
+              >
+                Apply for partner access
+              </Link>
             </div>
 
             <ul className="mt-7 space-y-2 text-sm text-ink-light">
@@ -288,7 +290,7 @@ export default async function ProductPage({
               />
               <h3 className="mt-4 font-serif text-lg text-ink">{p.name}</h3>
               <p className="text-sm text-ink-light">{p.tagline}</p>
-              <p className="mt-2 font-serif text-ink">${p.price}</p>
+              <p className="mt-2 text-xs text-ink-light">Partner pricing</p>
             </Link>
           ))}
         </div>
