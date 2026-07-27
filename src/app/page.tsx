@@ -57,22 +57,17 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Featured painting — swap to the owner's chosen artwork */}
-          <div className="relative">
-            <div className="float-soft relative mx-auto max-w-md">
-              <Image
-                src="/art/product-amethyst-serenity.png"
-                alt="Watercolour illustration of a matching amethyst crystal set — a beaded bracelet and a pet collar charm"
-                width={880}
-                height={1100}
-                priority
-                className="w-full"
-              />
-            </div>
-            {/* floating watercolor accents */}
-            <Image src="/art/pet-moon.png" alt="" width={140} height={140} className="float-soft absolute -top-4 -left-2 w-24 opacity-90 sm:w-32" style={{ animationDelay: "-4s" }} />
-            <Image src="/art/pet-gem.png" alt="" width={110} height={110} className="float-soft absolute right-0 bottom-10 w-16 opacity-90 sm:w-24" style={{ animationDelay: "-9s" }} />
-            <Image src="/art/pet-paw.png" alt="" width={90} height={90} className="float-soft absolute bottom-0 left-6 w-14 opacity-80 sm:w-16" style={{ animationDelay: "-13s" }} />
+          {/* Hero painting — composed with its own negative space */}
+          <div className="relative overflow-hidden rounded-3xl shadow-[0_30px_70px_-40px_rgba(46,42,71,0.4)]">
+            <Image
+              src="/art/hero.png"
+              alt="Watercolour illustration of a woman embracing her golden retriever"
+              width={1376}
+              height={768}
+              priority
+              className="h-full w-full object-cover object-right"
+              style={{ aspectRatio: "4/3" }}
+            />
           </div>
         </div>
       </section>
@@ -96,13 +91,24 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={150}>
-            <Image
-              src="/art/hero.png"
-              alt="Watercolour illustration of a woman embracing her golden retriever"
-              width={1376}
-              height={768}
-              className="w-full"
-            />
+            <div className="relative mx-auto max-w-sm">
+              {/* soft pigment bloom grounds the painting */}
+              <span
+                aria-hidden
+                className="absolute inset-0 block"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 60% 50% at 50% 48%, rgba(196,181,212,0.45) 0%, transparent 70%)",
+                }}
+              />
+              <Image
+                src="/art/product-amethyst-serenity.png"
+                alt="Watercolour illustration of a matching amethyst crystal set — a beaded bracelet and a pet collar charm"
+                width={880}
+                height={1100}
+                className="float-soft relative w-full"
+              />
+            </div>
           </Reveal>
         </div>
       </section>
