@@ -13,7 +13,6 @@ import {
 import { EffectComposer, Bloom, Vignette, Noise } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
-import { products } from "@/lib/products";
 
 /**
  * The descent — a scroll-driven journey in four acts:
@@ -116,10 +115,31 @@ function Backdrop() {
  * Spheres are what the real bracelets are made of, and they read premium in a
  * way faceted low-poly gems never will.
  */
-function Bead({ color, seed }: { color: string; seed: number }) {
+function Bead({
+  color,
+  seed,
+  shape = "bead",
+}: {
+  color: string;
+  seed: number;
+  shape?: "bead" | "crystal";
+}) {
   const group = useRef<THREE.Group>(null);
   const glass = useRef<THREE.MeshPhysicalMaterial>(null);
   const core = useRef<THREE.MeshBasicMaterial>(null);
+
+  // Double-terminated crystal: a six-sided column pointed at BOTH ends,
+  // lathed in one mesh. Beads stay faceted rounds.
+  const geometry = useMemo(() => {
+    if (shape === "bead") return new THREE.IcosahedronGeometry(1, 1);
+    const profile = [
+      new THREE.Vector2(0.001, -1.5),
+      new THREE.Vector2(0.34, -0.75),
+      new THREE.Vector2(0.36, 0.7),
+      new THREE.Vector2(0.001, 1.5),
+    ];
+    return new THREE.LatheGeometry(profile, 6);
+  }, [shape]);
 
   // Deterministic scatter from the seed (no Math.random — stable frames).
   const home = useMemo(() => {
@@ -176,8 +196,7 @@ function Bead({ color, seed }: { color: string; seed: number }) {
   return (
     <group ref={group}>
       {/* faceted gem shell — cut like real bracelet beads, so it glints */}
-      <mesh>
-        <icosahedronGeometry args={[1, 1]} />
+      <mesh geometry={geometry}>
         <meshPhysicalMaterial
           ref={glass}
           color={color}
@@ -195,6 +214,8 @@ function Bead({ color, seed }: { color: string; seed: number }) {
           envMapIntensity={3}
           attenuationColor={color}
           attenuationDistance={0.8}
+          emissive={color}
+          emissiveIntensity={0.18}
           flatShading
         />
       </mesh>
@@ -207,29 +228,25 @@ function Bead({ color, seed }: { color: string; seed: number }) {
   );
 }
 
+/** The spirit palette: purple, pink, yellow, light blue, white. */
+const BEAD_PALETTE = ["#A678E0", "#F2A0C0", "#F5D34B", "#9FD4F0", "#F8F6FC"];
+
 function Beads() {
-  // Two beads per healing stone — 24 spirits, colored from the real products.
   const beads = useMemo(
-    () =>
-      Array.from({ length: 24 }, (_, i) => {
-        const p = products[i % products.length];
-        // Boost saturation and clamp lightness so even the darkest stones
-        // (navy labradorite) glow colorful instead of reading black.
-        const raw = new THREE.Color(p.colors[0]);
-        const hsl = { h: 0, s: 0, l: 0 };
-        raw.getHSL(hsl);
-        raw.setHSL(hsl.h, Math.min(hsl.s * 1.35 + 0.15, 1), Math.max(hsl.l, 0.58));
-        return {
-          color: `#${raw.getHexString()}`,
-          seed: i + 1,
-        };
-      }).concat(
-        // Clear quartz beads — colorless, all fire and sparkle.
-        Array.from({ length: 8 }, (_, i) => ({
-          color: "#F8F6FC",
-          seed: 101 + i,
-        }))
-      ),
+    () => [
+      // Faceted rounds.
+      ...Array.from({ length: 24 }, (_, i) => ({
+        color: BEAD_PALETTE[i % BEAD_PALETTE.length],
+        seed: i + 1,
+        shape: "bead" as const,
+      })),
+      // Double-terminated crystal points tumbling among them.
+      ...Array.from({ length: 9 }, (_, i) => ({
+        color: BEAD_PALETTE[(i + 2) % BEAD_PALETTE.length],
+        seed: 51 + i,
+        shape: "crystal" as const,
+      })),
+    ],
     []
   );
   return (
@@ -301,7 +318,7 @@ function Spirit({
 function Spirits() {
   return (
     <>
-      <Spirit url="/art/pet-moon.png" position={[-3.6, 2.4, -3]} scale={1.15} phase={0} />
+      <Spirit url="/art/pet-moon.png" position={[-3.8, 2.3, -3]} scale={2.1} phase={0} />
       <Spirit url="/art/pet-gem.png" position={[3.7, 1.9, -2.6]} scale={0.85} phase={2.1} />
       <Spirit url="/art/pet-paw.png" position={[-2.9, -1.2, -2]} scale={0.65} phase={4.2} />
     </>
