@@ -210,12 +210,18 @@ h1, h2, h3, h4 {
   .bleed { transition: none; }
 }
 
-/* ============ 3D watercolor hero (Peach style) ============ */
-/* Text sits directly on the scene — a soft cream halo keeps it readable. */
+/* ============ 3D hero (Peach style) ============ */
+/* Text sits directly on the scene — a soft halo keeps it readable. */
 .hero-text {
   text-shadow:
     0 1px 24px rgba(251, 246, 238, 0.9),
     0 0 60px rgba(251, 246, 238, 0.6);
+}
+/* Light text over dark backdrops (galaxy, golden-hour photo). */
+.hero-text-dark {
+  text-shadow:
+    0 1px 22px rgba(23, 18, 49, 0.85),
+    0 0 55px rgba(23, 18, 49, 0.55);
 }
 
 /* The collection slides over the fixed 3D scene as a deep-indigo sheet. */

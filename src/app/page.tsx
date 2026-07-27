@@ -15,95 +15,104 @@ export default function Home() {
         }}
       />
 
-      {/* Fixed 3D watercolor scene behind the three hero acts */}
+      {/* Fixed 3D descent behind the four hero acts */}
       <MysticHero />
 
-      {/* Act I — meet the crystal */}
+      {/* Act I — the galaxy */}
       <section className="relative z-10 flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-6xl px-6 pt-20">
-          <div className="hero-text max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
+          <div className="hero-text-dark max-w-2xl">
+            <p className="text-xs font-medium tracking-[0.3em] text-periwinkle/80 uppercase">
               01 — Pets Crystal · Wholesale distributor
             </p>
-            <h1 className="mt-5 font-serif text-5xl leading-[0.98] text-ink sm:text-7xl lg:text-8xl">
-              Crystal jewelry
+            <h1 className="mt-5 font-serif text-5xl leading-[0.98] text-cream sm:text-7xl lg:text-8xl">
+              Every stone
               <br />
-              for you &amp;
+              begins as
               <br />
-              <span className="text-indigo-soft">your companion</span>
+              <span className="text-periwinkle-deep">starlight</span>
             </h1>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-light">
-              Twelve healing stones. A bracelet for you, a charm for their
-              collar — cut from the same crystal.
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-periwinkle">
+              Twelve healing crystals, each holding a small spirit of light —
+              waiting for the companion they belong to.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-ink-light">
-              <span className="rounded-full border border-ink/10 bg-cream/60 px-4 py-1.5 backdrop-blur-sm">
-                Natural crystals
-              </span>
-              <span className="rounded-full border border-ink/10 bg-cream/60 px-4 py-1.5 backdrop-blur-sm">
-                Pet-safe design
-              </span>
-              <span className="rounded-full border border-ink/10 bg-cream/60 px-4 py-1.5 backdrop-blur-sm">
-                Aftercare HQ · Singapore
-              </span>
-            </div>
           </div>
         </div>
 
         {/* Peach-style scroll chip */}
         <div className="absolute right-6 bottom-8 hidden sm:block">
-          <div className="rounded-3xl bg-indigo/90 px-8 py-6 text-cream shadow-[0_24px_60px_-24px_rgba(46,42,71,0.6)] backdrop-blur-sm">
+          <div className="rounded-3xl bg-cream/90 px-8 py-6 text-indigo shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] backdrop-blur-sm">
             <p className="font-serif text-2xl leading-snug">
               Scroll down
               <br />
-              &amp; begin the ritual
+              &amp; follow them home
             </p>
-            <p className="mt-2 animate-bounce text-lg text-periwinkle">✦</p>
+            <p className="mt-2 animate-bounce text-lg text-lavender-dark">✦</p>
           </div>
         </div>
       </section>
 
-      {/* Act II — the ring of twelve */}
+      {/* Act II — the sky */}
       <section className="relative z-10 flex min-h-screen items-center">
         <div className="mx-auto flex w-full max-w-6xl justify-end px-6">
           <Reveal className="hero-text max-w-xl text-right">
             <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
-              02 — The stones
+              02 — The descent
             </p>
             <h2 className="mt-5 font-serif text-4xl leading-[1.02] text-ink sm:text-6xl">
-              Twelve healing stones,
+              They fall
               <br />
-              <span className="text-indigo-soft">twelve quiet magics</span>
+              <span className="text-indigo-soft">to find you</span>
             </h2>
             <p className="mt-6 ml-auto max-w-md text-lg leading-relaxed text-ink-light">
-              Amethyst for anxious hearts. Aquamarine for restless travelers.
-              Garnet for the fearless. Each stone in the circle carries its own
-              energy — chosen to match the spirit your companion already has.
+              Through the morning sky the spirit stones descend — amethyst for
+              anxious hearts, aquamarine for restless travelers, garnet for the
+              fearless.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Act III — the bond */}
+      {/* Act III — the meadow */}
       <section className="relative z-10 flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-6xl px-6">
           <Reveal className="hero-text max-w-xl">
             <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
-              03 — The bond
+              03 — The green world
             </p>
             <h2 className="mt-5 font-serif text-4xl leading-[1.02] text-ink sm:text-6xl">
-              Two pieces,
+              Down to the land
               <br />
-              <span className="text-indigo-soft">one unbreakable bond</span>
+              <span className="text-indigo-soft">where they wait</span>
             </h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-light">
-              Cut from the same stone: a bracelet for your wrist, a charm for
-              their collar. Wherever the day takes you both, the energy you
-              share stays whole.
+              Each stone is chosen to match the spirit your companion already
+              has — twelve energies, twelve quiet magics, grounded at last.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Act IV — the bond made real */}
+      <section className="relative z-10 flex min-h-screen items-end pb-24">
+        <div className="mx-auto w-full max-w-6xl px-6">
+          <Reveal className="hero-text-dark max-w-xl">
+            <p className="text-xs font-medium tracking-[0.3em] text-cream/80 uppercase">
+              04 — The bond
+            </p>
+            <h2 className="mt-5 font-serif text-4xl leading-[1.02] text-cream sm:text-6xl">
+              Worn by the ones
+              <br />
+              <span className="text-gold-light">we love</span>
+            </h2>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-cream/90">
+              The spirit stones become a necklace for their collar — and a
+              matching bracelet for you. Cut from the same crystal. One
+              unbreakable bond.
             </p>
             <Link
               href="#collection"
-              className="mt-8 inline-flex items-center gap-3 rounded-full bg-indigo px-8 py-4 text-sm text-cream transition-colors hover:bg-ink"
+              className="mt-8 inline-flex items-center gap-3 rounded-full bg-cream px-8 py-4 text-sm text-indigo transition-colors hover:bg-gold-light"
             >
               Explore the collection <span aria-hidden>→</span>
             </Link>
@@ -111,7 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Collection sheet — deep indigo, slides over the 3D scene */}
+      {/* Collection sheet — deep indigo, slides over the scene */}
       <div className="collection-sheet relative z-10">
         <section id="collection" className="pt-20">
           <div className="mx-auto max-w-6xl px-6">
