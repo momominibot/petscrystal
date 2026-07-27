@@ -73,10 +73,6 @@ export default function CarePage() {
               <span className="mt-0.5 text-gold">✦</span>
               Surface polish and conditioning
             </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-0.5 text-gold">✦</span>
-              Full inspection report
-            </li>
           </ul>
 
           <h2 className="mt-8 font-serif text-xl text-ink">
@@ -103,7 +99,7 @@ export default function CarePage() {
           <ul className="mt-4 space-y-3 text-sm text-ink-light">
             <li className="flex items-start gap-2">
               <span className="mt-0.5 text-gold">✦</span>
-              Strap or band replacement — $19
+              Strap or band replacement
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-0.5 text-gold">✦</span>
