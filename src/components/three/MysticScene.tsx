@@ -48,11 +48,18 @@ const BACKDROP_FRAG = /* glsl */ `
   uniform sampler2D uDog;
   uniform float uT;
 
+  // Slight zoom gives headroom for vertical parallax: each layer drifts
+  // upward as the journey passes through it, so the four stills read as one
+  // continuous world you are descending through — not four separate slides.
+  vec2 par(vec2 uv, float drift) {
+    return (uv - 0.5) / 1.09 + 0.5 + vec2(0.0, clamp(drift, -0.04, 0.04));
+  }
+
   void main() {
-    vec3 col = texture2D(uGalaxy, vUv).rgb;
-    col = mix(col, texture2D(uSky, vUv).rgb,    smoothstep(0.24, 0.36, uT));
-    col = mix(col, texture2D(uMeadow, vUv).rgb, smoothstep(0.50, 0.62, uT));
-    col = mix(col, texture2D(uDog, vUv).rgb,    smoothstep(0.76, 0.88, uT));
+    vec3 col = texture2D(uGalaxy, par(vUv, uT * -0.07)).rgb;
+    col = mix(col, texture2D(uSky,    par(vUv, (uT - 0.31) * -0.09)).rgb, smoothstep(0.16, 0.46, uT));
+    col = mix(col, texture2D(uMeadow, par(vUv, (uT - 0.57) * -0.09)).rgb, smoothstep(0.44, 0.70, uT));
+    col = mix(col, texture2D(uDog,    par(vUv, (uT - 0.82) * -0.07)).rgb, smoothstep(0.70, 0.93, uT));
     gl_FragColor = vec4(col, 1.0);
     #include <colorspace_fragment>
   }
@@ -109,15 +116,7 @@ function Backdrop() {
  * Spheres are what the real bracelets are made of, and they read premium in a
  * way faceted low-poly gems never will.
  */
-function Bead({
-  color,
-  seed,
-  necklaceU,
-}: {
-  color: string;
-  seed: number;
-  necklaceU: number; // 0..1 position along the final necklace arc
-}) {
+function Bead({ color, seed }: { color: string; seed: number }) {
   const group = useRef<THREE.Group>(null);
   const glass = useRef<THREE.MeshPhysicalMaterial>(null);
   const core = useRef<THREE.MeshBasicMaterial>(null);
@@ -134,36 +133,35 @@ function Bead({
       z: (rnd(3) - 0.5) * 4 - 1,
       bob: rnd(4) * Math.PI * 2,
       size: 0.16 + rnd(5) * 0.14,
+      turns: 2 + rnd(6) * 2.5, // how many spiral turns on the way down
+      spiral: 0.35 + rnd(7) * 0.55, // spiral radius
     };
   }, [seed]);
-
-  // Where this bead sits on the hanging necklace curve in act 4.
-  const necklace = useMemo(() => {
-    const x = (necklaceU - 0.5) * 2.9;
-    const y = 0.1 - Math.sin(necklaceU * Math.PI) * 0.9;
-    return { x, y, z: 2.2 };
-  }, [necklaceU]);
 
   useFrame((state) => {
     if (!group.current) return;
     const t = scrollState.t;
     const time = state.clock.elapsedTime;
 
-    // The fall: beads sink as the journey descends through the sky act.
-    const fall = THREE.MathUtils.smoothstep(t, 0.25, 0.75) * 3.2;
-    // The gathering: beads sweep onto the necklace arc in act 4.
-    const gather = THREE.MathUtils.smoothstep(t, 0.78, 0.94);
-    // The hand-off: beads fade away as the real necklace photo takes over.
-    const fade = 1 - THREE.MathUtils.smoothstep(t, 0.93, 0.985);
+    // The descent — 0..1 through the sky and meadow acts.
+    const fallP = THREE.MathUtils.smoothstep(t, 0.22, 0.8);
+    const fall = fallP * 4.4;
+    // Spiral down, not straight: each bead corkscrews around its own axis,
+    // widest mid-fall, tightening as it settles.
+    const swirl = home.bob + fallP * Math.PI * 2 * home.turns;
+    const radius = home.spiral * Math.sin(fallP * Math.PI);
+    // The hand-off: beads dissolve into shimmer as the real necklace photo
+    // takes over — they never pile on top of the dog.
+    const fade = 1 - THREE.MathUtils.smoothstep(t, 0.72, 0.88);
 
     const bob = reducedMotion ? 0 : Math.sin(time * 0.6 + home.bob) * 0.12;
     const sway = reducedMotion ? 0 : Math.sin(time * 0.35 + home.bob * 2) * 0.08;
 
-    group.current.position.x = THREE.MathUtils.lerp(home.x + sway, necklace.x, gather);
-    group.current.position.y = THREE.MathUtils.lerp(home.y + bob - fall, necklace.y, gather);
-    group.current.position.z = THREE.MathUtils.lerp(home.z, necklace.z, gather);
+    group.current.position.x = home.x + sway + Math.cos(swirl) * radius;
+    group.current.position.y = home.y + bob - fall;
+    group.current.position.z = home.z + Math.sin(swirl) * radius;
 
-    const s = home.size * (1 - gather * 0.45) * (0.2 + fade * 0.8);
+    const s = home.size * (0.25 + fade * 0.75);
     group.current.scale.setScalar(Math.max(s, 0.001));
 
     if (glass.current) glass.current.opacity = fade;
@@ -216,7 +214,6 @@ function Beads() {
         return {
           color: `#${raw.getHexString()}`,
           seed: i + 1,
-          necklaceU: (i % 12) / 11 + (i >= 12 ? 0.04 : 0),
         };
       }),
     []
@@ -227,6 +224,26 @@ function Beads() {
         <Bead key={b.seed} {...b} />
       ))}
     </>
+  );
+}
+
+/**
+ * Act 4: the dissolved beads live on as shimmer around the necklace the
+ * Pomeranian is already wearing in the photo — light, not clutter.
+ */
+function NecklaceShimmer() {
+  const group = useRef<THREE.Group>(null);
+  useFrame(() => {
+    if (!group.current) return;
+    const k = THREE.MathUtils.smoothstep(scrollState.t, 0.76, 0.9);
+    group.current.scale.setScalar(Math.max(k, 0.001));
+    group.current.visible = k > 0.01;
+  });
+  return (
+    <group ref={group} position={[0, -0.9, 2.2]} visible={false}>
+      <Sparkles count={90} scale={[3.4, 1.6, 0.6]} size={3.2} speed={reducedMotion ? 0 : 0.5} color="#FFF0C9" opacity={0.9} />
+      <Sparkles count={50} scale={[2.8, 1.2, 0.5]} size={2.2} speed={reducedMotion ? 0 : 0.35} color="#E8CFF5" opacity={0.7} />
+    </group>
   );
 }
 
@@ -360,6 +377,7 @@ export default function MysticScene() {
         <Suspense fallback={null}>
           <Backdrop />
           <Beads />
+          <NecklaceShimmer />
           <Spirits />
           <Sparkles count={110} scale={[12, 8, 6]} position={[0, 0.5, -1]} size={2.4} speed={reducedMotion ? 0 : 0.3} color="#FFF3D6" opacity={0.6} />
           <Sparkles count={60} scale={[9, 6, 5]} position={[0, 0.5, 0]} size={1.6} speed={reducedMotion ? 0 : 0.2} color="#C9B8EF" opacity={0.45} />

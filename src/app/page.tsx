@@ -33,7 +33,7 @@ export default function Home() {
               <span className="text-periwinkle-deep">starlight</span>
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-periwinkle">
-              Twelve healing crystals, each holding a small spirit of light —
+              Healing crystals, each holding a small spirit of light —
               waiting for the companion they belong to.
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function Home() {
             </h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-light">
               Each stone is chosen to match the spirit your companion already
-              has — twelve energies, twelve quiet magics, grounded at last.
+              has — a growing circle of energies, each a quiet magic, grounded at last.
             </p>
           </Reveal>
         </div>
@@ -167,6 +167,18 @@ export default function Home() {
           </p>
           <p className="mt-2 text-xs text-periwinkle/40">
             Designed by Bella&amp;Lisa
+          </p>
+          <p className="mt-2 text-xs text-periwinkle/40">
+            Website powered by{" "}
+            <a
+              href="https://ranklore.ai"
+              target="_blank"
+              rel="noopener"
+              className="underline underline-offset-2 transition-colors hover:text-cream"
+            >
+              ranklore.ai
+            </a>{" "}
+            · Ranklore Pte Ltd
           </p>
         </footer>
       </div>

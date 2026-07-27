@@ -7,7 +7,7 @@ export function organizationSchema(): object {
     name: "Pets Crystal",
     url: "https://petscrystals.com",
     description:
-      "Matching crystal jewelry for humans and their animal companions. 12 healing stones, one unbreakable bond.",
+      "Matching crystal jewelry for humans and their animal companions. Healing stones for every spirit, one unbreakable bond.",
     sameAs: [],
   };
 }

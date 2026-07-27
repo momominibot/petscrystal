@@ -68,6 +68,18 @@ export default function Footer() {
           <p className="mt-2 text-xs text-ink/30">
             © {new Date().getFullYear()} Pets Crystal. Singapore.
           </p>
+          <p className="mt-2 text-xs text-ink/30">
+            Website powered by{" "}
+            <a
+              href="https://ranklore.ai"
+              target="_blank"
+              rel="noopener"
+              className="underline underline-offset-2 hover:text-ink"
+            >
+              ranklore.ai
+            </a>{" "}
+            · Ranklore Pte Ltd
+          </p>
         </div>
       </div>
     </footer>

@@ -114,7 +114,7 @@ export default function AboutPage() {
         </p>
 
         <div className="!mt-12 rounded-2xl border border-ink/5 bg-cream-dark/40 p-7 text-center">
-          <p className="font-serif text-xl text-ink">Twelve stones, twelve pairs</p>
+          <p className="font-serif text-xl text-ink">A stone for every spirit</p>
           <p className="mt-2 text-sm text-ink-light">
             Find the one that sounds like the two of you.
           </p>

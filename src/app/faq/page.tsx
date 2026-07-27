@@ -118,7 +118,7 @@ export default function FAQPage() {
           <p className="mt-5 text-sm text-ink-light">
             Or{" "}
             <Link href="/#collection" className="text-ink underline underline-offset-4">
-              browse the twelve sets
+              browse the sets
             </Link>
             .
           </p>

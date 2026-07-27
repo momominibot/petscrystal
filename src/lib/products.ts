@@ -201,7 +201,7 @@ export const partnerPrograms = [
     description:
       "Buy straps and loose crystals separately and assemble sets under your own brand — or sell the DIY kits as an experience product.",
     dashboardDetail:
-      "Component pricing (placeholder — set your final prices): straps from US$12, 12-stone crystal packs from US$28. Minimum 25 components per order. Shipping not included.",
+      "Component pricing (placeholder — set your final prices): straps from US$12, crystal bead packs from US$28. Minimum 25 components per order. Shipping not included.",
   },
 ];
 

@@ -1,12 +1,12 @@
 # Pets Crystal — LLMs.txt
 # Matching crystal jewelry for humans & their animal companions.
-# 12 healing stones, one unbreakable bond.
+# Healing stones for every spirit, one unbreakable bond.
 
 ## Site Structure
 - Home: https://petscrystals.com
 - Wholesale: https://petscrystals.com/wholesale (login-gated)
 
-## Products (12 matching crystal sets)
+## Products (matching crystal sets)
 ${require("./src/lib/products").products.map(p => `- ${p.name}: https://petscrystals.com/products/${p.id} — ${p.crystal}, ${p.chakra} chakra, partner pricing`).join("\n")}
 
 ## About

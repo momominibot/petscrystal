@@ -59,7 +59,7 @@ export default async function WholesalePage() {
         </div>
 
         {/* Full price list */}
-        <h2 className="mt-14 font-serif text-2xl text-ink">Price list — all 12 sets</h2>
+        <h2 className="mt-14 font-serif text-2xl text-ink">Price list — all sets</h2>
         <div className="mt-5 overflow-x-auto rounded-2xl border border-ink/5">
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead className="bg-cream-dark/60 text-ink">
