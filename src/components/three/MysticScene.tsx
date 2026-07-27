@@ -128,15 +128,16 @@ function Bead({
   const glass = useRef<THREE.MeshPhysicalMaterial>(null);
   const core = useRef<THREE.MeshBasicMaterial>(null);
 
-  // Double-terminated crystal: a six-sided column pointed at BOTH ends,
-  // lathed in one mesh. Beads stay faceted rounds.
+  // Gem cut matched to the brand's watercolor crystal illustration: a chunky
+  // six-sided double-terminated stone — broad faceted body, points at both
+  // ends. Beads stay faceted rounds.
   const geometry = useMemo(() => {
     if (shape === "bead") return new THREE.IcosahedronGeometry(1, 1);
     const profile = [
-      new THREE.Vector2(0.001, -1.5),
-      new THREE.Vector2(0.34, -0.75),
-      new THREE.Vector2(0.36, 0.7),
-      new THREE.Vector2(0.001, 1.5),
+      new THREE.Vector2(0.001, -1.2),
+      new THREE.Vector2(0.4, -0.62),
+      new THREE.Vector2(0.45, 0.5),
+      new THREE.Vector2(0.001, 1.2),
     ];
     return new THREE.LatheGeometry(profile, 6);
   }, [shape]);
