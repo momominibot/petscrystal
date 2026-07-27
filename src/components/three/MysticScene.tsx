@@ -161,37 +161,45 @@ function Bead({ color, seed }: { color: string; seed: number }) {
     group.current.position.y = home.y + bob - fall;
     group.current.position.z = home.z + Math.sin(swirl) * radius;
 
+    // Tumble while spiraling — the facets catch and flash the light.
+    const spin = reducedMotion ? 0 : time * 0.5;
+    group.current.rotation.y = home.bob + swirl * 0.8 + spin;
+    group.current.rotation.x = home.bob * 2 + fallP * Math.PI * home.turns * 0.5;
+
     const s = home.size * (0.25 + fade * 0.75);
     group.current.scale.setScalar(Math.max(s, 0.001));
 
     if (glass.current) glass.current.opacity = fade;
-    if (core.current) core.current.opacity = fade * (0.75 + Math.sin(time * 1.4 + home.bob) * 0.25);
+    if (core.current) core.current.opacity = fade * (0.6 + Math.sin(time * 1.4 + home.bob) * 0.25);
   });
 
   return (
     <group ref={group}>
-      {/* glass shell */}
+      {/* faceted gem shell — cut like real bracelet beads, so it glints */}
       <mesh>
-        <sphereGeometry args={[1, 48, 48]} />
+        <icosahedronGeometry args={[1, 1]} />
         <meshPhysicalMaterial
           ref={glass}
           color={color}
           transparent
           transmission={1}
-          thickness={0.8}
-          roughness={0.05}
-          ior={1.45}
+          thickness={1.2}
+          roughness={0.015}
+          ior={1.75}
+          dispersion={0.5}
           clearcoat={1}
-          clearcoatRoughness={0.05}
-          iridescence={0.4}
-          specularIntensity={1.4}
-          envMapIntensity={2}
+          clearcoatRoughness={0.02}
+          iridescence={0.7}
+          iridescenceIOR={1.3}
+          specularIntensity={2}
+          envMapIntensity={3}
           attenuationColor={color}
-          attenuationDistance={0.6}
+          attenuationDistance={0.8}
+          flatShading
         />
       </mesh>
       {/* spirit light core */}
-      <mesh scale={0.55}>
+      <mesh scale={0.4}>
         <sphereGeometry args={[1, 24, 24]} />
         <meshBasicMaterial ref={core} color={color} transparent toneMapped={false} />
       </mesh>
@@ -215,7 +223,13 @@ function Beads() {
           color: `#${raw.getHexString()}`,
           seed: i + 1,
         };
-      }),
+      }).concat(
+        // Clear quartz beads — colorless, all fire and sparkle.
+        Array.from({ length: 8 }, (_, i) => ({
+          color: "#F8F6FC",
+          seed: 101 + i,
+        }))
+      ),
     []
   );
   return (
@@ -370,8 +384,9 @@ export default function MysticScene() {
         <Environment resolution={256} frames={1}>
           <Lightformer intensity={1.1} position={[0, 5, -9]} scale={[12, 10, 1]} color="#FFF8EC" />
           <Lightformer intensity={0.7} position={[-6, 2, 2]} scale={[4, 8, 1]} color="#DCD9EC" />
-          <Lightformer form="circle" intensity={6} position={[3, 4, 4]} scale={1.2} color="#FFFFFF" />
-          <Lightformer form="circle" intensity={4} position={[-4, 3, 3]} scale={0.9} color="#FFF2D8" />
+          <Lightformer form="circle" intensity={8} position={[3, 4, 4]} scale={1} color="#FFFFFF" />
+          <Lightformer form="circle" intensity={6} position={[-4, 3, 3]} scale={0.8} color="#FFF2D8" />
+          <Lightformer form="circle" intensity={5} position={[2, -2, 5]} scale={0.6} color="#FFFFFF" />
         </Environment>
 
         <Suspense fallback={null}>
