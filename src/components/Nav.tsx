@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function Nav() {
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-ink/5 bg-cream/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+    <nav className="fixed top-4 z-50 w-full px-4">
+      <div className="mx-auto flex max-w-4xl items-center justify-between rounded-full border border-ink/10 bg-cream/75 py-2 pr-2 pl-5 shadow-[0_12px_40px_-18px_rgba(46,42,71,0.35)] backdrop-blur-xl">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/mark.png"
@@ -12,13 +12,13 @@ export default function Nav() {
             width={36}
             height={36}
             priority
-            className="h-9 w-9"
+            className="h-8 w-8"
           />
-          <span className="font-serif text-xl tracking-wide text-ink">
+          <span className="font-serif text-lg tracking-wide text-ink">
             Pets <span className="text-rose-dark">Crystal</span>
           </span>
         </Link>
-        <div className="flex items-center gap-5 text-sm text-ink-light sm:gap-6">
+        <div className="flex items-center gap-4 text-sm text-ink-light sm:gap-6">
           <Link href="/#collection" className="hover:text-ink transition-colors">
             Shop
           </Link>
@@ -33,7 +33,7 @@ export default function Nav() {
           </Link>
           <Link
             href="/wholesale"
-            className="rounded-full border border-ink/15 px-4 py-1.5 text-xs hover:border-ink/30 transition-colors"
+            className="rounded-full bg-indigo px-5 py-2.5 text-xs text-cream transition-colors hover:bg-ink"
           >
             Wholesale
           </Link>

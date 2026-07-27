@@ -6,6 +6,7 @@ import {
   Billboard,
   Environment,
   Lightformer,
+  MeshReflectorMaterial,
   MeshTransmissionMaterial,
   PerspectiveCamera,
   Sparkles,
@@ -79,10 +80,14 @@ const BACKDROP_FRAG = /* glsl */ `
     float wash3 = fbm(uv * 1.6 + vec2(t * 0.4, t * 0.5) + 11.0);
 
     vec3 col = cream;
-    col = mix(col, lavender, smoothstep(0.45, 0.85, wash1) * 0.45);
-    col = mix(col, rose,     smoothstep(0.50, 0.90, wash2) * 0.38);
-    col = mix(col, sage,     smoothstep(0.55, 0.95, wash3) * 0.28);
+    col = mix(col, lavender, smoothstep(0.45, 0.85, wash1) * 0.55);
+    col = mix(col, rose,     smoothstep(0.50, 0.90, wash2) * 0.45);
+    col = mix(col, sage,     smoothstep(0.55, 0.95, wash3) * 0.20);
     col = mix(col, gold,     smoothstep(0.68, 0.98, fbm(uv * 4.0 + 23.0 + t)) * 0.18);
+
+    // Dreamy lavender horizon glow pooling toward the waterline.
+    col = mix(col, vec3(0.72, 0.66, 0.86), smoothstep(0.55, 0.05, uv.y) * 0.40);
+    col = mix(col, vec3(0.93, 0.82, 0.86), smoothstep(0.35, 0.18, uv.y) * 0.25);
 
     // Pigment pooling at wash edges — the watercolor "bloom" line.
     float edge = abs(wash1 - 0.55);
@@ -116,6 +121,28 @@ function WatercolorBackdrop() {
         uniforms={uniforms}
         fog={false}
         depthWrite={false}
+      />
+    </mesh>
+  );
+}
+
+/* ---------------- Reflective water (the Peach signature) ---------------- */
+
+function Water() {
+  return (
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.35, 0]}>
+      <planeGeometry args={[70, 70]} />
+      <MeshReflectorMaterial
+        resolution={512}
+        mixBlur={1}
+        mixStrength={4}
+        roughness={0.5}
+        depthScale={0.6}
+        minDepthThreshold={0.4}
+        maxDepthThreshold={1.4}
+        color="#CFC3E4"
+        metalness={0.15}
+        mirror={0.45}
       />
     </mesh>
   );
@@ -348,12 +375,23 @@ function Spirits() {
 
 /* ---------------- Camera rig ---------------- */
 
-/** [orbit angle, radius, height] poses for the three scroll acts. */
-const POSES: [number, number, number][] = [
-  [0.06, 7.2, 1.4], // act 1 — meet the cluster
-  [1.9, 9.0, 2.6], // act 2 — pull back, reveal the ring of twelve
-  [2.7, 5.6, 1.0], // act 3 — draw close for the bond
+/**
+ * [orbit angle, radius, height, side] poses for the three scroll acts.
+ * `side` shifts the look-at target along the camera's right axis so the
+ * cluster sits opposite the copy — the Peach "text beside the subject" frame.
+ */
+const POSES: [number, number, number, number][] = [
+  [0.12, 7.4, 1.0, -1.45], // act 1 — meet the cluster, copy left / crystal right
+  [1.9, 9.0, 2.1, 1.35], // act 2 — reveal the ring, copy right / crystal left
+  [2.7, 5.8, 0.85, -1.15], // act 3 — draw close for the bond, copy left
 ];
+
+const CENTER = new THREE.Vector3(0, 0.55, 0);
+const UP = new THREE.Vector3(0, 1, 0);
+const tmpPos = new THREE.Vector3();
+const tmpDir = new THREE.Vector3();
+const tmpRight = new THREE.Vector3();
+const tmpLook = new THREE.Vector3();
 
 function Rig() {
   const cam = useRef<THREE.PerspectiveCamera>(null);
@@ -371,9 +409,13 @@ function Rig() {
     const a = THREE.MathUtils.lerp(POSES[i][0], POSES[i + 1][0], f);
     let r = THREE.MathUtils.lerp(POSES[i][1], POSES[i + 1][1], f);
     const h = THREE.MathUtils.lerp(POSES[i][2], POSES[i + 1][2], f);
+    let side = THREE.MathUtils.lerp(POSES[i][3], POSES[i + 1][3], f);
 
-    // Portrait screens need more distance to keep the cluster in frame.
-    if (size.width / size.height < 0.8) r *= 1.35;
+    // Portrait screens: pull back and recentre — copy overlays the scene.
+    if (size.width / size.height < 0.8) {
+      r *= 1.35;
+      side *= 0.3;
+    }
 
     // Pointer parallax — small, damped, layered on top of the scroll pose.
     pointer.current.x = THREE.MathUtils.damp(pointer.current.x, state.pointer.x, 3, dt);
@@ -381,14 +423,19 @@ function Rig() {
     const pa = a + pointer.current.x * 0.06;
 
     const lambda = reducedMotion ? 50 : 4;
-    const target = new THREE.Vector3(Math.sin(pa) * r, h + pointer.current.y * 0.25, Math.cos(pa) * r);
-    cam.current.position.x = THREE.MathUtils.damp(cam.current.position.x, target.x, lambda, dt);
-    cam.current.position.y = THREE.MathUtils.damp(cam.current.position.y, target.y, lambda, dt);
-    cam.current.position.z = THREE.MathUtils.damp(cam.current.position.z, target.z, lambda, dt);
-    cam.current.lookAt(0, 0.6, 0);
+    tmpPos.set(Math.sin(pa) * r, h + pointer.current.y * 0.25, Math.cos(pa) * r);
+    cam.current.position.x = THREE.MathUtils.damp(cam.current.position.x, tmpPos.x, lambda, dt);
+    cam.current.position.y = THREE.MathUtils.damp(cam.current.position.y, tmpPos.y, lambda, dt);
+    cam.current.position.z = THREE.MathUtils.damp(cam.current.position.z, tmpPos.z, lambda, dt);
+
+    // Shift the framing sideways: look at a point offset along camera-right.
+    tmpDir.copy(CENTER).sub(cam.current.position).normalize();
+    tmpRight.crossVectors(tmpDir, UP).normalize();
+    tmpLook.copy(CENTER).addScaledVector(tmpRight, side);
+    cam.current.lookAt(tmpLook);
   });
 
-  return <PerspectiveCamera ref={cam} makeDefault fov={42} near={0.1} far={60} position={[0.4, 1.4, 7.2]} />;
+  return <PerspectiveCamera ref={cam} makeDefault fov={42} near={0.1} far={60} position={[0.4, 1.1, 7.4]} />;
 }
 
 /* ---------------- Scene root ---------------- */
@@ -416,8 +463,8 @@ export default function MysticScene() {
   return (
     <div ref={wrapper} className="fixed inset-0 z-0" aria-hidden>
       <Canvas dpr={[1, 1.75]} gl={{ antialias: true }}>
-        <color attach="background" args={["#FBF6EE"]} />
-        <fog attach="fog" args={["#FBF6EE", 14, 30]} />
+        <color attach="background" args={["#F2EBF2"]} />
+        <fog attach="fog" args={["#F2EBF2", 14, 32]} />
 
         <Rig />
 
@@ -437,6 +484,7 @@ export default function MysticScene() {
 
         <Suspense fallback={null}>
           <WatercolorBackdrop />
+          <Water />
           <CrystalCluster />
           <StoneRing />
           <BondPair />

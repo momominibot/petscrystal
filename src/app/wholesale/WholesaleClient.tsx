@@ -101,8 +101,7 @@ export default function WholesaleClient({ programs }: { programs: Program[] }) {
         </div>
 
         <p className="mt-6 text-center text-xs text-ink/40">
-          Aftercare headquarters in Singapore — hardware changes &amp; crystal
-          cleansing. Shipping not included in any program.
+          Shipping not included in any program.
         </p>
 
         {/* Application */}

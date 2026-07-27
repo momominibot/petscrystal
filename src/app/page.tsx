@@ -19,55 +19,63 @@ export default function Home() {
       <MysticHero />
 
       {/* Act I — meet the crystal */}
-      <section className="relative z-10 flex min-h-screen items-center justify-center pt-20 text-center">
-        <div className="copy-veil mx-auto max-w-3xl px-6 py-10">
-          <p className="font-serif text-sm tracking-[0.2em] text-ink-light uppercase">
-            Pets Crystal
-          </p>
-          <h1 className="mt-4 font-serif text-4xl leading-tight text-ink sm:text-5xl">
-            Matching pet crystal jewelry
-            <br />
-            <span className="text-lavender-dark">for you &amp; your companion</span>
-          </h1>
-          <p className="mt-1 text-sm text-ink/40">
-            Wholesale distributor — partner pricing available
-          </p>
-          <p className="mx-auto mt-6 max-w-lg text-ink-light leading-relaxed">
-            Twelve healing stones. Two matching pieces — a bracelet for you, a
-            charm for their collar. One unbreakable bond. Handcrafted crystal
-            jewelry designed to be worn together.
-          </p>
-          <div className="mt-8 flex items-center justify-center gap-4 text-sm text-ink-light">
-            <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-sage"></span>
-              Natural crystals
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-rose-dark"></span>
-              Pet-safe design
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold"></span>
-              Aftercare HQ in Singapore
-            </span>
+      <section className="relative z-10 flex min-h-screen items-center">
+        <div className="mx-auto w-full max-w-6xl px-6 pt-20">
+          <div className="hero-text max-w-2xl">
+            <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
+              01 — Pets Crystal · Wholesale distributor
+            </p>
+            <h1 className="mt-5 font-serif text-5xl leading-[0.98] text-ink sm:text-7xl lg:text-8xl">
+              Crystal jewelry
+              <br />
+              for you &amp;
+              <br />
+              <span className="text-indigo-soft">your companion</span>
+            </h1>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-light">
+              Twelve healing stones. A bracelet for you, a charm for their
+              collar — cut from the same crystal.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-ink-light">
+              <span className="rounded-full border border-ink/10 bg-cream/60 px-4 py-1.5 backdrop-blur-sm">
+                Natural crystals
+              </span>
+              <span className="rounded-full border border-ink/10 bg-cream/60 px-4 py-1.5 backdrop-blur-sm">
+                Pet-safe design
+              </span>
+              <span className="rounded-full border border-ink/10 bg-cream/60 px-4 py-1.5 backdrop-blur-sm">
+                Aftercare HQ · Singapore
+              </span>
+            </div>
           </div>
-          <p className="mt-10 animate-bounce text-xs tracking-[0.25em] text-ink/35 uppercase">
-            Scroll to begin ✦
-          </p>
+        </div>
+
+        {/* Peach-style scroll chip */}
+        <div className="absolute right-6 bottom-8 hidden sm:block">
+          <div className="rounded-3xl bg-indigo/90 px-8 py-6 text-cream shadow-[0_24px_60px_-24px_rgba(46,42,71,0.6)] backdrop-blur-sm">
+            <p className="font-serif text-2xl leading-snug">
+              Scroll down
+              <br />
+              &amp; begin the ritual
+            </p>
+            <p className="mt-2 animate-bounce text-lg text-periwinkle">✦</p>
+          </div>
         </div>
       </section>
 
       {/* Act II — the ring of twelve */}
       <section className="relative z-10 flex min-h-screen items-center">
-        <div className="mx-auto w-full max-w-6xl px-6">
-          <Reveal className="copy-veil max-w-md px-8 py-10">
-            <p className="font-serif text-2xl text-gold">✦</p>
-            <h2 className="mt-3 font-serif text-3xl leading-snug text-ink sm:text-4xl">
+        <div className="mx-auto flex w-full max-w-6xl justify-end px-6">
+          <Reveal className="hero-text max-w-xl text-right">
+            <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
+              02 — The stones
+            </p>
+            <h2 className="mt-5 font-serif text-4xl leading-[1.02] text-ink sm:text-6xl">
               Twelve healing stones,
               <br />
-              <span className="text-lavender-dark">twelve quiet magics</span>
+              <span className="text-indigo-soft">twelve quiet magics</span>
             </h2>
-            <p className="mt-5 text-ink-light leading-relaxed">
+            <p className="mt-6 ml-auto max-w-md text-lg leading-relaxed text-ink-light">
               Amethyst for anxious hearts. Aquamarine for restless travelers.
               Garnet for the fearless. Each stone in the circle carries its own
               energy — chosen to match the spirit your companion already has.
@@ -78,39 +86,50 @@ export default function Home() {
 
       {/* Act III — the bond */}
       <section className="relative z-10 flex min-h-screen items-center">
-        <div className="mx-auto flex w-full max-w-6xl justify-end px-6">
-          <Reveal className="copy-veil max-w-md px-8 py-10 text-right">
-            <p className="font-serif text-2xl text-rose-dark">✦</p>
-            <h2 className="mt-3 font-serif text-3xl leading-snug text-ink sm:text-4xl">
+        <div className="mx-auto w-full max-w-6xl px-6">
+          <Reveal className="hero-text max-w-xl">
+            <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
+              03 — The bond
+            </p>
+            <h2 className="mt-5 font-serif text-4xl leading-[1.02] text-ink sm:text-6xl">
               Two pieces,
               <br />
-              <span className="text-lavender-dark">one unbreakable bond</span>
+              <span className="text-indigo-soft">one unbreakable bond</span>
             </h2>
-            <p className="mt-5 text-ink-light leading-relaxed">
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-light">
               Cut from the same stone: a bracelet for your wrist, a charm for
               their collar. Wherever the day takes you both, the energy you
               share stays whole.
             </p>
             <Link
               href="#collection"
-              className="mt-7 inline-block rounded-full bg-ink px-7 py-3 text-sm text-cream transition-colors hover:bg-indigo"
+              className="mt-8 inline-flex items-center gap-3 rounded-full bg-indigo px-8 py-4 text-sm text-cream transition-colors hover:bg-ink"
             >
-              Explore the collection
+              Explore the collection <span aria-hidden>→</span>
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* Collection sheet — slides over the 3D scene */}
+      {/* Collection sheet — deep indigo, slides over the 3D scene */}
       <div className="collection-sheet relative z-10">
-        <section id="collection" className="border-b border-ink/5">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-14 pb-3 text-sm text-ink-light">
-            <span>{products.length} matching crystal sets</span>
-            <span>Filter by crystal · chakra · benefit (soon)</span>
+        <section id="collection" className="pt-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <p className="text-xs font-medium tracking-[0.3em] text-periwinkle/70 uppercase">
+              The collection
+            </p>
+            <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-serif text-4xl text-cream sm:text-5xl">
+                {products.length} matching crystal sets
+              </h2>
+              <span className="pb-2 text-sm text-periwinkle/70">
+                Filter by crystal · chakra · benefit (soon)
+              </span>
+            </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-12">
+        <section className="mx-auto max-w-6xl px-6 py-14">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p) => (
               <ProductCard key={p.id} product={p} />
@@ -118,26 +137,28 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="border-t border-ink/5 py-12 text-center text-sm text-ink-light">
-          <p className="font-serif text-lg text-ink">Pets Crystal</p>
+        <footer className="border-t border-cream/10 py-14 text-center text-sm text-periwinkle/80">
+          <p className="font-serif text-lg text-cream">Pets Crystal</p>
           <p className="mt-1">Wholesale Distributor</p>
           <div className="mt-3 flex items-center justify-center gap-4 text-xs">
-            <Link href="/care" className="hover:text-ink transition-colors">
+            <Link href="/care" className="transition-colors hover:text-cream">
               Care Promise
             </Link>
-            <Link href="/wholesale" className="hover:text-ink transition-colors">
+            <Link href="/wholesale" className="transition-colors hover:text-cream">
               Wholesale
             </Link>
           </div>
-          <p className="mt-4 text-xs text-ink/40">
+          <p className="mt-4 text-xs text-periwinkle/60">
             Aftercare headquarters in Singapore — hardware changes &amp; crystal
-            cleansing. Shipping not included.
+            cleansing for our customers. Shipping not included.
           </p>
-          <p className="mt-2 text-xs text-ink/30">
+          <p className="mt-2 text-xs text-periwinkle/50">
             ✦ Crystal energy is complementary — not a substitute for veterinary
             care ✦
           </p>
-          <p className="mt-2 text-xs text-ink/20">Designed by Bella&amp;Lisa</p>
+          <p className="mt-2 text-xs text-periwinkle/40">
+            Designed by Bella&amp;Lisa
+          </p>
         </footer>
       </div>
     </div>

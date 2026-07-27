@@ -87,25 +87,15 @@ export default async function WholesalePage() {
           </table>
         </div>
 
-        {/* Aftercare & logistics */}
+        {/* Logistics */}
         <div className="mt-14 rounded-2xl border border-lavender/30 bg-lavender/10 p-8">
-          <h2 className="font-serif text-2xl text-ink">Aftercare &amp; logistics</h2>
-          <ul className="mt-4 space-y-2 text-sm text-ink-light">
-            <li className="flex gap-2">
-              <span className="text-gold">✦</span>
-              Aftercare headquarters: <span className="text-ink">Singapore</span> —
-              all hardware changes and crystal cleansing are handled in-house.
-            </li>
-            <li className="flex gap-2">
-              <span className="text-gold">✦</span>
-              Shipping is not included in any program — freight to and from
-              Singapore is billed at cost.
-            </li>
-            <li className="flex gap-2">
-              <span className="text-gold">✦</span>
-              Turnaround for aftercare service: 7 business days from receipt.
-            </li>
-          </ul>
+          <h2 className="font-serif text-2xl text-ink">Logistics</h2>
+          <p className="mt-4 text-sm text-ink-light">
+            Shipping is not included in any program — freight is billed at cost.
+            Aftercare (hardware changes &amp; crystal cleansing at our Singapore
+            HQ) is an end-customer service, offered directly to the people who
+            wear the sets.
+          </p>
         </div>
 
         <div className="mt-12 rounded-2xl border border-ink/5 bg-cream-dark/30 p-8 text-center">

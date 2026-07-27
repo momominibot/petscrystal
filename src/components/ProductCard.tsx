@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-ink/5 bg-cream/70 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_-24px_rgba(46,42,71,0.35)]">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-cream transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-24px_rgba(0,0,0,0.5)]">
       {/* Watercolour wash standing in for the stone */}
       <Link
         href={`/products/${product.id}`}
@@ -66,9 +66,9 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="mt-auto flex flex-wrap items-center gap-4 pt-3">
           <Link
             href="/wholesale"
-            className="rounded-full bg-ink px-5 py-2 text-sm text-cream transition-colors hover:bg-indigo"
+            className="inline-flex items-center gap-2 rounded-full bg-indigo px-5 py-2.5 text-sm text-cream transition-colors hover:bg-ink"
           >
-            Partner access
+            Partner access <span aria-hidden>→</span>
           </Link>
           <Link
             href={`/products/${product.id}`}

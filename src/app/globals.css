@@ -210,21 +210,17 @@ h1, h2, h3, h4 {
   .bleed { transition: none; }
 }
 
-/* ============ 3D watercolor hero ============ */
-/* Soft cream wash behind hero copy so text stays readable over the scene. */
-.copy-veil {
-  border-radius: 2rem;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(251, 246, 238, 0.82) 0%,
-    rgba(251, 246, 238, 0.55) 60%,
-    rgba(251, 246, 238, 0) 100%
-  );
+/* ============ 3D watercolor hero (Peach style) ============ */
+/* Text sits directly on the scene — a soft cream halo keeps it readable. */
+.hero-text {
+  text-shadow:
+    0 1px 24px rgba(251, 246, 238, 0.9),
+    0 0 60px rgba(251, 246, 238, 0.6);
 }
 
-/* The collection slides over the fixed 3D scene like a sheet of paper. */
+/* The collection slides over the fixed 3D scene as a deep-indigo sheet. */
 .collection-sheet {
-  background: var(--color-cream);
-  border-radius: 2.5rem 2.5rem 0 0;
-  box-shadow: 0 -30px 60px rgba(42, 33, 27, 0.08);
+  background: linear-gradient(180deg, var(--color-indigo) 0%, #241f3a 100%);
+  border-radius: 3rem 3rem 0 0;
+  box-shadow: 0 -40px 80px rgba(46, 42, 71, 0.35);
 }
