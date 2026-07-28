@@ -2,55 +2,55 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-ink/5 py-14">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-8 sm:grid-cols-3">
+    <footer className="border-t border-line bg-paper">
+      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="grid gap-10 sm:grid-cols-3">
           <div>
-            <p className="font-serif text-lg text-ink">Pets Crystal</p>
-            <p className="mt-2 max-w-xs text-sm leading-relaxed text-ink-light">
+            <p className="tracked font-serif text-lg text-ink">Pets Crystal</p>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-light">
               A quiet tether between two souls — one human, one animal — woven
               through stone and intention.
             </p>
           </div>
 
-          <div className="text-sm">
-            <p className="font-serif text-ink">Explore</p>
-            <ul className="mt-3 space-y-2 text-ink-light">
+          <div>
+            <p className="eyebrow text-[0.6rem] text-ink-faint">Explore</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-ink-light">
               <li>
-                <Link href="/#collection" className="hover:text-ink transition-colors">
+                <Link href="/#collection" className="transition-colors hover:text-ink">
                   Crystal sets
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-ink transition-colors">
+                <Link href="/about" className="transition-colors hover:text-ink">
                   Our story
                 </Link>
               </li>
               <li>
-                <Link href="/care" className="hover:text-ink transition-colors">
+                <Link href="/care" className="transition-colors hover:text-ink">
                   Care &amp; safety
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-ink transition-colors">
+                <Link href="/faq" className="transition-colors hover:text-ink">
                   Questions
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="text-sm">
-            <p className="font-serif text-ink">Trade</p>
-            <ul className="mt-3 space-y-2 text-ink-light">
+          <div>
+            <p className="eyebrow text-[0.6rem] text-ink-faint">Trade</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-ink-light">
               <li>
-                <Link href="/wholesale" className="hover:text-ink transition-colors">
-                  Wholesale partners
+                <Link href="/wholesale" className="transition-colors hover:text-ink">
+                  Partner programmes
                 </Link>
               </li>
               <li>
                 <a
                   href="mailto:hello@petscrystals.com"
-                  className="hover:text-ink transition-colors"
+                  className="transition-colors hover:text-ink"
                 >
                   hello@petscrystals.com
                 </a>
@@ -59,35 +59,38 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-ink/5 pt-6 text-center">
-          <p className="font-serif text-xl text-ink/20">✦</p>
-          <p className="mt-3 text-xs leading-relaxed text-ink/40">
+        <div className="mt-14 border-t border-line pt-8">
+          <p className="text-xs leading-relaxed text-ink-faint">
+            Aftercare headquarters in Singapore — hardware changes &amp; crystal
+            cleansing for our customers. Shipping not included.
+          </p>
+          <p className="mt-2 text-xs text-ink-faint">
             Crystal energy is complementary — not a substitute for veterinary
             care.
           </p>
-          <p className="mt-2 text-xs text-ink/30">
-            © {new Date().getFullYear()} Pets Crystal. Singapore.
-          </p>
-        </div>
-
-        <div className="mt-8 text-left">
-          <p className="text-[10px] leading-relaxed text-ink/30">
-            Website powered by{" "}
-            <a
-              href="https://ranklore.ai"
-              target="_blank"
-              rel="noopener"
-              className="underline underline-offset-2 hover:text-ink"
-            >
-              ranklore.ai
-            </a>
-            <br />
-            Ranklore Pte Ltd
-            <br />
-            UEN: 202629679H
-            <br />
-            7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987
-          </p>
+          <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
+            <p className="text-[10px] leading-relaxed text-ink-faint">
+              Website powered by{" "}
+              <a
+                href="https://ranklore.ai"
+                target="_blank"
+                rel="noopener"
+                className="underline underline-offset-2 hover:text-ink"
+              >
+                ranklore.ai
+              </a>
+              <br />
+              Ranklore Pte Ltd
+              <br />
+              UEN: 202629679H
+              <br />
+              7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987
+            </p>
+            <p className="text-[10px] text-ink-faint">
+              © {new Date().getFullYear()} Pets Crystal · Designed by
+              Bella&amp;Lisa
+            </p>
+          </div>
         </div>
       </div>
     </footer>

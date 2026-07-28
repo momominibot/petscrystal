@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!product) return {};
 
   const title = `${product.name} Matching Pet Crystal Set — ${product.tagline} | Pets Crystal`;
-  const description = `${product.name} — a matching ${product.crystal} crystal set. A bracelet for you, a collar charm for them. ${product.petBenefit} for your companion; ${product.humanBenefit} for you. Partner pricing — apply for wholesale access.`;
+  const description = `${product.name} — a matching ${product.crystal} crystal set. A bracelet for you, a collar charm for them. ${product.petBenefit} for your companion; ${product.humanBenefit} for you. A studio design, customisable and strung to order.`;
 
   return {
     title,
@@ -150,18 +150,30 @@ export default async function ProductPage({
               </span>
             </div>
 
-            <p className="mt-6 font-serif text-xl text-ink">Partner pricing</p>
-            <p className="mt-1 text-sm text-ink-light">
-              Bracelet and matching collar charm, priced per piece. Partner
-              pricing is shared in the distributor dashboard.
+            <p className="mt-6 font-serif text-xl text-ink">
+              A starting point, not a finished piece
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-ink-light">
+              This is a studio design. Tell us what to change — the stones, the
+              strap colour, the wrist and collar sizes — and we string the pair
+              to order. Pricing is shared with approved partners in the
+              distributor dashboard.
             </p>
 
-            <div className="mt-7">
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a
+                href={`mailto:hello@petscrystals.com?subject=${encodeURIComponent(
+                  `Customise: ${product.name}`
+                )}`}
+                className="inline-block rounded-full bg-ink px-6 py-3 text-sm text-cream transition-colors hover:bg-gold"
+              >
+                Customise this design
+              </a>
               <Link
                 href="/wholesale"
-                className="inline-block rounded-full bg-ink px-6 py-3 text-sm text-cream transition-colors hover:bg-indigo"
+                className="inline-block rounded-full border border-ink/15 px-6 py-3 text-sm text-ink transition-colors hover:border-ink/35"
               >
-                Apply for partner access
+                Partner access
               </Link>
             </div>
 

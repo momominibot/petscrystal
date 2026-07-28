@@ -2,12 +2,23 @@ import { products } from "@/lib/products";
 import { itemListSchema } from "@/lib/schema";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
+import Footer from "@/components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 
+const EDITS = [
+  { id: "amethyst-serenity", label: "For anxious hearts", name: "Amethyst" },
+  { id: "rose-heart", label: "For the deeply bonded", name: "Rose Quartz" },
+  { id: "azure-lagoon", label: "For restless travellers", name: "Aquamarine" },
+  { id: "tigers-vigil", label: "For the watchful", name: "Tiger's Eye" },
+];
+
 export default function Home() {
+  const hero = products[1]; // Amethyst Serenity — the strongest photograph
+  const band = products[8]; // Monet's Garden
+
   return (
-    <div className="min-h-screen">
+    <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -15,171 +26,174 @@ export default function Home() {
         }}
       />
 
-      {/* Hero — watercolor washes, painted jewelry */}
-      <section className="watercolor-bg relative overflow-hidden">
-        <div className="mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-6 pt-28 pb-16 lg:grid-cols-2">
-          <div className="rise">
-            <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
-              Pets Crystal
-            </p>
-            <h1 className="mt-5 font-serif text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
-              Crystal jewelry
+      {/* Hero — full-bleed photography, copy laid over it */}
+      <section className="relative isolate flex min-h-[86vh] items-end overflow-hidden">
+        <Image
+          src={`/art/product-${hero.id}.png`}
+          alt="A matching amethyst bracelet and pet collar charm photographed on travertine and linen"
+          fill
+          priority
+          sizes="100vw"
+          className="-z-10 object-cover object-center"
+        />
+        {/* Two overlays: one lifts the bottom, one shades the side the copy
+            sits on, so the headline stays legible over a busy photograph. */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/75 via-ink/30 to-ink/5" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/55 via-transparent to-transparent" />
+
+        <div className="mx-auto w-full max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24">
+          <div className="max-w-xl text-paper">
+            <p className="eyebrow text-paper/80">Matching crystal sets</p>
+            <h1 className="mt-5 font-serif text-4xl leading-[1.06] sm:text-6xl">
+              Worn together,
               <br />
-              for you &amp;
-              <br />
-              <span className="text-lavender-dark">your companion</span>
+              wherever you go
             </h1>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-light">
-              Healing stones, hand-strung in pairs — a bracelet for you, a charm
-              for their collar. One unbreakable bond.
+            <p className="mt-5 max-w-md leading-relaxed text-paper/85">
+              Healing stones hand-strung in pairs — a bracelet for you, a charm
+              for their collar. Every set made to order, and yours to design.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-ink-light">
-              <span className="rounded-full border border-ink/10 bg-cream/70 px-4 py-1.5">
-                Natural crystals
-              </span>
-              <span className="rounded-full border border-ink/10 bg-cream/70 px-4 py-1.5">
-                Pet-safe design
-              </span>
-              <span className="rounded-full border border-ink/10 bg-cream/70 px-4 py-1.5">
-                Aftercare HQ · Singapore
-              </span>
-            </div>
             <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Link href="#collection" className="btn-ghost action text-paper">
+                <span>Browse the designs</span>
+              </Link>
               <Link
-                href="#collection"
-                className="inline-flex items-center gap-3 rounded-full bg-indigo px-8 py-4 text-sm text-cream transition-colors hover:bg-ink"
+                href="/wholesale"
+                className="action text-paper/85 transition-colors hover:text-paper"
               >
-                Explore the collection <span aria-hidden>→</span>
-              </Link>
-              <Link href="/wholesale" className="brushed text-sm text-ink-light">
-                Become a partner
+                Become a partner <span aria-hidden>→</span>
               </Link>
             </div>
-          </div>
-
-          {/* Hero painting — transparent cutout, sits directly beside the headline */}
-          <div className="relative lg:-ml-6">
-            <Image
-              src="/art/hero-cutout.png"
-              alt="Watercolour illustration of a woman embracing her golden retriever, both wearing matching crystal jewelry"
-              width={862}
-              height={635}
-              priority
-              className="mx-auto w-full max-w-xl"
-            />
           </div>
         </div>
       </section>
 
-      {/* The bond — brand illustration band */}
-      <section className="relative overflow-hidden border-y border-ink/5 bg-cream-dark/30">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 px-6 py-20 lg:grid-cols-2">
-          <Reveal>
-            <p className="text-xs font-medium tracking-[0.3em] text-ink-light uppercase">
-              The bond
-            </p>
-            <h2 className="mt-4 font-serif text-3xl leading-snug text-ink sm:text-5xl">
-              Two pieces,
-              <br />
-              <span className="text-lavender-dark">one unbreakable bond</span>
+      {/* Positioning statement */}
+      <section className="bg-paper py-20 sm:py-28">
+        <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+          <p className="eyebrow text-gold">Pets Crystal</p>
+          <h2 className="mt-5 font-serif text-3xl leading-snug text-ink sm:text-4xl">
+            A stone for every spirit
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl leading-relaxed text-ink-light">
+            Start with the temperament your companion already has — amethyst
+            for anxious hearts, aquamarine for restless travellers, garnet for
+            the fearless — then make the design your own.
+          </p>
+          <Link
+            href="#collection"
+            className="action mt-8 inline-flex text-ink transition-colors hover:text-gold"
+          >
+            Browse the archive <span aria-hidden>↗</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* The edit — four stones, photographed */}
+      <section className="bg-paper pb-20 sm:pb-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {EDITS.map((e, i) => (
+              <Reveal key={e.id} delay={i * 80}>
+                <Link href={`/products/${e.id}`} className="group block">
+                  <div className="tile relative aspect-[4/5] w-full">
+                    <Image
+                      src={`/art/product-${e.id}.png`}
+                      alt={`${e.name} matching crystal set`}
+                      width={880}
+                      height={1100}
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </div>
+                  <p className="eyebrow mt-5 text-[0.58rem] text-ink-faint">
+                    {e.label}
+                  </p>
+                  <p className="eyebrow mt-2 text-[0.72rem] text-ink transition-colors group-hover:text-gold">
+                    {e.name}
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial band */}
+      <section className="relative isolate flex min-h-[70vh] items-center overflow-hidden">
+        <Image
+          src={`/art/product-${band.id}.png`}
+          alt="Citrine and green aventurine crystal jewellery in morning light"
+          fill
+          sizes="100vw"
+          className="-z-10 object-cover object-center"
+        />
+        <div className="absolute inset-0 -z-10 bg-ink/45" />
+        <div className="mx-auto w-full max-w-7xl px-5 text-center sm:px-8">
+          <p className="eyebrow text-paper/80">The bond</p>
+          <h2 className="mt-5 font-serif text-3xl leading-snug text-paper sm:text-5xl">
+            Two pieces,
+            <br />
+            one unbreakable bond
+          </h2>
+          <p className="mx-auto mt-5 max-w-lg leading-relaxed text-paper/85">
+            A bracelet for your wrist, a charm for their collar. Wherever the
+            day takes you both, what you share stays whole.
+          </p>
+          <Link
+            href="#collection"
+            className="btn-ghost action mt-9 inline-flex text-paper"
+          >
+            <span>Start your design</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* Full collection */}
+      <section id="collection" className="scroll-mt-24 bg-paper py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow text-gold">The design archive</p>
+            <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">
+              Designs to make your own
             </h2>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-light">
-              Each stone is chosen to match the spirit your companion already
-              has — amethyst for anxious hearts, aquamarine for restless
-              travelers, garnet for the fearless.
+            <p className="mt-5 leading-relaxed text-ink-light">
+              Every set here is a studio design, not a fixed product. Start from
+              one you love, then choose your stones, your strap and the fit for
+              both of you — each set is strung to order.
             </p>
-          </Reveal>
-          <Reveal delay={150}>
-            <div className="relative mx-auto max-w-sm">
-              {/* soft pigment bloom grounds the painting */}
-              <span
-                aria-hidden
-                className="absolute inset-0 block"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 60% 50% at 50% 48%, rgba(196,181,212,0.45) 0%, transparent 70%)",
-                }}
-              />
-              <Image
-                src="/art/product-amethyst-serenity.png"
-                alt="Watercolour illustration of a matching amethyst crystal set — a beaded bracelet and a pet collar charm"
-                width={880}
-                height={1100}
-                className="float-soft relative w-full"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Collection sheet — deep indigo */}
-      <div className="collection-sheet relative">
-        <section id="collection" className="pt-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <p className="text-xs font-medium tracking-[0.3em] text-periwinkle/70 uppercase">
-              The collection
+            <p className="mt-4 text-sm text-ink-faint">
+              {products.length} designs to customise
             </p>
-            <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
-              <h2 className="font-serif text-4xl text-cream sm:text-5xl">
-                Matching crystal sets
-              </h2>
-              <span className="pb-2 text-sm text-periwinkle/70">
-                {products.length} sets · filter by crystal · chakra · benefit (soon)
-              </span>
-            </div>
           </div>
-        </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-14">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <footer className="border-t border-cream/10 py-14 text-center text-sm text-periwinkle/80">
-          <p className="font-serif text-lg text-cream">Pets Crystal</p>
-          <div className="mt-3 flex items-center justify-center gap-4 text-xs">
-            <Link href="/care" className="transition-colors hover:text-cream">
-              Care Promise
-            </Link>
-            <Link href="/wholesale" className="transition-colors hover:text-cream">
-              Wholesale
-            </Link>
-          </div>
-          <p className="mt-4 text-xs text-periwinkle/60">
-            Aftercare headquarters in Singapore — hardware changes &amp; crystal
-            cleansing for our customers. Shipping not included.
+      {/* Partner strip */}
+      <section className="border-t border-line bg-cream py-20 sm:py-24">
+        <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+          <p className="eyebrow text-gold">Trade</p>
+          <h2 className="mt-5 font-serif text-3xl leading-snug text-ink sm:text-4xl">
+            Carry Pets Crystal
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl leading-relaxed text-ink-light">
+            Three ways to work with us — wholesale, a one-time-fee dropship
+            partnership, or DIY components. Pricing is shared once your
+            application is approved.
           </p>
-          <p className="mt-2 text-xs text-periwinkle/50">
-            ✦ Crystal energy is complementary — not a substitute for veterinary
-            care ✦
-          </p>
-          <p className="mt-2 text-xs text-periwinkle/40">
-            Designed by Bella&amp;Lisa
-          </p>
-          <div className="mx-auto mt-10 max-w-6xl px-6 text-left">
-            <p className="text-[10px] leading-relaxed text-periwinkle/40">
-              Website powered by{" "}
-              <a
-                href="https://ranklore.ai"
-                target="_blank"
-                rel="noopener"
-                className="underline underline-offset-2 transition-colors hover:text-cream"
-              >
-                ranklore.ai
-              </a>
-              <br />
-              Ranklore Pte Ltd
-              <br />
-              UEN: 202629679H
-              <br />
-              7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987
-            </p>
-          </div>
-        </footer>
-      </div>
+          <Link href="/wholesale" className="btn-solid action mt-9 inline-flex">
+            <span>Apply for partnership</span>
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }

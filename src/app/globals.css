@@ -4,24 +4,31 @@
   --font-serif: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
 
-  /* Core brand */
-  --color-cream: #FBF6EE;
-  --color-cream-dark: #F3EDE3;
-  --color-ink: #2A211B;
-  --color-ink-light: #5C4F47;
-  --color-rose: #E8D5D0;
-  --color-rose-dark: #D4A898;
-  --color-lavender: #C4B5D4;
-  --color-lavender-dark: #9B8EC4;
-  --color-sage: #C5D5C0;
-  --color-gold: #D4A84B;
-  --color-gold-light: #F0D89C;
+  /* Ground — white pages, warm off-white tiles behind product photography */
+  --color-paper: #FFFFFF;
+  --color-cream: #FBF9F6;
+  --color-cream-dark: #F4F0EA;
+  --color-tile: #F2EEE8;
 
-  /* Editorial layer — deep indigo headings + cool tints */
-  --color-indigo: #2E2A47;
+  /* Ink — near-black display, warm greys for supporting copy */
+  --color-ink: #1A1714;
+  --color-ink-light: #6E655B;
+  --color-ink-faint: #A79C90;
+  --color-line: #E4DED5;
+
+  /* Accent — the gold hardware in the product photography */
+  --color-gold: #B08D57;
+  --color-gold-light: #D9BE8E;
+
+  /* Stone tints, kept for chips and washes */
+  --color-rose: #E8D5D0;
+  --color-rose-dark: #C89A8A;
+  --color-lavender: #C4B5D4;
+  --color-lavender-dark: #907FBE;
+  --color-indigo: #2A2434;
   --color-indigo-soft: #4A4468;
   --color-periwinkle: #DCD9EC;
-  --color-periwinkle-deep: #B7B2D8;
+  --color-sage: #C5D5C0;
   --color-blush: #F2E4E4;
   --color-mist: #F7F5F1;
 }
@@ -79,14 +86,6 @@ h1, h2, h3, h4 {
 }
 
 /* ============ Editorial utilities ============ */
-
-/* Letterspaced uppercase micro-label */
-.eyebrow {
-  font-size: 0.6875rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
 
 /* Thin accent rule beneath a heading */
 .rule::after {
@@ -210,46 +209,81 @@ h1, h2, h3, h4 {
   .bleed { transition: none; }
 }
 
-/* ============ Watercolor hero ============ */
-/* Layered pigment washes on cream paper — the site's painted backdrop. */
-.watercolor-bg {
-  background-color: var(--color-cream);
-  background-image:
-    radial-gradient(ellipse 55% 45% at 18% 22%, rgba(196, 181, 212, 0.35) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 85% 15%, rgba(232, 213, 208, 0.4) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 78% 80%, rgba(197, 213, 192, 0.3) 0%, transparent 72%),
-    radial-gradient(ellipse 45% 40% at 10% 85%, rgba(240, 216, 156, 0.28) 0%, transparent 70%);
+/* ============ Editorial storefront ============ */
+
+/* Small uppercase eyebrow that sits above a display heading. */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
 }
 
-/* Feather a painting's edges so its cream paper dissolves into the page. */
-.soft-blend {
-  -webkit-mask-image: radial-gradient(
-    ellipse 90% 85% at 50% 50%,
-    black 55%,
-    transparent 97%
-  );
-  mask-image: radial-gradient(
-    ellipse 90% 85% at 50% 50%,
-    black 55%,
-    transparent 97%
-  );
+/* Wordmark and section labels: wide-tracked capitals. */
+.tracked {
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
 }
 
-/* Gentle bob for the painted jewelry and watercolor accents. */
-@keyframes floatSoft {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-14px) rotate(1.2deg); }
+/* Uppercase letterspaced action link, underlined on hover. */
+.action {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
 }
-.float-soft {
-  animation: floatSoft 9s ease-in-out infinite;
+
+/* Outlined button used over photography. */
+.btn-ghost {
+  border: 1px solid currentColor;
+  padding: 0.95rem 2.4rem;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+.btn-ghost:hover {
+  background: currentColor;
+}
+.btn-ghost:hover > span {
+  color: var(--color-ink);
+}
+
+/* Solid button on light ground. */
+.btn-solid {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.95rem 2.4rem;
+  transition: background-color 0.35s ease;
+}
+.btn-solid:hover {
+  background: var(--color-gold);
+}
+
+/* Product tile — photography on a warm off-white field, zoom on hover. */
+.tile {
+  background: var(--color-tile);
+  overflow: hidden;
+}
+.tile img {
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .tile img {
+  transform: scale(1.045);
+}
+
+/* Marquee for the announcement bar. */
+@keyframes slideTicker {
+  0%, 28%    { transform: translateY(0); }
+  33%, 61%   { transform: translateY(-100%); }
+  66%, 94%   { transform: translateY(-200%); }
+  100%       { transform: translateY(-300%); }
+}
+.ticker {
+  animation: slideTicker 15s infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .float-soft { animation: none; }
-}
-
-/* The collection slides over the fixed 3D scene as a deep-indigo sheet. */
-.collection-sheet {
-  background: linear-gradient(180deg, var(--color-indigo) 0%, #241f3a 100%);
-  border-radius: 3rem 3rem 0 0;
-  box-shadow: 0 -40px 80px rgba(46, 42, 71, 0.35);
+  .ticker { animation: none; }
 }
