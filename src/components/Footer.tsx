@@ -87,8 +87,7 @@ export default function Footer() {
               7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987
             </p>
             <p className="text-[10px] text-ink-faint">
-              © {new Date().getFullYear()} Pets Crystal · Designed by
-              Bella&amp;Lisa
+              © {new Date().getFullYear()} Pets Crystal · Designed by Bella Lisa
             </p>
           </div>
         </div>
