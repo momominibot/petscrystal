@@ -262,16 +262,35 @@ h1, h2, h3, h4 {
   background: var(--color-gold);
 }
 
-/* Product tile — photography on a warm off-white field, zoom on hover. */
+/* Product tile — the piece floats on a near-white field with a soft
+   contact shadow, and lifts very slightly on hover. */
 .tile {
-  background: var(--color-tile);
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--color-tile) 100%);
   overflow: hidden;
 }
 .tile img {
   transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .group:hover .tile img {
-  transform: scale(1.045);
+  transform: scale(1.035);
+}
+/* Grounding shadow under the product itself, not the tile */
+.product-shot {
+  filter: drop-shadow(0 24px 30px rgba(60, 48, 38, 0.16));
+}
+/* The tile as a whole lifts on hover */
+.tile {
+  box-shadow: 0 1px 2px rgba(60, 48, 38, 0.05);
+  transition: box-shadow 0.55s ease, transform 0.55s ease;
+}
+.group:hover .tile {
+  box-shadow: 0 26px 48px -22px rgba(60, 48, 38, 0.3);
+  transform: translateY(-4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile, .tile img, .group:hover .tile, .group:hover .tile img {
+    transition: none; transform: none;
+  }
 }
 
 /* Marquee for the announcement bar. */

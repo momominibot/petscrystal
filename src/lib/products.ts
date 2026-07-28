@@ -10,6 +10,11 @@ export interface Product {
   colors: string[];
   image: string; // placeholder — replace with real photos
   stripePriceId: string;
+  /**
+   * Second shot showing the piece worn by a pet. Cards cross-fade to it on
+   * hover. Files live at /art/worn-<id>.jpg; omit until one exists.
+   */
+  worn?: boolean;
 }
 
 export const products: Product[] = [
@@ -51,6 +56,7 @@ export const products: Product[] = [
     colors: ["#2A3F6B", "#8BA4CC", "#E8DFF0", "#C9B037"],
     image: "/products/starfall-galaxy.jpg",
     stripePriceId: "price_1TwtFf3qtlTQdhEMAwMKwo1R",
+    worn: true,
   },
   {
     id: "azure-lagoon",

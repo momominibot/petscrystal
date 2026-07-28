@@ -10,14 +10,35 @@ export default function ProductCard({ product }: { product: Product }) {
         aria-label={`${product.name} — matching ${product.crystal} crystal bracelet and pet collar charm set`}
         className="tile relative block aspect-[4/5] w-full"
       >
+        {/* Product on its own — drops away on hover */}
         <Image
           src={`/art/product-${product.id}.png`}
           alt={`The ${product.name} set — a ${product.crystal} bracelet with a matching pet collar charm`}
           width={880}
           height={1100}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-          className="absolute inset-0 h-full w-full object-cover"
+          className={`product-shot absolute inset-0 h-full w-full object-cover ${
+            product.worn ? "transition-opacity duration-700 group-hover:opacity-0" : ""
+          }`}
         />
+
+        {/* Worn by the pet — fades in underneath */}
+        {product.worn && (
+          <Image
+            src={`/art/worn-${product.id}.jpg`}
+            alt={`The ${product.name} collar charm worn by a pet`}
+            width={880}
+            height={1100}
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+            className="absolute inset-0 -z-10 h-full w-full object-cover"
+          />
+        )}
+
+        {product.worn && (
+          <span className="eyebrow pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-paper/85 px-3 py-1 text-[0.5rem] text-ink-light opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            Worn
+          </span>
+        )}
       </Link>
 
       <div className="pt-5">
