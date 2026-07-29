@@ -8,7 +8,10 @@ export function organizationSchema(): object {
     url: "https://petscrystals.com",
     description:
       "Matching crystal jewelry for humans and their animal companions. Healing stones for every spirit, one unbreakable bond.",
-    sameAs: [],
+    sameAs: [
+      "https://twitter.com/petscrystal",
+      "https://ranklore.ai",
+    ],
   };
 }
 

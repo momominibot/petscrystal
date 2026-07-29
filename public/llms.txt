@@ -1,22 +1,55 @@
-# Pets Crystal — LLMs.txt
-# Matching crystal jewelry for humans & their animal companions.
-# Healing stones for every spirit, one unbreakable bond.
-
-## Site Structure
-- Home: https://petscrystals.com
-- Wholesale: https://petscrystals.com/wholesale (login-gated)
-
-## Products (matching crystal sets)
-${require("./src/lib/products").products.map(p => `- ${p.name}: https://petscrystals.com/products/${p.id} — ${p.crystal}, ${p.chakra} chakra, partner pricing`).join("\n")}
-
-## About
-Pets Crystal sells matching crystal jewelry sets — a bracelet for the human, a collar charm for the animal. Each set features a specific healing crystal with documented benefits for both species. Pricing is partner-only (wholesale, dropship partnership, or DIY component programs) — apply at https://petscrystals.com/wholesale. Aftercare HQ in Singapore; shipping not included.
+# Pets Crystal
+> Matching crystal jewelry for humans and their animal companions. Healing stones for every spirit, one unbreakable bond. 12 hand-strung crystal sets — a bracelet for you, a charm for their collar.
 
 ## Key Pages
-- Crystal Guide: https://petscrystals.com/crystals (coming soon)
-- FAQ: https://petscrystals.com/faq (coming soon)
-- Blog: https://petscrystals.com/blog (coming soon)
+- Homepage: https://petscrystals.com (12 matching crystal sets, wholesale pricing)
+- About / Story: https://petscrystals.com/about
+- Care & Safety: https://petscrystals.com/care
+- FAQ: https://petscrystals.com/faq
+- Wholesale / Partners: https://petscrystals.com/wholesale
+
+## Products
+- Rainbow Spirit (Multi-gemstone, Crown chakra): https://petscrystals.com/products/rainbow-spirit
+- Amethyst Serenity (Amethyst, Third Eye): https://petscrystals.com/products/amethyst-serenity
+- Starfall Galaxy (Labradorite & Moonstone, Crown + Third Eye): https://petscrystals.com/products/starfall-galaxy
+- Azure Lagoon (Aquamarine & Blue Lace Agate, Throat): https://petscrystals.com/products/azure-lagoon
+- Crimson Fortune (Red Agate & Garnet, Root): https://petscrystals.com/products/crimson-fortune
+- Tiger's Vigil (Tiger's Eye, Solar Plexus): https://petscrystals.com/products/tigers-vigil
+- Frosted Crystal (Clear Quartz & Howlite, Crown): https://petscrystals.com/products/frosted-crystal
+- Rosé Heart (Rose Quartz, Heart): https://petscrystals.com/products/rose-heart
+- Monet's Garden (Citrine & Green Aventurine, Solar Plexus + Heart): https://petscrystals.com/products/monets-garden
+- Stone Path (Smoky Quartz & Black Tourmaline, Root): https://petscrystals.com/products/stone-path
+- Amethyst Clarity (Lavender Amethyst & Lepidolite, Third Eye + Crown): https://petscrystals.com/products/amethyst-clarity
+- Rose Quartz Latte (Rose Quartz & Cream Moonstone, Heart): https://petscrystals.com/products/rose-latte
+
+## Crystal Types
+- **Amethyst** — Calming, Third Eye chakra. Soothes anxiety, quiets racing thoughts. For anxious hearts.
+- **Rose Quartz** — Unconditional love, Heart chakra. Deepens bonds, emotional healing. For the deeply bonded.
+- **Aquamarine** — Tranquility, Throat chakra. Steady communication, travel calm. For restless travellers.
+- **Tiger's Eye** — Courage, Solar Plexus chakra. Focused protection, grounded confidence. For the watchful.
+- **Labradorite** — Cosmic shielding, Crown chakra. Mystical protection, intuition. For sensitive spirits.
+- **Moonstone** — New beginnings, Crown chakra. Emotional balance, inner growth.
+- **Clear Quartz** — Amplification, Crown chakra. Pure clarity, energy cleansing.
+- **Howlite** — Calm, Crown chakra. Absorbs stress, quietens overactive minds.
+- **Red Agate** — Strength, Root chakra. Grounding courage, stability.
+- **Garnet** — Passion, Root chakra. Vitality, fierce love, commitment.
+- **Citrine** — Abundance, Solar Plexus chakra. Joy, confidence, sunlight energy.
+- **Green Aventurine** — Growth, Heart chakra. Opportunity, renewal, gentle optimism.
+- **Smoky Quartz** — Grounding, Root chakra. Transmutes negativity into stability.
+- **Black Tourmaline** — Protection, Root chakra. EMF shielding, psychic defence.
+- **Lavender Amethyst** — Gentle clarity, Third Eye + Crown. Soft confidence, intuition.
+- **Lepidolite** — Peace, Third Eye + Crown. Lithium-rich calm, transitions support.
+- **Cream Moonstone** — Comfort, Heart chakra. Warmth, soft nurturing energy.
+- **Multi-gemstone** — Full-spectrum joy, Crown chakra. Balanced mood, playful energy.
+
+## About
+Pets Crystal creates matching crystal jewelry sets — a bracelet for the human, a collar charm for the animal. Each set uses a specific healing crystal chosen for its properties that benefit both species. Every set is hand-strung to order in Singapore. Aftercare headquarters: hardware changes and crystal cleansing available for customers. Wholesale and dropship partnerships available for retailers and stockists. Ranklore Pte Ltd, UEN: 202629679H, 7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987.
+
+## Important
+Crystal energy is complementary — not a substitute for veterinary care.
 
 ## Contact
-- Email: wholesale@petscrystal.co
-- Stripe Checkout for retail purchases
+- Email: hello@petscrystals.com
+- Website: https://petscrystals.com
+- Twitter/X: https://twitter.com/petscrystal
+- Parent company: https://ranklore.ai
