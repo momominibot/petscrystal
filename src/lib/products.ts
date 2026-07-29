@@ -15,6 +15,16 @@ export interface Product {
    * hover. Files live at /art/worn-<id>.jpg; omit until one exists.
    */
   worn?: boolean;
+  /**
+   * Collar measurements as supplied by the studio. `neckMin` is the neck
+   * circumference at the first buckle hole, `neckMax` at the fourth. Strap
+   * width is 1.5 cm on every design. Hand-measured, so the studio states a
+   * 1–2 cm tolerance.
+   */
+  neckMin?: number;
+  neckMax?: number;
+  grams?: number;
+  suits?: string;
 }
 
 export const products: Product[] = [
@@ -30,6 +40,11 @@ export const products: Product[] = [
     colors: ["#C4B5D4", "#E8D5D0", "#C5D5C0", "#F5E6CC"],
     image: "/products/rainbow-spirit.jpg",
     stripePriceId: "price_1TwtFe3qtlTQdhEMC8uyVJPA",
+    neckMin: 27,
+    neckMax: 33,
+    grams: 67,
+    suits: "medium to large",
+    worn: true,
   },
   {
     id: "amethyst-serenity",
@@ -43,6 +58,11 @@ export const products: Product[] = [
     colors: ["#9B8EC4", "#D5CCE8", "#F0EBF7"],
     image: "/products/amethyst-serenity.jpg",
     stripePriceId: "price_1TwtFf3qtlTQdhEM95vOYZJy",
+    neckMin: 25,
+    neckMax: 31,
+    grams: 57,
+    suits: "small to large",
+    worn: true,
   },
   {
     id: "starfall-galaxy",
@@ -56,6 +76,10 @@ export const products: Product[] = [
     colors: ["#2A3F6B", "#8BA4CC", "#E8DFF0", "#C9B037"],
     image: "/products/starfall-galaxy.jpg",
     stripePriceId: "price_1TwtFf3qtlTQdhEMAwMKwo1R",
+    neckMin: 25,
+    neckMax: 31,
+    grams: 65,
+    suits: "medium to large",
     worn: true,
   },
   {
@@ -70,6 +94,11 @@ export const products: Product[] = [
     colors: ["#7EC8E3", "#B8E0F0", "#D4EAF5", "#E8F4F8"],
     image: "/products/azure-lagoon.jpg",
     stripePriceId: "price_1TwtFh3qtlTQdhEMlUDyYIE1",
+    neckMin: 27,
+    neckMax: 34,
+    grams: 75,
+    suits: "medium to large",
+    worn: true,
   },
   {
     id: "crimson-fortune",
@@ -83,6 +112,11 @@ export const products: Product[] = [
     colors: ["#C44536", "#E8967A", "#F5D5C8"],
     image: "/products/crimson-fortune.jpg",
     stripePriceId: "price_1TwtFi3qtlTQdhEMKu1gjgK0",
+    neckMin: 27,
+    neckMax: 32,
+    grams: 76,
+    suits: "medium to large",
+    worn: true,
   },
   {
     id: "tigers-vigil",
@@ -96,6 +130,11 @@ export const products: Product[] = [
     colors: ["#B8860B", "#D4A84B", "#F0D89C", "#3D2B0F"],
     image: "/products/tigers-vigil.jpg",
     stripePriceId: "price_1TwtFi3qtlTQdhEMavT2GuE5",
+    neckMin: 27,
+    neckMax: 33,
+    grams: 69,
+    suits: "medium to large",
+    worn: true,
   },
   {
     id: "frosted-crystal",
@@ -109,6 +148,7 @@ export const products: Product[] = [
     colors: ["#F0F4F8", "#DCE4EC", "#FFFFFF", "#E8E8E8"],
     image: "/products/frosted-crystal.jpg",
     stripePriceId: "price_1TwtFj3qtlTQdhEMNxprBrFp",
+    worn: true,
   },
   {
     id: "rose-heart",
@@ -122,6 +162,11 @@ export const products: Product[] = [
     colors: ["#F0C8D8", "#E8A0B8", "#FBE8EF", "#D47898"],
     image: "/products/rose-heart.jpg",
     stripePriceId: "price_1TwtFk3qtlTQdhEMf4apXiUu",
+    neckMin: 27,
+    neckMax: 33,
+    grams: 64,
+    suits: "small to large",
+    worn: true,
   },
   {
     id: "monets-garden",
@@ -135,6 +180,11 @@ export const products: Product[] = [
     colors: ["#F5D34B", "#8FBF6A", "#E8F0D8", "#D4A84B"],
     image: "/products/monets-garden.jpg",
     stripePriceId: "price_1TwtFl3qtlTQdhEMoKjSrIov",
+    neckMin: 27,
+    neckMax: 33,
+    grams: 61,
+    suits: "small to large",
+    worn: true,
   },
   {
     id: "stone-path",
@@ -148,6 +198,11 @@ export const products: Product[] = [
     colors: ["#4A3728", "#8B7355", "#D4C5B8", "#2A1F18"],
     image: "/products/stone-path.jpg",
     stripePriceId: "price_1TwtFm3qtlTQdhEMfYh6zaem",
+    neckMin: 26,
+    neckMax: 32,
+    grams: 73,
+    suits: "medium to large",
+    worn: true,
   },
   {
     id: "amethyst-clarity",
@@ -161,6 +216,11 @@ export const products: Product[] = [
     colors: ["#C4B5D4", "#E8DFF0", "#F5F0FA", "#9B8EC4"],
     image: "/products/amethyst-clarity.jpg",
     stripePriceId: "price_1TwtFn3qtlTQdhEMjCb7o5Wr",
+    neckMin: 27,
+    neckMax: 32,
+    grams: 67,
+    suits: "medium to large",
+    worn: true,
   },
   {
     id: "rose-latte",
@@ -174,6 +234,11 @@ export const products: Product[] = [
     colors: ["#E8D5D0", "#F5E6CC", "#D4A898", "#FBF6EE"],
     image: "/products/rose-latte.jpg",
     stripePriceId: "price_1TwtFo3qtlTQdhEM95J7RtPH",
+    neckMin: 23,
+    neckMax: 29,
+    grams: 53,
+    suits: "small to large",
+    worn: true,
   },
 ];
 

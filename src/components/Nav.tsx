@@ -53,14 +53,22 @@ export default function Nav() {
           </Link>
           <span className="sm:hidden" />
 
-          {/* Centre — wordmark. Tracking tightens on narrow screens so it
-              never wraps. */}
-          <Link
-            href="/"
-            className="justify-self-center font-serif text-base whitespace-nowrap text-ink uppercase tracking-[0.16em] sm:text-xl sm:tracking-[0.26em] lg:text-2xl lg:tracking-[0.32em]"
-          >
-            Pets Crystal
-          </Link>
+          {/* Centre — wordmark, with the design credit as a byline beneath.
+              Tracking tightens on narrow screens so neither line wraps. The
+              credit stays mixed-case and unbolded: set in the wordmark's own
+              uppercase it would read as a second logotype rather than an
+              attribution. */}
+          <div className="flex flex-col items-center justify-self-center">
+            <Link
+              href="/"
+              className="font-serif text-base whitespace-nowrap text-ink uppercase tracking-[0.16em] sm:text-xl sm:tracking-[0.26em] lg:text-2xl lg:tracking-[0.32em]"
+            >
+              Pets Crystal
+            </Link>
+            <p className="mt-1 whitespace-nowrap text-[0.5rem] tracking-[0.16em] text-ink-faint sm:mt-1.5 sm:text-[0.56rem] sm:tracking-[0.2em]">
+              © Designed by Bella &amp; Lisa
+            </p>
+          </div>
 
           {/* Right — partner access */}
           <div className="flex items-center justify-end">

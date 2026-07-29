@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/lib/products";
+import { galleryShots } from "@/lib/gallery";
+import ProductGallery from "@/components/ProductGallery";
 import { productSchema, breadcrumbListSchema } from "@/lib/schema";
 import Footer from "@/components/Footer";
 
@@ -114,23 +115,15 @@ export default async function ProductPage({
       {/* Hero */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <div className="grid gap-10 md:grid-cols-2 md:gap-14">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
-            <span
-              aria-hidden
-              className="absolute inset-0 block opacity-55"
-              style={{
-                background: `radial-gradient(ellipse 60% 50% at 48% 46%, ${product.colors[0]} 0%, transparent 70%)`,
-              }}
-            />
-            <Image
-              src={`/art/product-${product.id}.png`}
-              alt={`${product.name} — matching ${product.crystal} crystal bracelet and pet collar charm set for human and dog`}
-              width={880}
-              height={1100}
-              priority
-              className="absolute inset-0 h-full w-full object-contain p-4"
-            />
-          </div>
+          <ProductGallery
+            name={product.name}
+            crystal={product.crystal}
+            shots={[
+              `/art/listing-${product.id}.jpg`,
+              ...(galleryShots[product.id] ?? []),
+              ...(product.worn ? [`/art/worn-${product.id}.jpg`] : []),
+            ]}
+          />
 
           <div className="flex flex-col justify-center">
             <p className="font-serif text-xs uppercase tracking-[0.2em] text-ink-light">
@@ -177,10 +170,50 @@ export default async function ProductPage({
               </Link>
             </div>
 
+            {product.neckMin && (
+              <div className="mt-7 border-t border-line pt-6">
+                <p className="eyebrow text-[0.6rem] text-ink-faint">
+                  Collar measurements
+                </p>
+                <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                  <div>
+                    <dt className="text-ink-faint">Fits neck</dt>
+                    <dd className="mt-0.5 text-ink tabular-nums">
+                      {product.neckMin}–{product.neckMax} cm
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-ink-faint">Strap width</dt>
+                    <dd className="mt-0.5 text-ink tabular-nums">1.5 cm</dd>
+                  </div>
+                  <div>
+                    <dt className="text-ink-faint">Weight</dt>
+                    <dd className="mt-0.5 text-ink tabular-nums">
+                      {product.grams} g
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-ink-faint">Suits</dt>
+                    <dd className="mt-0.5 text-ink">{product.suits}</dd>
+                  </div>
+                </dl>
+                <p className="mt-3 text-xs leading-relaxed text-ink-faint">
+                  Four buckle holes; the range above is the first hole to the
+                  fourth. Measured by hand, so allow 1–2 cm either way.{" "}
+                  <Link
+                    href="/faq#measuring"
+                    className="underline underline-offset-2 hover:text-ink"
+                  >
+                    How to measure
+                  </Link>
+                </p>
+              </div>
+            )}
+
             <ul className="mt-7 space-y-2 text-sm text-ink-light">
               <li className="flex gap-2">
-                <span className="text-gold">✦</span> Natural gemstone, gold-plated
-                hardware
+                <span className="text-gold">✦</span> Natural gemstone, vegan
+                leather, gold-plated hardware
               </li>
               <li className="flex gap-2">
                 <span className="text-gold">✦</span> Breakaway-safe charm clip —

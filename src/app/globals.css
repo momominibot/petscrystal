@@ -306,3 +306,16 @@ h1, h2, h3, h4 {
 @media (prefers-reduced-motion: reduce) {
   .ticker { animation: none; }
 }
+
+/* Collection rails scroll horizontally; the scrollbar itself is noise here
+   because the arrows and the partially-visible next card already signal it. */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-smooth { scroll-behavior: auto; }
+}

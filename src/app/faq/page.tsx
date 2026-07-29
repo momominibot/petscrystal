@@ -1,9 +1,62 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { faqSchema, breadcrumbListSchema } from "@/lib/schema";
 import Footer from "@/components/Footer";
 
 const SITE = "https://petscrystals.com";
+
+/** Neck measurement, written out rather than baked into an image. */
+const MEASURE = [
+  {
+    img: "measure-1",
+    alt: "Watercolour illustration of a soft tape measure being wrapped around a small dog's neck",
+    t: "Take the measurement",
+    d: "Have your dog or cat stand naturally. Run a soft tape measure — or a length of string or a strip of paper — once around the base of the neck, where the neck meets the shoulders. That is usually the thickest point.",
+  },
+  {
+    img: "measure-2",
+    alt: "Watercolour illustration of two fingers slipped under a collar to check the gap",
+    t: "Check the fit as you go",
+    d: "Leave one to two fingers of room between the tape and the neck. Snug enough that it will not slip over the head, loose enough that it never presses.",
+  },
+  {
+    img: "measure-3",
+    alt: "Watercolour illustration of a length of string laid straight along a ruler",
+    t: "Read it off and write it down",
+    d: "If you used string or paper, pull it straight and measure it against a ruler. With a soft tape, read the number directly. This is your base measurement.",
+  },
+  {
+    img: "measure-4",
+    alt: "Watercolour illustration of a fluffy dog wearing a finished beaded collar comfortably",
+    t: "Add a little for the coat",
+    d: "Add 1–2 cm to the base measurement, depending on your companion's build and how thick their coat is. That allowance lets the fur sit naturally and keeps the collar comfortable rather than tight.",
+  },
+];
+
+/** Terms that apply to every order, agreed at checkout. */
+const TERMS = [
+  {
+    t: "On the stones",
+    d: "We use natural crystal only, and a flawless stone does not exist. Every bead carries the marks of how it grew — faint inclusions, hairline internal fractures, cloudy veils, small variations in lustre. These are the character of natural stone, not defects, and no two sets are identical. If you need every bead uniform and unblemished, natural crystal is not the right material, and we would rather say so now.",
+  },
+  {
+    t: "On colour",
+    d: "Every photograph on this site is the real piece, shot without retouching or filters, colour-corrected as close to life as we can manage. Natural crystal reads differently under different light, and no two screens agree on warmth or saturation. A slight difference between the photograph and the piece in your hand is unavoidable, and is not a fault.",
+  },
+  {
+    t: "On sizing",
+    d: "Bracelets are strung to 14–15.5 cm by default, which fits most wrists. Collar sizing follows the measurement above. Anything made to your own measurements is cut and strung for you, so it cannot be returned or exchanged — please measure twice before ordering a custom size.",
+  },
+  {
+    t: "On returns",
+    d: "Thirty days. Check your set on arrival and write to us straight away if anything is wrong — damage in transit is easiest to resolve in the first 48 hours. Please keep the tags and packaging intact until you are sure; we cannot accept a return without them. Made-to-measure pieces are excluded.",
+  },
+  {
+    t: "Ordering thoughtfully",
+    d: "Shipping is paid the moment an order leaves us, and each set is strung by hand rather than picked off a shelf. Please order deliberately. We are a small studio, and we would rather send one set you keep than three you send back.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Questions About Matching Pet Crystal Sets | Pets Crystal",
@@ -42,8 +95,8 @@ const faqs = [
     a: "Some will try, especially at first. The charm is smooth-polished with no sharp edges and the hardware is built to give way rather than hold fast. Every set ships with a three-day introduction guide that works the piece in gradually rather than all at once. If it genuinely does not suit your companion, send it back within 30 days.",
   },
   {
-    q: "Is $79 to $89 expensive for a bracelet?",
-    a: "It is two pieces, not one — natural gemstone and gold-plated hardware, hand-strung, in packaging made to be kept. A single boutique necklace runs $60 to $90 on its own. We would rather make something you wear for years than something you replace in a season.",
+    q: "Is $89 expensive for a bracelet?",
+    a: "Every set is US$89 — two pieces, not one: natural gemstone and gold-plated hardware, hand-strung, in packaging made to be kept. A single boutique necklace runs $60 to $90 on its own. We would rather make something you wear for years than something you replace in a season.",
   },
   {
     q: "Do you ship internationally?",
@@ -52,6 +105,14 @@ const faqs = [
   {
     q: "How do I clean and care for my crystal jewelry?",
     a: "Warm water, a soft cloth, and nothing else — no ultrasonic cleaners, no household chemicals, no long soaks, which loosen elastic and dull plating. Dry the charm after wet walks. Store the two pieces together, out of direct sun, so the colour stays true.",
+  },
+  {
+    q: "How do I measure my pet's neck for the collar?",
+    a: "Run a soft tape, a length of string, or a strip of paper once around the base of the neck where it meets the shoulders — usually the thickest point. Leave one to two fingers of room, read the number off, then add 1 to 2 cm depending on build and coat thickness. Full step-by-step guide further down this page.",
+  },
+  {
+    q: "Will the stones look exactly like the photographs?",
+    a: "Close, but not identical, and that is the nature of the material. Every photograph on this site is the real piece, unretouched and unfiltered. Natural crystal reads differently under different light, and screens vary in warmth and saturation. Each bead also carries its own inclusions and veils — the marks of how it grew. Those are character, not defects.",
   },
   {
     q: "What is your return policy?",
@@ -104,7 +165,72 @@ export default function FAQPage() {
           ))}
         </dl>
 
-        <div className="mt-10 rounded-2xl border border-ink/5 bg-cream-dark/40 p-7 text-center">
+        {/* Measuring guide — illustration carries no text, the steps are copy */}
+        <div id="measuring" className="mt-16 scroll-mt-28 border-t border-ink/5 pt-14">
+          <h2 className="font-serif text-3xl leading-tight text-ink">
+            How to measure your pet&rsquo;s neck
+          </h2>
+          <p className="mt-3 leading-relaxed text-ink-light">
+            One minute with a tape measure, and the collar fits properly the
+            first time.
+          </p>
+
+          <ol className="mt-10 grid gap-x-7 gap-y-11 sm:grid-cols-2 lg:grid-cols-4">
+            {MEASURE.map((s, i) => (
+              <li key={s.t}>
+                <Image
+                  src={`/art/${s.img}.png`}
+                  alt={s.alt}
+                  width={1024}
+                  height={1024}
+                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
+                  className="w-full"
+                />
+                <p className="mt-4 font-serif text-sm text-ink/25 tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-1 font-serif text-lg leading-snug text-ink">
+                  {s.t}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-light">
+                  {s.d}
+                </p>
+              </li>
+            ))}
+          </ol>
+
+          <p className="mt-8 text-sm leading-relaxed text-ink-light">
+            The charm clip fits any standard collar up to one inch wide, so if
+            your companion already has a collar they love, you can measure that
+            instead.
+          </p>
+        </div>
+
+        {/* Purchase terms */}
+        <div id="before-you-buy" className="mt-16 scroll-mt-28 border-t border-ink/5 pt-14">
+          <h2 className="font-serif text-3xl leading-tight text-ink">
+            Before you buy
+          </h2>
+          <p className="mt-3 leading-relaxed text-ink-light">
+            These terms apply to every order. Placing one means you have read
+            them.
+          </p>
+
+          <dl className="mt-8 divide-y divide-ink/5">
+            {TERMS.map((item) => (
+              <div key={item.t} className="py-6">
+                <dt className="font-serif text-lg leading-snug text-ink">
+                  {item.t}
+                </dt>
+                <dd className="mt-2 leading-relaxed text-ink-light">
+                  {item.d}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div className="mt-16 rounded-2xl border border-ink/5 bg-cream-dark/40 p-7 text-center">
           <p className="font-serif text-xl text-ink">Still wondering?</p>
           <p className="mt-2 text-sm leading-relaxed text-ink-light">
             Write to us — a person answers.

@@ -1,10 +1,33 @@
 import { products } from "@/lib/products";
+import { birthPieces } from "@/lib/birth";
 import { itemListSchema } from "@/lib/schema";
 import ProductCard from "@/components/ProductCard";
+import Rail from "@/components/Rail";
+import BirthRail from "@/components/BirthRail";
 import Reveal from "@/components/Reveal";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import Link from "next/link";
+
+/** Four things we can actually stand behind, above the partner strip. */
+const PROMISES = [
+  {
+    title: "Seventy countries",
+    body: "We post from Singapore to seventy countries across Asia, Europe, the Middle East, Africa, the Americas and Oceania.",
+  },
+  {
+    title: "Strung by hand",
+    body: "Every set is knotted by hand, one at a time — natural stone, gold-plated hardware, and nothing rushed.",
+  },
+  {
+    title: "Made nowhere else",
+    body: "Each design is drawn in our own studio, then altered to suit you: the stones, the strap, the fit for both of you.",
+  },
+  {
+    title: "Little to throw away",
+    body: "Minimal packaging by choice — enough to protect the piece and keep it giftable, and not a gram more.",
+  },
+];
 
 const EDITS = [
   { id: "amethyst-serenity", label: "For anxious hearts", name: "Amethyst" },
@@ -153,23 +176,84 @@ export default function Home() {
       <section id="collection" className="scroll-mt-24 bg-paper py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow text-gold">The design archive</p>
+            <p className="eyebrow text-gold">The Tether Collection</p>
             <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">
               Designs to make your own
             </h2>
             <p className="mt-5 leading-relaxed text-ink-light">
-              Every set here is a studio design, not a fixed product. Start from
-              one you love, then choose your stones, your strap and the fit for
-              both of you — each set is strung to order.
+              Gemstone and vegan leather, strung in pairs. Every set here is a
+              studio design, not a fixed product — start from one you love, then
+              choose your stones, your strap and the fit for both of you.
             </p>
             <p className="mt-4 text-sm text-ink-faint">
               {products.length} designs to customise
             </p>
           </div>
 
-          <div className="mt-14 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
+          <div className="mt-14">
+            <Rail label="The Tether Collection">
+              {products.map((p) => (
+                <div
+                  key={p.id}
+                  className="w-[68vw] shrink-0 snap-start sm:w-[38vw] lg:w-[23%]"
+                >
+                  <ProductCard product={p} />
+                </div>
+              ))}
+            </Rail>
+          </div>
+        </div>
+      </section>
+
+      {/* The Birth Collection */}
+      <section
+        id="birth"
+        className="scroll-mt-24 border-t border-line bg-cream py-20 sm:py-28"
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow text-gold">The Birth Collection</p>
+            <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">
+              A stone for the month they arrived
+            </h2>
+            <p className="mt-5 leading-relaxed text-ink-light">
+              Twelve stones, one for every birth month — theirs or yours. Each
+              set is three pieces that come apart: a collar for them, a chain
+              for you, and a locket that opens to hold a photograph.
+            </p>
+            <p className="mt-4 text-sm text-ink-faint">
+              {birthPieces.length} months · US$89 each
+            </p>
+          </div>
+
+          <div className="mt-14">
+            <BirthRail />
+          </div>
+        </div>
+      </section>
+
+      {/* What you can count on */}
+      <section className="bg-paper py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            {PROMISES.map((p, i) => (
+              <div key={p.title} className="text-center">
+                <Image
+                  src={`/art/promise-${i + 1}.png`}
+                  alt=""
+                  aria-hidden
+                  width={1024}
+                  height={1024}
+                  sizes="(min-width: 1024px) 14vw, (min-width: 640px) 28vw, 55vw"
+                  className="mx-auto w-32 sm:w-36"
+                />
+                <h3 className="eyebrow mt-4 text-[0.66rem] text-ink">
+                  {p.title}
+                </h3>
+                <p className="mx-auto mt-3 max-w-[26ch] text-sm leading-relaxed text-ink-light">
+                  {p.body}
+                </p>
+              </div>
             ))}
           </div>
         </div>

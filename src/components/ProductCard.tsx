@@ -12,10 +12,10 @@ export default function ProductCard({ product }: { product: Product }) {
       >
         {/* Product on its own — drops away on hover */}
         <Image
-          src={`/art/product-${product.id}.png`}
+          src={`/art/listing-${product.id}.jpg`}
           alt={`The ${product.name} set — a ${product.crystal} bracelet with a matching pet collar charm`}
-          width={880}
-          height={1100}
+          width={1600}
+          height={2000}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
           className={`product-shot absolute inset-0 h-full w-full object-cover ${
             product.worn ? "transition-opacity duration-700 group-hover:opacity-0" : ""
@@ -27,8 +27,8 @@ export default function ProductCard({ product }: { product: Product }) {
           <Image
             src={`/art/worn-${product.id}.jpg`}
             alt={`The ${product.name} collar charm worn by a pet`}
-            width={880}
-            height={1100}
+            width={1600}
+            height={2000}
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
             className="absolute inset-0 -z-10 h-full w-full object-cover"
           />
