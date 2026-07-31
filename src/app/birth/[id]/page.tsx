@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import BuyPanel from "@/components/BuyPanel";
+import { availableVariants } from "@/lib/prices";
 import { birthPieces } from "@/lib/birth";
 import { birthGallery } from "@/lib/birthGallery";
 import ProductGallery from "@/components/ProductGallery";
@@ -136,20 +138,18 @@ export default async function BirthPage({
               cluster on either piece, or split it between you.
             </p>
 
-            <p className="mt-6 text-2xl text-ink">US${piece.price}</p>
+            <div className="mt-7">
+              <BuyPanel
+                productId={piece.id}
+                collection="birth"
+                available={availableVariants(piece.id)}
+              />
+            </div>
 
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href={`mailto:hello@petscrystals.com?subject=${encodeURIComponent(
-                  `The Birth Collection: ${piece.month} — ${piece.stone}`
-                )}`}
-                className="inline-block rounded-full bg-ink px-6 py-3 text-sm text-cream transition-colors hover:bg-gold"
-              >
-                Enquire about this set
-              </a>
+            <div className="mt-4">
               <Link
                 href="/wholesale"
-                className="inline-block rounded-full border border-ink/15 px-6 py-3 text-sm text-ink transition-colors hover:border-ink/35"
+                className="text-sm text-ink-light underline underline-offset-4 transition-colors hover:text-ink"
               >
                 Partner access
               </Link>

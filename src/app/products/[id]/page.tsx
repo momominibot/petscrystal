@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import BuyPanel from "@/components/BuyPanel";
+import { availableVariants } from "@/lib/prices";
 import { products } from "@/lib/products";
 import { galleryShots } from "@/lib/gallery";
 import ProductGallery from "@/components/ProductGallery";
@@ -153,18 +155,26 @@ export default async function ProductPage({
               distributor dashboard.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7">
+              <BuyPanel
+                productId={product.id}
+                collection="tether"
+                available={availableVariants(product.id)}
+              />
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <a
                 href={`mailto:hello@petscrystals.com?subject=${encodeURIComponent(
                   `Customise: ${product.name}`
                 )}`}
-                className="inline-block rounded-full bg-ink px-6 py-3 text-sm text-cream transition-colors hover:bg-gold"
+                className="text-ink-light underline underline-offset-4 transition-colors hover:text-ink"
               >
                 Customise this design
               </a>
               <Link
                 href="/wholesale"
-                className="inline-block rounded-full border border-ink/15 px-6 py-3 text-sm text-ink transition-colors hover:border-ink/35"
+                className="text-ink-light underline underline-offset-4 transition-colors hover:text-ink"
               >
                 Partner access
               </Link>
