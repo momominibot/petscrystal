@@ -11,11 +11,20 @@
  * prices are immutable — if an amount has changed, the old price is deactivated
  * and a new one created.
  *
- * Run it yourself so the secret key never leaves your machine:
+ * Run it via the wrapper, which prompts for the key with echo off so it never
+ * reaches your shell history or the process list:
  *
- *   STRIPE_SECRET_KEY=sk_live_xxx node scripts/stripe-sync.mjs
+ *   ./scripts/sync-prices.sh --dry     # show what would change
+ *   ./scripts/sync-prices.sh           # write it
  *
- * Add --dry to see what it would do without writing anything.
+ * Use a RESTRICTED key, not the account secret key. This script only ever
+ * touches products and prices, so create one at dashboard.stripe.com/apikeys
+ * with Products: Write and Prices: Write and everything else set to None. A
+ * full sk_live_ key can also refund every payment you have taken and read
+ * every customer record, and there is no reason to hand that to a catalogue
+ * script.
+ *
+ * Never paste a secret key into a chat window, a commit, or an issue.
  */
 import Stripe from "stripe";
 import { readFileSync, writeFileSync } from "node:fs";
