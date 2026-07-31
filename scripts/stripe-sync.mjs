@@ -40,15 +40,20 @@ const VARIANTS = [
 ];
 
 const key = process.env.STRIPE_SECRET_KEY;
-if (!key) {
+// A dry run prints the plan and never calls Stripe, so it needs no key at all.
+// That way the catalogue can be checked before any secret is handled.
+if (!key && !DRY) {
   console.error("STRIPE_SECRET_KEY is not set. See the header of this file.");
+  console.error("Tip: ./scripts/sync-prices.sh --dry needs no key.");
   process.exit(1);
 }
 console.log(
-  `mode: ${key.startsWith("sk_live") ? "LIVE" : "TEST"}${DRY ? "  (dry run)" : ""}`
+  DRY
+    ? "mode: DRY RUN — nothing is sent to Stripe, no key required"
+    : `mode: ${key.startsWith("sk_live") ? "LIVE" : "TEST"}`
 );
 
-const stripe = new Stripe(key);
+const stripe = key ? new Stripe(key) : null;
 const url = (p) => new URL(p, import.meta.url);
 
 // Read both catalogues straight out of the site so they cannot drift.
@@ -86,6 +91,25 @@ console.log(
 );
 console.log(`${catalogue.length * VARIANTS.length} prices total\n`);
 
+/** Top-level await rejects as an uncaught exception, not an unhandled
+ *  rejection — so catch both and explain rather than print a stack. */
+function explain(err) {
+  if (err?.type === "StripeAuthenticationError") {
+    console.error("\nStripe rejected the key.");
+    console.error("  · If you rolled it, the old one stopped working immediately.");
+    console.error("  · A restricted key needs Products: Write and Prices: Write.");
+    console.error("  · Test-mode keys only see test-mode data.");
+  } else if (err?.type === "StripePermissionError") {
+    console.error("\nThat key is missing a permission.");
+    console.error("  Grant Products: Write and Prices: Write, then retry.");
+  } else {
+    console.error("\n" + (err?.message ?? err));
+  }
+  process.exit(1);
+}
+process.on("uncaughtException", explain);
+process.on("unhandledRejection", explain);
+
 async function findProduct(id) {
   const found = await stripe.products.search({
     query: `metadata['petscrystals_id']:'${id}'`,
@@ -97,20 +121,27 @@ async function findProduct(id) {
 const priceMap = {};
 
 for (const item of catalogue) {
+  if (DRY) {
+    priceMap[item.id] = {};
+    for (const v of VARIANTS) {
+      priceMap[item.id][v.key] = "";
+      console.log(
+        `  ${item.id.padEnd(26)} ${v.key.padEnd(6)} ${String(v.amount / 100).padStart(3)} ${CURRENCY}  ${v.label}`
+      );
+    }
+    continue;
+  }
+
   let product = await findProduct(item.id);
   let action = product ? "reused" : "created";
 
   if (!product) {
-    if (DRY) {
-      console.log(`${item.id.padEnd(28)} would CREATE product`);
-    } else {
-      product = await stripe.products.create({
-        name: `${item.name} — ${item.collection}`,
-        description: item.description,
-        metadata: { petscrystals_id: item.id, collection: item.collection },
-      });
-    }
-  } else if (!DRY) {
+    product = await stripe.products.create({
+      name: `${item.name} — ${item.collection}`,
+      description: item.description,
+      metadata: { petscrystals_id: item.id, collection: item.collection },
+    });
+  } else {
     await stripe.products.update(product.id, {
       name: `${item.name} — ${item.collection}`,
       description: item.description,
@@ -120,14 +151,6 @@ for (const item of catalogue) {
   priceMap[item.id] = {};
 
   for (const v of VARIANTS) {
-    if (DRY) {
-      console.log(
-        `  ${item.id.padEnd(26)} ${v.key.padEnd(6)} would ensure ${v.amount / 100} ${CURRENCY}`
-      );
-      priceMap[item.id][v.key] = "";
-      continue;
-    }
-
     const existing = await stripe.prices.list({
       product: product.id,
       active: true,
@@ -170,7 +193,10 @@ for (const item of catalogue) {
 }
 
 if (DRY) {
-  console.log("\nDry run — nothing was written to Stripe.");
+  console.log(
+    `\nDry run — nothing was sent to Stripe. ${catalogue.length} designs x ${VARIANTS.length} prices = ${catalogue.length * VARIANTS.length}.`
+  );
+  console.log("Run it again without --dry, with a key, to create them.");
   process.exit(0);
 }
 
