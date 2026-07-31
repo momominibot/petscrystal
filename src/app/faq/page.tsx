@@ -59,9 +59,9 @@ const TERMS = [
 ];
 
 export const metadata: Metadata = {
-  title: "Questions About Matching Pet Crystal Sets | Pets Crystal",
+  title: "Are Crystal Collars Safe for Dogs & Cats? | Pets Crystal",
   description:
-    "How to choose a crystal for you and your pet, whether crystals are safe for dogs and cats, sizing for collar charms, shipping, care and returns — answered.",
+    "Pet collar charm safety, supervised wear, sizing, care and crystal-jewelry questions for dogs and cats — answered plainly by Pets Crystal.",
   alternates: { canonical: `${SITE}/faq` },
 };
 
@@ -75,8 +75,8 @@ const faqs = [
     a: "Every set carries two intentions — one for them, one for you. Read both. Most people find that one pairing lands with unusual clarity, and that is generally the one to trust. If you would rather work by tradition, choose by chakra: heart for bonding, root for grounding, third eye for calm and clarity, throat for travel and communication.",
   },
   {
-    q: "Are the crystals safe for pets to wear?",
-    a: "The stones we use are smooth-polished, non-toxic, and set on hardware designed to release under pressure. We never use malachite, stibnite, or cinnabar. That said, safety is about how a piece is worn, not only what it is made of: up to 8 to 12 supervised hours a day, removed when your companion is crated, alone, sleeping, swimming, or at the dog park. For cats, always pair the charm with a breakaway collar.",
+    q: "Are crystal collars safe for dogs and cats?",
+    a: "They can be an accessory for supervised wear, but no collar charm is risk-free. Introduce it gradually, check the fit and hardware before each use, and remove it when your companion is unattended, sleeping, swimming, crated, playing roughly, or likely to chew it. For cats, use only a breakaway collar. Do not let a pet mouth or swallow any part of the jewelry; if that happens, contact a veterinarian promptly. We do not make health or healing claims for crystals.",
   },
   {
     q: "Do crystals actually do anything for my pet?",
@@ -144,11 +144,13 @@ export default function FAQPage() {
           Questions
         </p>
         <h1 className="mt-4 font-serif text-4xl leading-tight text-ink sm:text-5xl">
-          Everything you might be wondering
+          Are crystal collars safe for dogs and cats?
         </h1>
         <p className="mx-auto mt-5 max-w-xl leading-relaxed text-ink-light">
-          On choosing a stone, keeping it safe, and what we will and will not
-          claim about any of it.
+          <strong>Short answer:</strong> use a collar charm only with supervision,
+          check it before each wear, and remove it whenever your companion could
+          snag, chew, swim in, or sleep in it. Here are the practical details —
+          plus the rest of the questions pet parents ask before choosing a set.
         </p>
         <p className="mt-6 font-serif text-2xl text-ink/20">✦</p>
       </section>
