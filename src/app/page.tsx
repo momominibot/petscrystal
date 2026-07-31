@@ -4,6 +4,8 @@ import { itemListSchema } from "@/lib/schema";
 import ProductCard from "@/components/ProductCard";
 import Rail from "@/components/Rail";
 import BirthRail from "@/components/BirthRail";
+import EverydayRail from "@/components/EverydayRail";
+import { everydayCollars } from "@/lib/everyday";
 import Reveal from "@/components/Reveal";
 import Footer from "@/components/Footer";
 import Image from "next/image";
@@ -228,6 +230,33 @@ export default function Home() {
 
           <div className="mt-14">
             <BirthRail />
+          </div>
+        </div>
+      </section>
+
+      {/* The Everyday Collection */}
+      <section
+        id="everyday"
+        className="scroll-mt-24 border-t border-line bg-paper py-20 sm:py-28"
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow text-gold">The Everyday Collection</p>
+            <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">
+              For the days in between
+            </h2>
+            <p className="mt-5 leading-relaxed text-ink-light">
+              A collar on its own, with the stones set into the strap rather
+              than hung from it — nothing to swing, catch or lose. Five
+              colours, made for wearing every day rather than for occasions.
+            </p>
+            <p className="mt-4 text-sm text-ink-faint">
+              {everydayCollars.length} colours · US${everydayCollars[0].price} each
+            </p>
+          </div>
+
+          <div className="mt-14">
+            <EverydayRail />
           </div>
         </div>
       </section>

@@ -81,15 +81,31 @@ const birth = [
   collection: "The Birth Collection",
 }));
 
-const catalogue = [...tether, ...birth];
+// The Everyday collars are a single piece, so they get one price (the pet
+// one) rather than the three-way pair pricing.
+const everydaySrc = readFileSync(url("../src/lib/everyday.ts"), "utf8");
+const everyday = [
+  ...everydaySrc.matchAll(
+    /id:\s*"([^"]+)"[\s\S]*?name:\s*"([^"]+)"[\s\S]*?stone:\s*"([^"]+)"[\s\S]*?strap:\s*"([^"]+)"[\s\S]*?meaning:\s*"([^"]+)"[\s\S]*?tagline:\s*"([^"]+)"[\s\S]*?petBenefit:\s*"([^"]+)"[\s\S]*?price:\s*(\d+)/g
+  ),
+].map(([, id, name, stone, strap, meaning, tagline, , price]) => ({
+  id,
+  name: `${name} — ${stone}`,
+  description: `${tagline} — ${strap.toLowerCase()} leather set with ${stone.toLowerCase()}.`,
+  collection: "The Everyday Collection",
+  variants: [{ key: "pet", label: "The collar", amount: Number(price) * 100 }],
+}));
+
+const catalogue = [...tether, ...birth, ...everyday];
 if (catalogue.length === 0) {
   console.error("Could not parse any designs. Check the two lib files.");
   process.exit(1);
 }
+const priceCount = catalogue.reduce((n, i) => n + (i.variants ?? VARIANTS).length, 0);
 console.log(
-  `${tether.length} Tether + ${birth.length} Birth = ${catalogue.length} designs`
+  `${tether.length} Tether + ${birth.length} Birth + ${everyday.length} Everyday = ${catalogue.length} designs`
 );
-console.log(`${catalogue.length * VARIANTS.length} prices total\n`);
+console.log(`${priceCount} prices total\n`);
 
 /** Top-level await rejects as an uncaught exception, not an unhandled
  *  rejection — so catch both and explain rather than print a stack. */
@@ -123,7 +139,7 @@ const priceMap = {};
 for (const item of catalogue) {
   if (DRY) {
     priceMap[item.id] = {};
-    for (const v of VARIANTS) {
+    for (const v of item.variants ?? VARIANTS) {
       priceMap[item.id][v.key] = "";
       console.log(
         `  ${item.id.padEnd(26)} ${v.key.padEnd(6)} ${String(v.amount / 100).padStart(3)} ${CURRENCY}  ${v.label}`
@@ -150,7 +166,7 @@ for (const item of catalogue) {
 
   priceMap[item.id] = {};
 
-  for (const v of VARIANTS) {
+  for (const v of item.variants ?? VARIANTS) {
     const existing = await stripe.prices.list({
       product: product.id,
       active: true,
@@ -194,7 +210,7 @@ for (const item of catalogue) {
 
 if (DRY) {
   console.log(
-    `\nDry run — nothing was sent to Stripe. ${catalogue.length} designs x ${VARIANTS.length} prices = ${catalogue.length * VARIANTS.length}.`
+    `\nDry run — nothing was sent to Stripe. ${catalogue.length} designs, ${priceCount} prices.`
   );
   console.log("Run it again without --dry, with a key, to create them.");
   process.exit(0);
@@ -227,6 +243,6 @@ export function availableVariants(productId: string): VariantKey[] {
 `;
 writeFileSync(url("../src/lib/prices.ts"), body);
 console.log(
-  `\nsrc/lib/prices.ts written — ${Object.keys(priceMap).length} designs, ${Object.keys(priceMap).length * VARIANTS.length} prices.`
+  `\nsrc/lib/prices.ts written — ${Object.keys(priceMap).length} designs, ${priceCount} prices.`
 );
 console.log("Commit it, then deploy.");

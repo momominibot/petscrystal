@@ -17,6 +17,7 @@ export default function BuyPanel({
   name,
   image,
   href,
+  priceOverride,
 }: {
   productId: string;
   collection: Collection;
@@ -25,11 +26,18 @@ export default function BuyPanel({
   name: string;
   image: string;
   href: string;
+  /** Overrides the variant's own price. Used by single-piece products whose
+   *  price is not one of the three pair-collection tiers. */
+  priceOverride?: number;
 }) {
-  const [variant, setVariant] = useState<VariantKey>(DEFAULT_VARIANT);
+  // A single-option product (the Everyday collars) has nothing to choose, so
+  // start on whatever is actually priced rather than on the pair.
+  const only = available.length === 1 ? available[0] : null;
+  const [variant, setVariant] = useState<VariantKey>(only ?? DEFAULT_VARIANT);
   const { add, setOpen } = useCart();
 
-  const chosen = VARIANTS.find((v) => v.key === variant)!;
+  const found = VARIANTS.find((v) => v.key === variant)!;
+  const chosen = priceOverride != null ? { ...found, price: priceOverride, compareAt: undefined } : found;
   const canBuy = available.includes(variant);
 
   const addToBag = () => {
@@ -47,6 +55,7 @@ export default function BuyPanel({
 
   return (
     <div>
+      {!only && (
       <fieldset>
         <legend className="eyebrow text-[0.6rem] text-ink-faint">
           Choose your pieces
@@ -91,8 +100,9 @@ export default function BuyPanel({
           })}
         </div>
       </fieldset>
+      )}
 
-      <div className="mt-5 flex flex-col gap-2">
+      <div className={`${only ? "" : "mt-5"} flex flex-col gap-2`}>
         <button
           onClick={addToBag}
           disabled={!canBuy}

@@ -17,7 +17,7 @@
  */
 export type VariantKey = "pet" | "owner" | "set";
 
-export type Collection = "tether" | "birth";
+export type Collection = "tether" | "birth" | "everyday";
 
 export interface Variant {
   key: VariantKey;
@@ -37,6 +37,7 @@ export const VARIANTS: Variant[] = [
     piece: {
       tether: "Collar charm",
       birth: "Collar, pendant & locket",
+      everyday: "The collar",
     },
     price: 89,
   },
@@ -46,6 +47,9 @@ export const VARIANTS: Variant[] = [
     piece: {
       tether: "Bracelet",
       birth: "Necklace & locket",
+      // The Everyday collars have no human half; these two never render for
+      // them because only the `pet` variant is ever priced.
+      everyday: "—",
     },
     price: 69,
   },
@@ -55,6 +59,7 @@ export const VARIANTS: Variant[] = [
     piece: {
       tether: "Bracelet + collar charm",
       birth: "Necklace + collar, both lockets",
+      everyday: "—",
     },
     price: 109,
     compareAt: 158,

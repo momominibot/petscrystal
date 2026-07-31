@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { products } from "@/lib/products";
 import { birthPieces } from "@/lib/birth";
+import { everydayCollars } from "@/lib/everyday";
 import { priceIdFor } from "@/lib/prices";
 import { VARIANTS, type VariantKey } from "@/lib/variants";
 
@@ -29,6 +30,9 @@ function locate(productId: string): { path: string } | null {
   }
   if (birthPieces.some((p) => p.id === productId)) {
     return { path: `/birth/${productId}` };
+  }
+  if (everydayCollars.some((p) => p.id === productId)) {
+    return { path: `/everyday/${productId}` };
   }
   return null;
 }
