@@ -6,6 +6,8 @@ import Rail from "@/components/Rail";
 import BirthRail from "@/components/BirthRail";
 import EverydayRail from "@/components/EverydayRail";
 import { everydayCollars } from "@/lib/everyday";
+import { brandStory, designInspirations } from "@/lib/birthStory";
+import Watercolour from "@/components/Watercolour";
 import Reveal from "@/components/Reveal";
 import Footer from "@/components/Footer";
 import Image from "next/image";
@@ -230,6 +232,64 @@ export default function Home() {
 
           <div className="mt-14">
             <BirthRail />
+          </div>
+        </div>
+      </section>
+
+      {/* The studio's own story, translated. Every claim here was audited:
+          the stones are given as tradition and intention, never as effect. */}
+      <section className="border-t border-line bg-paper py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow text-gold">Our story</p>
+            <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">
+              {brandStory.heading}
+            </h2>
+            <p className="mt-5 leading-relaxed text-ink-light">
+              {brandStory.intro}
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-10 sm:grid-cols-3 sm:gap-8">
+            {brandStory.pillars.map((p) => (
+              <div key={p.title}>
+                <span aria-hidden className="block h-px w-10 bg-gold" />
+                <h3 className="mt-5 font-serif text-xl leading-snug text-ink">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-light">
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <Watercolour width={900} />
+          </div>
+
+          <div className="mx-auto mt-12 max-w-2xl text-center">
+            <p className="eyebrow text-[0.6rem] text-ink-faint">
+              Four things we designed for
+            </p>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-5xl gap-8 sm:grid-cols-2">
+            {designInspirations.map((d, i) => (
+              <div
+                key={d.title}
+                className="rounded-2xl border border-ink/8 bg-cream-dark/30 p-6"
+              >
+                <p className="eyebrow text-[0.55rem] text-ink-faint">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-3 font-serif text-lg leading-snug text-ink">
+                  {d.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-ink-light">
+                  {d.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -5,6 +5,8 @@ import BuyPanel from "@/components/BuyPanel";
 import { availableVariants } from "@/lib/prices";
 import { birthPieces } from "@/lib/birth";
 import { birthGallery } from "@/lib/birthGallery";
+import { storyFor, swapStory, whatArrives } from "@/lib/birthStory";
+import Watercolour from "@/components/Watercolour";
 import ProductGallery from "@/components/ProductGallery";
 import { breadcrumbListSchema } from "@/lib/schema";
 import Footer from "@/components/Footer";
@@ -50,6 +52,7 @@ export default async function BirthPage({
   const piece = birthPieces.find((p) => p.id === id);
   if (!piece) notFound();
 
+  const story = storyFor(piece.month);
   const others = birthPieces.filter((p) => p.id !== piece.id);
   const index = birthPieces.findIndex((p) => p.id === piece.id);
   // wrap around so December leads back to January
@@ -117,7 +120,7 @@ export default async function BirthPage({
             <h1 className="mt-3 font-serif text-4xl leading-tight text-ink sm:text-5xl">
               {piece.stone}
             </h1>
-            <p className="mt-3 text-lg text-ink-light">{piece.tagline}</p>
+            <p className="mt-3 text-lg text-ink-light">{story?.tagline ?? piece.tagline}</p>
 
             <div className="mt-5 flex flex-wrap gap-2">
               <span className="rounded-full bg-lavender/30 px-3 py-1 text-xs text-ink-light">
@@ -176,18 +179,59 @@ export default async function BirthPage({
         </div>
       </section>
 
+      {/* One pendant, two ways to wear it — the idea the whole collection
+          rests on, and the thing buyers most often get wrong. */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-3xl px-6 pb-4 pt-2">
+          <Watercolour width={760} />
+        </div>
+        <div className="mx-auto max-w-2xl px-6 pb-16 text-center">
+          <h2 className="font-serif text-2xl leading-snug text-ink sm:text-3xl">
+            {swapStory.heading}
+          </h2>
+          {swapStory.body.split("\n\n").map((para) => (
+            <p key={para.slice(0, 24)} className="mt-4 leading-relaxed text-ink-light">
+              {para}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-cream-dark/30">
+        <div className="mx-auto max-w-3xl px-6 py-14">
+          <p className="eyebrow text-center text-[0.6rem] text-ink-faint">
+            What arrives
+          </p>
+          <ul className="mx-auto mt-6 grid max-w-2xl gap-3 text-sm leading-relaxed text-ink-light">
+            {whatArrives.map((line) => (
+              <li key={line.slice(0, 24)} className="flex gap-3">
+                <span className="mt-1 text-gold">✦</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="border-y border-line bg-cream-dark/30">
         <div className="mx-auto max-w-3xl px-6 py-14 text-center">
-          <p className="eyebrow text-gold">{piece.meaning}</p>
+          <p className="eyebrow text-gold">{story?.epithet ?? piece.meaning}</p>
           <h2 className="mt-4 font-serif text-2xl leading-snug text-ink">
             Why {piece.stone.toLowerCase()} for {piece.month}
           </h2>
           <p className="mt-4 leading-relaxed text-ink-light">
-            These follow our studio&rsquo;s own stone-per-month system rather
-            than the traditional birthstone list, so the stone is chosen for
-            what it means rather than for what a calendar says. If you would
-            rather have a different stone on the {piece.month.toLowerCase()}{" "}
-            strap, write to us — every set is made to order.
+            {story?.body}
+          </p>
+          {story?.forThem && (
+            <p className="mt-5 leading-relaxed text-ink-light">
+              {story.forThem}
+            </p>
+          )}
+          <p className="mt-6 text-xs leading-relaxed text-ink/50">
+            These follow the studio&rsquo;s own stone-per-month system rather
+            than the traditional birthstone list. Want a different stone on the{" "}
+            {piece.month.toLowerCase()} strap? Write to us — every set is made
+            to order.
           </p>
         </div>
       </section>

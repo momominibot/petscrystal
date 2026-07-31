@@ -58,7 +58,10 @@ export const VARIANTS: Variant[] = [
     label: "Together",
     piece: {
       tether: "Bracelet + collar charm",
-      birth: "Necklace + collar, both lockets",
+      // Not "both lockets" — there is only ever one pendant cluster, and it
+      // moves between the collar and the chain. The studio's own line is
+      // "you share one object": the two of you cannot wear it at once.
+      birth: "Collar + chain, one pendant to share",
       everyday: "—",
     },
     price: 109,
