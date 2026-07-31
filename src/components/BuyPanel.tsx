@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { VARIANTS, DEFAULT_VARIANT, type Collection, type VariantKey } from "@/lib/variants";
+import { useCart } from "@/lib/cart";
 
 /**
  * Variant picker plus the buy button, as one unit.
@@ -13,35 +14,35 @@ export default function BuyPanel({
   productId,
   collection,
   available,
+  name,
+  image,
+  href,
 }: {
   productId: string;
   collection: Collection;
   /** Variants that actually have a Stripe price. Others render disabled. */
   available: VariantKey[];
+  name: string;
+  image: string;
+  href: string;
 }) {
   const [variant, setVariant] = useState<VariantKey>(DEFAULT_VARIANT);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { add, setOpen } = useCart();
 
   const chosen = VARIANTS.find((v) => v.key === variant)!;
   const canBuy = available.includes(variant);
 
-  const checkout = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId, variant }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.url) throw new Error(data.error ?? "checkout failed");
-      window.location.href = data.url;
-    } catch {
-      setError("Something went wrong — please try again.");
-      setLoading(false);
-    }
+  const addToBag = () => {
+    add({
+      productId,
+      variant,
+      name,
+      collection,
+      price: chosen.price,
+      image,
+      href,
+    });
+    setOpen(true);
   };
 
   return (
@@ -93,16 +94,11 @@ export default function BuyPanel({
 
       <div className="mt-5 flex flex-col gap-2">
         <button
-          onClick={checkout}
-          disabled={loading || !canBuy}
+          onClick={addToBag}
+          disabled={!canBuy}
           className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm text-cream transition-colors hover:bg-gold disabled:opacity-50"
         >
-          {loading
-            ? "Redirecting…"
-            : canBuy
-              ? `Add to bag — US$${chosen.price}`
-              : "Not available yet"}
-          {!loading && canBuy && <span className="text-lg leading-none">→</span>}
+          {canBuy ? `Add to bag — US$${chosen.price}` : "Not available yet"}
         </button>
         {!canBuy && (
           <p className="text-xs text-ink-light">
@@ -116,11 +112,6 @@ export default function BuyPanel({
               message us
             </a>{" "}
             and we will invoice you directly.
-          </p>
-        )}
-        {error && (
-          <p role="alert" className="text-xs text-rose-dark">
-            {error}
           </p>
         )}
       </div>

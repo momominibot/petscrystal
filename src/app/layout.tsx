@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import CartDrawer from "@/components/CartDrawer";
+import { CartProvider } from "@/lib/cart";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 const fraunces = Fraunces({
@@ -73,8 +75,11 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="antialiased">
-        <Nav />
-        <main>{children}</main>
+        <CartProvider>
+          <Nav />
+          <main>{children}</main>
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

@@ -1,8 +1,15 @@
 import { Product } from "@/lib/products";
+import { cardShots } from "@/lib/cardShots";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductCard({ product }: { product: Product }) {
+  // Fall back to the studio plate for any design without curated shots.
+  const shots = cardShots[product.id] ?? {
+    front: `/art/worn-${product.id}.jpg`,
+    hover: `/art/listing-${product.id}.jpg`,
+  };
+
   return (
     <article className="group">
       <Link
@@ -10,35 +17,30 @@ export default function ProductCard({ product }: { product: Product }) {
         aria-label={`${product.name} — matching ${product.crystal} crystal bracelet and pet collar charm set`}
         className="tile relative block aspect-[4/5] w-full"
       >
-        {/* Product on its own — drops away on hover */}
+        {/* The animal wearing it leads. Hover cross-fades to the owner
+            wearing the matching bracelet, so one pass of the cursor shows
+            both halves of the pair without a click. */}
         <Image
-          src={`/art/listing-${product.id}.jpg`}
-          alt={`The ${product.name} set — a ${product.crystal} bracelet with a matching pet collar charm`}
+          src={shots.front}
+          alt={`A pet wearing the ${product.name} collar charm`}
           width={1600}
           height={2000}
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-          className={`product-shot absolute inset-0 h-full w-full object-cover ${
-            product.worn ? "transition-opacity duration-700 group-hover:opacity-0" : ""
-          }`}
+          className="product-shot absolute inset-0 h-full w-full object-cover transition-opacity duration-700 group-hover:opacity-0"
         />
 
-        {/* Worn by the pet — fades in underneath */}
-        {product.worn && (
-          <Image
-            src={`/art/worn-${product.id}.jpg`}
-            alt={`The ${product.name} collar charm worn by a pet`}
-            width={1600}
-            height={2000}
-            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-            className="absolute inset-0 -z-10 h-full w-full object-cover"
-          />
-        )}
+        <Image
+          src={shots.hover}
+          alt={`The ${product.name} ${product.crystal} bracelet worn on the wrist`}
+          width={1600}
+          height={2000}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
 
-        {product.worn && (
-          <span className="eyebrow pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-paper/85 px-3 py-1 text-[0.5rem] text-ink-light opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-            Worn
-          </span>
-        )}
+        <span className="eyebrow pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-paper/85 px-3 py-1 text-[0.5rem] text-ink-light opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+          For you
+        </span>
       </Link>
 
       <div className="pt-5">

@@ -33,37 +33,72 @@ function locate(productId: string): { path: string } | null {
   return null;
 }
 
+interface Line {
+  productId: string;
+  variant: VariantKey;
+  quantity: number;
+}
+
+/** Validate the bag the client sent, rejecting anything we do not sell. */
+function parseItems(raw: unknown): { lines: Line[] } | { error: string } {
+  if (!Array.isArray(raw) || raw.length === 0) {
+    return { error: "Your bag is empty" };
+  }
+  if (raw.length > 20) return { error: "Too many items" };
+
+  const lines: Line[] = [];
+  for (const item of raw) {
+    if (!item || typeof item !== "object") return { error: "Invalid request" };
+    const { productId, variant, quantity } = item as Record<string, unknown>;
+    if (typeof productId !== "string" || !locate(productId)) {
+      return { error: "Unknown product" };
+    }
+    if (typeof variant !== "string" || !VARIANTS.some((v) => v.key === variant)) {
+      return { error: "Unknown option" };
+    }
+    const qty = typeof quantity === "number" ? Math.floor(quantity) : 1;
+    if (qty < 1 || qty > 10) return { error: "Invalid quantity" };
+
+    // Merge duplicates rather than sending Stripe two lines for one price.
+    const existing = lines.find(
+      (l) => l.productId === productId && l.variant === variant
+    );
+    if (existing) existing.quantity = Math.min(existing.quantity + qty, 10);
+    else lines.push({ productId, variant: variant as VariantKey, quantity: qty });
+  }
+  return { lines };
+}
+
 export async function POST(req: NextRequest) {
-  let body: { productId?: unknown; variant?: unknown };
+  let body: { items?: unknown; productId?: unknown; variant?: unknown };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const { productId, variant } = body;
-  if (typeof productId !== "string" || typeof variant !== "string") {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  // Accept a bag, or a single {productId, variant} for a straight buy.
+  const raw = Array.isArray(body.items)
+    ? body.items
+    : [{ productId: body.productId, variant: body.variant, quantity: 1 }];
+
+  const parsed = parseItems(raw);
+  if ("error" in parsed) {
+    return NextResponse.json({ error: parsed.error }, { status: 400 });
   }
 
-  // Never trust the client for either half: the product must be one of ours,
-  // and the variant must be one we actually sell.
-  const found = locate(productId);
-  if (!found) {
-    return NextResponse.json({ error: "Unknown product" }, { status: 400 });
-  }
-  if (!VARIANTS.some((v) => v.key === variant)) {
-    return NextResponse.json({ error: "Unknown option" }, { status: 400 });
-  }
-
-  // The price comes from our own map, never from the request body — otherwise
-  // a crafted request could buy the pair at the single-piece price.
-  const priceId = priceIdFor(productId, variant as VariantKey);
-  if (!priceId) {
-    return NextResponse.json(
-      { error: "That option is not available yet" },
-      { status: 409 }
-    );
+  // Prices come from our own map, never from the request — otherwise a crafted
+  // body could buy the pair at the single-piece price.
+  const line_items = [];
+  for (const l of parsed.lines) {
+    const price = priceIdFor(l.productId, l.variant);
+    if (!price) {
+      return NextResponse.json(
+        { error: "That option is not available yet" },
+        { status: 409 }
+      );
+    }
+    line_items.push({ price, quantity: l.quantity });
   }
 
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -74,6 +109,7 @@ export async function POST(req: NextRequest) {
   }
 
   const origin = resolveOrigin(req);
+  const back = parsed.lines.length === 1 ? locate(parsed.lines[0].productId)!.path : "/";
 
   try {
     const Stripe = (await import("stripe")).default;
@@ -81,11 +117,15 @@ export async function POST(req: NextRequest) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      line_items: [{ price: priceId, quantity: 1, adjustable_quantity: { enabled: true, minimum: 1, maximum: 10 } }],
+      line_items,
       allow_promotion_codes: true,
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}${found.path}`,
-      metadata: { petscrystals_id: productId, variant },
+      cancel_url: `${origin}${back}`,
+      metadata: {
+        bag: parsed.lines
+          .map((l) => `${l.productId}:${l.variant}x${l.quantity}`)
+          .join(","),
+      },
       shipping_address_collection: {
         allowed_countries: [
           "SG",

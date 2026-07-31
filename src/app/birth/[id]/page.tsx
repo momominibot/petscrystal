@@ -143,6 +143,9 @@ export default async function BirthPage({
                 productId={piece.id}
                 collection="birth"
                 available={availableVariants(piece.id)}
+                name={`${piece.month} — ${piece.stone}`}
+                image={`/art/birth-${piece.id}.jpg`}
+                href={`/birth/${piece.id}`}
               />
             </div>
 

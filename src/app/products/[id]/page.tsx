@@ -160,6 +160,9 @@ export default async function ProductPage({
                 productId={product.id}
                 collection="tether"
                 available={availableVariants(product.id)}
+                name={product.name}
+                image={`/art/listing-${product.id}.jpg`}
+                href={`/products/${product.id}`}
               />
             </div>
 

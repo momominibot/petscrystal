@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CartButton from "./CartButton";
 
 const LINKS = [
   { href: "/#collection", label: "Collection" },
@@ -70,14 +71,15 @@ export default function Nav() {
             </p>
           </div>
 
-          {/* Right — partner access */}
-          <div className="flex items-center justify-end">
+          {/* Right — partner access and the bag */}
+          <div className="flex items-center justify-end gap-3 sm:gap-4">
             <Link
               href="/wholesale"
               className="eyebrow text-[0.58rem] whitespace-nowrap text-ink-light transition-colors hover:text-ink sm:text-[0.62rem]"
             >
               Partners
             </Link>
+            <CartButton />
           </div>
         </div>
       </nav>
