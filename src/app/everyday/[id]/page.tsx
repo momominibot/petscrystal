@@ -8,6 +8,7 @@ import { everydayGallery } from "@/lib/everydayGallery";
 import ProductGallery from "@/components/ProductGallery";
 import { breadcrumbListSchema } from "@/lib/schema";
 import Footer from "@/components/Footer";
+import Aftercare from "@/components/Aftercare";
 
 const SITE = "https://petscrystals.com";
 
@@ -132,6 +133,7 @@ export default async function EverydayPage({
                 image={`/art/ev-${c.id}-front.jpg`}
                 href={`/everyday/${c.id}`}
                 priceOverride={c.price}
+                sells={["pet"]}
               />
             </div>
 
@@ -190,6 +192,8 @@ export default async function EverydayPage({
           ))}
         </div>
       </section>
+
+      <Aftercare />
 
       <Footer />
     </div>

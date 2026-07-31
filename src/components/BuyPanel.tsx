@@ -18,6 +18,7 @@ export default function BuyPanel({
   image,
   href,
   priceOverride,
+  sells,
 }: {
   productId: string;
   collection: Collection;
@@ -29,10 +30,15 @@ export default function BuyPanel({
   /** Overrides the variant's own price. Used by single-piece products whose
    *  price is not one of the three pair-collection tiers. */
   priceOverride?: number;
+  /** Which variants this product sells at all. A collar sold on its own has
+   *  no "For You" and no "Together" — those must not render even while Stripe
+   *  has yet to price anything, which is what `available` alone would allow. */
+  sells?: VariantKey[];
 }) {
   // A single-option product (the Everyday collars) has nothing to choose, so
   // start on whatever is actually priced rather than on the pair.
-  const only = available.length === 1 ? available[0] : null;
+  const offered = sells ? VARIANTS.filter((v) => sells.includes(v.key)) : VARIANTS;
+  const only = offered.length === 1 ? offered[0].key : available.length === 1 ? available[0] : null;
   const [variant, setVariant] = useState<VariantKey>(only ?? DEFAULT_VARIANT);
   const { add, setOpen } = useCart();
 
@@ -61,7 +67,7 @@ export default function BuyPanel({
           Choose your pieces
         </legend>
         <div className="mt-3 grid gap-2">
-          {VARIANTS.map((v) => {
+          {offered.map((v) => {
             const active = v.key === variant;
             const sold = !available.includes(v.key);
             return (
@@ -102,7 +108,18 @@ export default function BuyPanel({
       </fieldset>
       )}
 
-      <div className={`${only ? "" : "mt-5"} flex flex-col gap-2`}>
+      {/* With one option there is no picker, so the price would otherwise
+          only appear inside the button — and the button says "Not available
+          yet" until Stripe has the price. A page must state what a thing
+          costs whether or not you can buy it this minute. */}
+      {only && (
+        <div className="flex items-baseline gap-3">
+          <p className="font-serif text-2xl text-ink">US${chosen.price}</p>
+          <p className="text-xs text-ink-light">{chosen.piece[collection]}</p>
+        </div>
+      )}
+
+      <div className={`${only ? "mt-4" : "mt-5"} flex flex-col gap-2`}>
         <button
           onClick={addToBag}
           disabled={!canBuy}

@@ -6,7 +6,14 @@
  * That is why it carries one price rather than the three-way For Them / For
  * You / Together choice — there is only a "for them".
  *
- * Positioned by the studio as their everyday, lower-priced line.
+ * Sold at the same US$89 as a Tether pet piece: it is the animal's piece
+ * either way, and the studio prices it as one.
+ *
+ * The petBenefit lines follow the same rule as the Birth Collection: a stone's
+ * meaning is given as tradition or as the owner's intention, never as an
+ * effect on the animal. The first draft of this file broke that rule three
+ * times — "settles restless animals", "eases overstimulation", "steadies a
+ * nervous animal" — which is precisely what the site promises not to say.
  */
 export interface EverydayCollar {
   id: string;
@@ -30,8 +37,8 @@ export const everydayCollars: EverydayCollar[] = [
     strap: "Seafoam",
     meaning: "Ease",
     tagline: "Calm worn close to the throat",
-    petBenefit: "Settles restless animals and eases the noise of a busy home",
-    price: 49,
+    petBenefit: "Long worn as a stone of ease. For the household that is never quite quiet",
+    price: 89,
     swatch: "#A8DCD9",
   },
   {
@@ -41,8 +48,8 @@ export const everydayCollars: EverydayCollar[] = [
     strap: "Chartreuse",
     meaning: "Renewal",
     tagline: "The green of something starting again",
-    petBenefit: "Traditionally worn for steady health and long life",
-    price: 49,
+    petBenefit: "Jade has been worn for steadiness and long life for a very long time",
+    price: 89,
     swatch: "#C4D64B",
   },
   {
@@ -52,8 +59,8 @@ export const everydayCollars: EverydayCollar[] = [
     strap: "Blush",
     meaning: "Affection",
     tagline: "Soft-hearted, and unembarrassed about it",
-    petBenefit: "The gentling stone — for anxious rescues and shy first weeks",
-    price: 49,
+    petBenefit: "Long called the gentling stone. Owners often choose it for a rescue's first weeks — as a marker of the slow work, not a treatment for it",
+    price: 89,
     swatch: "#F2B8C6",
   },
   {
@@ -63,8 +70,8 @@ export const everydayCollars: EverydayCollar[] = [
     strap: "Lilac",
     meaning: "Clarity",
     tagline: "The quiet at the end of the day",
-    petBenefit: "Eases overstimulation and helps a wound-up animal settle",
-    price: 49,
+    petBenefit: "Amethyst has long been the colour for quiet. For the one who finds the world a bit loud",
+    price: 89,
     swatch: "#C6ABE0",
   },
   {
@@ -74,8 +81,8 @@ export const everydayCollars: EverydayCollar[] = [
     strap: "Chestnut",
     meaning: "Courage",
     tagline: "For the one who sits by the door",
-    petBenefit: "Steadies a nervous animal and sharpens focus in training",
-    price: 49,
+    petBenefit: "Long carried as a stone of courage. For the one who sits by the door waiting for you",
+    price: 89,
     swatch: "#B8813A",
   },
 ];

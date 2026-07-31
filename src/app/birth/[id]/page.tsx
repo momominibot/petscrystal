@@ -10,6 +10,7 @@ import Watercolour from "@/components/Watercolour";
 import ProductGallery from "@/components/ProductGallery";
 import { breadcrumbListSchema } from "@/lib/schema";
 import Footer from "@/components/Footer";
+import Aftercare from "@/components/Aftercare";
 
 const SITE = "https://petscrystals.com";
 
@@ -265,6 +266,8 @@ export default async function BirthPage({
           {others.length + 1} months in the collection
         </p>
       </section>
+
+      <Aftercare />
 
       <Footer />
     </div>

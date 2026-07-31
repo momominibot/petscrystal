@@ -8,6 +8,7 @@ import { galleryShots } from "@/lib/gallery";
 import ProductGallery from "@/components/ProductGallery";
 import { productSchema, breadcrumbListSchema } from "@/lib/schema";
 import Footer from "@/components/Footer";
+import Aftercare from "@/components/Aftercare";
 
 const SITE = "https://petscrystals.com";
 
@@ -353,6 +354,8 @@ export default async function ProductPage({
           ))}
         </div>
       </section>
+
+      <Aftercare />
 
       <Footer />
     </div>
