@@ -130,6 +130,21 @@ export const stripePrices: PriceMap = {
     "pet": "price_1TzAf84JAWFfqt5J0uuDBHHP",
     "owner": "price_1TzAf84JAWFfqt5J7erBYg6C",
     "set": "price_1TzAf94JAWFfqt5Jwe8ktWP4"
+  },
+  "everyday-amazonite": {
+    "pet": "price_1TzDbJ4JAWFfqt5JsyyU0ZMX"
+  },
+  "everyday-xiuyan-jade": {
+    "pet": "price_1TzDbK4JAWFfqt5JuIF59n9t"
+  },
+  "everyday-rose-quartz": {
+    "pet": "price_1TzDbL4JAWFfqt5JriPdD1zt"
+  },
+  "everyday-amethyst": {
+    "pet": "price_1TzDbN4JAWFfqt5JWw2H9dJH"
+  },
+  "everyday-tigers-eye": {
+    "pet": "price_1TzDbO4JAWFfqt5JmVDdtMFf"
   }
 };
 

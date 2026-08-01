@@ -19,6 +19,12 @@
   /* Accent — the gold hardware in the product photography */
   --color-gold: #B08D57;
   --color-gold-light: #D9BE8E;
+  /* Same gold, taken down until small text on it passes AA. The brand gold is
+     2.94:1 on cream, which is fine for a rule or a hairline and not fine for a
+     0.6rem letterspaced eyebrow; this is 4.75:1 on cream and 4.99:1 on paper.
+     Used on the hero eyebrow. The rest of the site still runs --color-gold at
+     that size and has the same problem. */
+  --color-gold-deep: #8A6A3C;
 
   /* Stone tints, kept for chips and washes */
   --color-rose: #E8D5D0;

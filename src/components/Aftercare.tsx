@@ -3,9 +3,14 @@
  *
  * Written out rather than reduced to "lifetime aftercare, T&Cs apply". A
  * buyer reading that phrase assumes the terms are where the promise gets
- * taken back, and they are usually right. Naming the two things covered, the
- * one thing that is not, and who it is for costs three extra lines and asks
- * nobody to take anything on trust.
+ * taken back, and they are usually right. Naming what is covered, what is not,
+ * and who it is for costs three extra lines and asks nobody to take anything
+ * on trust.
+ *
+ * The return shipping term is stated twice on purpose — once in "what it
+ * costs" and again, in full, in the exclusions. It is the only charge a buyer
+ * can be surprised by, and a surprise charge discovered after posting a parcel
+ * to Singapore is the exact thing this section exists to prevent.
  */
 export default function Aftercare() {
   return (
@@ -35,8 +40,8 @@ export default function Aftercare() {
           <div className="rounded-2xl border border-ink/8 bg-cream-dark/30 px-4 py-3.5">
             <dt className="text-ink">What it costs</dt>
             <dd className="mt-1 leading-relaxed text-ink-light">
-              The work is free, for as long as the piece is yours. Postage to us
-              is not.
+              The work is free, for as long as the piece is yours. Shipping it
+              to us is not — see below.
             </dd>
           </div>
           <div className="rounded-2xl border border-ink/8 bg-cream-dark/30 px-4 py-3.5">
@@ -49,9 +54,11 @@ export default function Aftercare() {
         </dl>
 
         <p className="mt-6 text-center text-xs leading-relaxed text-ink/50">
-          It does not cover loss, or a stone broken by being chewed or stood on
-          — though write to us anyway, because we would rather replace a bead
-          than see a set retired.{" "}
+          What it does not cover: shipping the piece to our Singapore
+          headquarters, which is yours to arrange and pay for; loss; and a stone
+          broken by being chewed or stood on — though write to us about that
+          last one anyway, because we would rather replace a bead than see a set
+          retired.{" "}
           <a
             href="mailto:hello@petscrystals.com?subject=Aftercare"
             className="underline underline-offset-2 hover:text-ink"

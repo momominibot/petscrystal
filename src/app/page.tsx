@@ -8,6 +8,8 @@ import EverydayRail from "@/components/EverydayRail";
 import { everydayCollars } from "@/lib/everyday";
 import { brandStory, designInspirations } from "@/lib/birthStory";
 import Watercolour from "@/components/Watercolour";
+import HeroFilm from "@/components/HeroFilm";
+import StoneStudies from "@/components/StoneStudies";
 import Reveal from "@/components/Reveal";
 import Footer from "@/components/Footer";
 import Image from "next/image";
@@ -33,15 +35,7 @@ const PROMISES = [
   },
 ];
 
-const EDITS = [
-  { id: "amethyst-serenity", label: "For anxious hearts", name: "Amethyst" },
-  { id: "rose-heart", label: "For the deeply bonded", name: "Rose Quartz" },
-  { id: "azure-lagoon", label: "For restless travellers", name: "Aquamarine" },
-  { id: "tigers-vigil", label: "For the watchful", name: "Tiger's Eye" },
-];
-
 export default function Home() {
-  const hero = products[1]; // Amethyst Serenity — the strongest photograph
   const band = products[8]; // Monet's Garden
 
   return (
@@ -53,45 +47,78 @@ export default function Home() {
         }}
       />
 
-      {/* Hero — full-bleed photography, copy laid over it */}
-      <section className="relative isolate flex min-h-[86vh] items-end overflow-hidden">
-        <Image
-          src={`/art/product-${hero.id}.png`}
-          alt="A matching amethyst bracelet and pet collar charm photographed on travertine and linen"
-          fill
-          priority
-          sizes="100vw"
-          className="-z-10 object-cover object-center"
-        />
-        {/* Two overlays: one lifts the bottom, one shades the side the copy
-            sits on, so the headline stays legible over a busy photograph. */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/75 via-ink/30 to-ink/5" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/55 via-transparent to-transparent" />
+      {/* Hero — an opening spread: the studio watercolour, brought to life,
+          set beside the copy rather than under it.
 
-        <div className="mx-auto w-full max-w-7xl px-5 pb-16 sm:px-8 sm:pb-24">
-          <div className="max-w-xl text-paper">
-            <p className="eyebrow text-paper/80">Matching crystal sets</p>
-            <h1 className="mt-5 font-serif text-4xl leading-[1.06] sm:text-6xl">
+          Two decisions worth writing down, because the obvious version of
+          this hero is wrong in both.
+
+          It is not full-bleed. The painting is 16:9, and bleeding it to the
+          viewport has to crop something — on a tall phone it throws away the
+          dog, on an ultrawide desktop it cuts the top of her head. Held at
+          its own ratio it is whole on every screen, which for a painting is
+          the entire point.
+
+          The copy is not laid over it either. The left third of the picture
+          looks like bare cream and measures 16.8:1 against --color-ink on
+          average, which is what tempted me. But averages are the wrong
+          statistic here: a drawn floor line and an amber wash run straight
+          through the block, and 7.8% of the pixels behind a --color-ink-light
+          paragraph fall under 4.5:1, bottoming out at 1.0:1. Rescuing that
+          needs a veil so opaque it paints out the third of the illustration
+          it is protecting. Beside it, every pair is two flat brand values and
+          the contrast is provable on every frame rather than on the poster. */}
+      <section className="border-b border-line bg-cream">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pt-10 pb-16 sm:px-8 sm:pb-20 lg:grid-cols-12 lg:gap-14 lg:pt-16 lg:pb-24">
+          <div className="lg:col-span-5">
+            <p className="eyebrow text-gold-deep">Matching crystal sets</p>
+            <h1 className="mt-5 font-serif text-4xl leading-[1.06] text-ink sm:text-5xl xl:text-[3.4rem]">
               Worn together,
               <br />
               wherever you go
             </h1>
-            <p className="mt-5 max-w-md leading-relaxed text-paper/85">
+            <p className="mt-6 max-w-md leading-relaxed text-ink-light">
               Healing stones hand-strung in pairs — a bracelet for you, a charm
               for their collar. Every set made to order, and yours to design.
             </p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-light">
+              Every piece carries{" "}
+              <Link
+                href="/care"
+                className="text-ink underline decoration-gold-light underline-offset-4 transition-colors hover:decoration-gold"
+              >
+                lifetime aftercare
+              </Link>
+              , on every purchase — send it back whenever it needs us.
+            </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link href="#collection" className="btn-ghost action text-paper">
+              <Link href="#collection" className="btn-solid action">
                 <span>Browse the designs</span>
               </Link>
               <Link
                 href="/wholesale"
-                className="action text-paper/85 transition-colors hover:text-paper"
+                className="action text-ink-light transition-colors hover:text-ink"
               >
                 Become a partner <span aria-hidden>→</span>
               </Link>
             </div>
           </div>
+
+          <figure className="lg:col-span-7">
+            <div className="relative aspect-[16/9] w-full overflow-hidden">
+              {/* Server-rendered and priority-loaded, so the painting is the
+                  LCP element and the film is pure addition on top of it. */}
+              <Image
+                src="/art/hero.png"
+                alt="A watercolour of a woman sitting on the floor with her golden retriever leaning into her, both with their eyes closed. She wears a beaded crystal bracelet and he wears the matching crystal bead collar."
+                fill
+                priority
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="object-cover object-center"
+              />
+              <HeroFilm />
+            </div>
+          </figure>
         </div>
       </section>
 
@@ -116,32 +143,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The edit — four stones, photographed */}
-      <section className="bg-paper pb-20 sm:pb-28">
+      {/* The painted stone index. Sits directly under "A stone for every
+          spirit" because that copy asks the reader to pick a stone, and this
+          is the answer to it — before any price is on screen. */}
+      <StoneStudies />
+
+      {/* Styling gallery — a gallery, not a picker.
+
+          These plates are mood shots: they set the feeling of a design rather
+          than show the piece that arrives. As four clickable tiles they made a
+          promise the product photography then had to contradict, which is a
+          bad way to meet a customer. So the links are gone and the grid became
+          a rail — pleasant to scroll past, promising nothing — and the note
+          underneath says plainly where the real photographs are.
+
+          All twelve run here rather than a curated four: with nowhere to click
+          there is no reason to choose on the reader's behalf, and four items
+          do not make a scrolling gallery. */}
+      <section className="bg-paper py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {EDITS.map((e, i) => (
-              <Reveal key={e.id} delay={i * 80}>
-                <Link href={`/products/${e.id}`} className="group block">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow text-gold-deep">Styling</p>
+            <h2 className="mt-4 font-serif text-3xl text-ink sm:text-4xl">
+              The collection, styled
+            </h2>
+            <p className="mt-5 leading-relaxed text-ink-light">
+              Mood shots of all twelve designs. They are styled to show the
+              colour of a stone, not the piece you receive — the photographs to
+              buy from are on each design page.
+            </p>
+          </div>
+
+          <div className="mt-14">
+            <Rail label="Styling gallery, twelve designs">
+              {products.map((p) => (
+                <figure
+                  key={p.id}
+                  className="w-[72vw] shrink-0 snap-start sm:w-[42vw] lg:w-[27%]"
+                >
                   <div className="tile relative aspect-[4/5] w-full">
                     <Image
-                      src={`/art/product-${e.id}.png`}
-                      alt={`${e.name} matching crystal set`}
-                      width={880}
-                      height={1100}
-                      sizes="(min-width: 1024px) 25vw, 50vw"
-                      className="absolute inset-0 h-full w-full object-cover"
+                      src={`/art/product-${p.id}.png`}
+                      alt={`${p.name} — a ${p.crystal.toLowerCase()} collar and matching bracelet, styled on stone and linen`}
+                      fill
+                      sizes="(min-width: 1024px) 27vw, (min-width: 640px) 42vw, 72vw"
+                      className="object-cover"
                     />
                   </div>
-                  <p className="eyebrow mt-5 text-[0.58rem] text-ink-faint">
-                    {e.label}
-                  </p>
-                  <p className="eyebrow mt-2 text-[0.72rem] text-ink transition-colors group-hover:text-gold">
-                    {e.name}
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
+                  <figcaption className="mt-5">
+                    <p className="eyebrow text-[0.58rem] text-ink-faint">
+                      {p.crystal}
+                    </p>
+                    <p className="eyebrow mt-2 text-[0.72rem] text-ink">
+                      {p.name}
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
+            </Rail>
           </div>
         </div>
       </section>

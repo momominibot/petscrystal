@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -116,34 +117,61 @@ export default function CarePage() {
           <p className="font-serif text-xl text-ink">
             How it works
           </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3 text-sm text-ink-light">
-            <div>
-              <p className="font-serif text-lg text-gold">1</p>
-              <p className="mt-1">
-                Email us at{" "}
-                <a
-                  href="mailto:aftercare@petscrystals.com"
-                  className="text-ink underline underline-offset-2"
-                >
-                  aftercare@petscrystals.com
-                </a>
-              </p>
-            </div>
-            <div>
-              <p className="font-serif text-lg text-gold">2</p>
-              <p className="mt-1">
-                Ship your set to our Singapore headquarters — all hardware
-                changes and crystal cleansing are done in-house (shipping not
-                included)
-              </p>
-            </div>
-            <div>
-              <p className="font-serif text-lg text-gold">3</p>
-              <p className="mt-1">
-                We return it refreshed within 7 business days
-              </p>
-            </div>
-          </div>
+          {/* Painted icons rather than bare numerals. The step number stays —
+              it is the thing that says "three of these, in this order", which
+              a picture cannot — but it drops to a small label under the
+              illustration. Icons are transparent PNGs so they sit on the
+              lavender panel without a white square around them. */}
+          <ol className="mt-6 grid gap-8 text-sm text-ink-light sm:grid-cols-3">
+            {[
+              {
+                img: "care-1",
+                alt: "A watercolour envelope",
+                body: (
+                  <>
+                    Email us at{" "}
+                    <a
+                      href="mailto:aftercare@petscrystals.com"
+                      className="text-ink underline underline-offset-2"
+                    >
+                      aftercare@petscrystals.com
+                    </a>
+                  </>
+                ),
+              },
+              {
+                img: "care-2",
+                alt: "A watercolour parcel tied with cord",
+                body: (
+                  <>
+                    Ship your set to our Singapore headquarters — all hardware
+                    changes and crystal cleansing are done in-house. The
+                    shipping to us is yours to arrange and pay for.
+                  </>
+                ),
+              },
+              {
+                img: "care-3",
+                alt: "A watercolour bracelet, freshly cleaned, with sparkles",
+                body: <>We return it refreshed within 7 business days</>,
+              },
+            ].map((step, i) => (
+              <li key={step.img}>
+                <Image
+                  src={`/art/${step.img}.png`}
+                  alt={step.alt}
+                  width={512}
+                  height={512}
+                  sizes="(min-width: 640px) 128px, 112px"
+                  className="mx-auto h-28 w-28 sm:h-32 sm:w-32"
+                />
+                <p className="eyebrow mt-3 text-[0.55rem] text-gold">
+                  Step {i + 1}
+                </p>
+                <p className="mt-2">{step.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
 
         <div className="mt-12 text-center">
