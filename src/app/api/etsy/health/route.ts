@@ -9,15 +9,14 @@ export const dynamic = "force-dynamic";
  */
 export async function GET() {
   try {
-    const response = await etsyRequest("/users/__SELF__/shops");
+    const response = await etsyRequest("/users/__SELF__");
     if (!response.ok) {
       console.error("Etsy health request was rejected", { status: response.status });
       return NextResponse.json({ connected: false }, { status: 502 });
     }
-    const payload = (await response.json()) as { count?: number; results?: unknown[] };
+    await response.json();
     return NextResponse.json({
       connected: true,
-      shops: typeof payload.count === "number" ? payload.count : payload.results?.length ?? 0,
     });
   } catch (error) {
     console.error("Etsy health request could not run", {
