@@ -11,6 +11,7 @@ export async function GET() {
   try {
     const response = await etsyRequest("/users/__SELF__/shops");
     if (!response.ok) {
+      console.error("Etsy health request was rejected", { status: response.status });
       return NextResponse.json({ connected: false }, { status: 502 });
     }
     const payload = (await response.json()) as { count?: number; results?: unknown[] };
@@ -18,7 +19,10 @@ export async function GET() {
       connected: true,
       shops: typeof payload.count === "number" ? payload.count : payload.results?.length ?? 0,
     });
-  } catch {
+  } catch (error) {
+    console.error("Etsy health request could not run", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
     return NextResponse.json({ connected: false }, { status: 503 });
   }
 }
