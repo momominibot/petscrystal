@@ -11,7 +11,10 @@ export async function GET() {
   try {
     const response = await etsyRequest("/users/__SELF__");
     if (!response.ok) {
-      console.error("Etsy health request was rejected", { status: response.status });
+      console.error("Etsy health request was rejected", {
+        status: response.status,
+        detail: (await response.text()).slice(0, 500),
+      });
       return NextResponse.json({ connected: false }, { status: 502 });
     }
     await response.json();
