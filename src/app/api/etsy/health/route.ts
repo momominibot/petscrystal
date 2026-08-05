@@ -9,15 +9,30 @@ export const dynamic = "force-dynamic";
  */
 export async function GET() {
   try {
-    const response = await etsyRequest("/users/__SELF__");
-    if (!response.ok) {
+    const shopLookup = await etsyRequest("/shops?shop_name=petscrystals&limit=1");
+    if (!shopLookup.ok) {
       console.error("Etsy health request was rejected", {
-        status: response.status,
-        detail: (await response.text()).slice(0, 500),
+        status: shopLookup.status,
+        detail: (await shopLookup.text()).slice(0, 500),
       });
       return NextResponse.json({ connected: false }, { status: 502 });
     }
-    await response.json();
+
+    const lookup = (await shopLookup.json()) as {
+      results?: Array<{ shop_id?: number }>;
+    };
+    const shopId = lookup.results?.[0]?.shop_id;
+    if (!shopId) return NextResponse.json({ connected: false }, { status: 502 });
+
+    const listings = await etsyRequest(`/shops/${shopId}/listings/active?limit=1`);
+    if (!listings.ok) {
+      console.error("Etsy listing access was rejected", {
+        status: listings.status,
+        detail: (await listings.text()).slice(0, 500),
+      });
+      return NextResponse.json({ connected: false }, { status: 502 });
+    }
+
     return NextResponse.json({
       connected: true,
     });
