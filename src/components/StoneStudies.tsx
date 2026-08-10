@@ -6,18 +6,18 @@ import Reveal from "@/components/Reveal";
 /**
  * The painted stone index.
  *
- * A quiet, non-commercial beat between the positioning statement and the
- * styling gallery: the stones themselves, painted, with what each is
- * traditionally kept for. Nothing here links to a listing — a buyer who wants
- * to shop is one scroll away, and making these tiles clickable would turn an
- * index into a second, competing grid of products.
+ * This is where the choosing happens. The section above asks the reader to
+ * pick a stone; this answers it, in pictures, before a price is on screen.
  *
- * The studies are transparent PNGs, so no tile, border or card is drawn behind
- * them. A frame would fight the bleeding edges, which are the point.
+ * Two things it deliberately does NOT do. The cards do not link to listings —
+ * the stone names do not map one-to-one onto design names, so eleven links
+ * would send people somewhere they did not ask to go. And there is no price
+ * here. Instead the section ends with a single route into the collection,
+ * which is the one thing an interested reader needs and the earlier draft
+ * left out entirely: it was a dead end.
  *
- * The copy leads with the collar because that is what this shop mainly sells;
- * pairing is offered on most designs but is not the default, and the earlier
- * draft of this section wrongly said every stone came as two pieces.
+ * The studies are transparent PNGs, so nothing is drawn behind them. A tile or
+ * border would fight the bleeding edges, which are the point.
  */
 export default function StoneStudies() {
   return (
@@ -26,13 +26,13 @@ export default function StoneStudies() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-gold-deep">The stones</p>
           <h2 className="mt-4 font-serif text-3xl leading-snug text-ink sm:text-4xl">
-            What each stone is kept for
+            Start with the one that sounds like them
           </h2>
           <p className="mt-5 leading-relaxed text-ink-light">
-            Most of what we make is for the animal — a collar strung with one
-            stone. Many designs can be paired with a piece for you, and a few
-            are sold only as a set. Whichever way you buy it, this is the stone
-            you are choosing between.
+            Most of what we make is for the animal — a collar, strung with one
+            stone. Most designs can be paired with a piece for you, and a few
+            are sold only as a set. Either way this is the decision that
+            matters; the rest is leather and length.
           </p>
         </div>
 
@@ -51,8 +51,8 @@ export default function StoneStudies() {
                   className="h-auto w-full"
                 />
                 <p className="eyebrow mt-1 text-[0.66rem] text-ink">{s.name}</p>
-                <p className="eyebrow mt-2 text-[0.55rem] text-gold-deep">
-                  {s.keptFor}
+                <p className="mt-2 font-serif text-[0.95rem] leading-snug text-gold-deep">
+                  {s.forWhom}
                 </p>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink-light">
                   {s.note}
@@ -62,18 +62,18 @@ export default function StoneStudies() {
           ))}
         </ul>
 
-        <p className="mx-auto mt-14 max-w-xl text-center text-xs leading-relaxed text-ink/50">
-          What a stone is “kept for” is tradition, not medicine — nothing here
-          treats anything, in an animal or in you. These are studio
-          illustrations too: natural stone varies bead to bead, so the set that
-          arrives will be its own colour, closer to the photography on each{" "}
-          <Link
-            href="/#collection"
-            className="underline underline-offset-2 hover:text-ink"
-          >
-            design page
+        <div className="mt-16 text-center">
+          <Link href="/#collection" className="btn-solid action">
+            <span>Find yours</span>
           </Link>
-          .
+        </div>
+
+        <p className="mx-auto mt-10 max-w-xl text-center text-xs leading-relaxed text-ink/50">
+          What a stone is carried “for” is tradition, not medicine — nothing
+          here treats anything, in an animal or in you. These are studio
+          illustrations too: natural stone varies bead to bead, so the set that
+          arrives will be its own colour, closer to the photography on each
+          design page.
         </p>
       </div>
     </section>
