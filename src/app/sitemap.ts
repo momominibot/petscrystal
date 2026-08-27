@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { birthPieces } from "@/lib/birth";
+import { everydayCollars } from "@/lib/everyday";
 import { products } from "@/lib/products";
 
 const siteUrl = "https://petscrystals.com";
@@ -18,5 +20,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...productPages];
+  const everydayPages: MetadataRoute.Sitemap = everydayCollars.map((collar) => ({
+    url: `${siteUrl}/everyday/${collar.id}`,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  const birthPages: MetadataRoute.Sitemap = birthPieces.map((piece) => ({
+    url: `${siteUrl}/birth/${piece.id}`,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...productPages, ...everydayPages, ...birthPages];
 }
