@@ -42,3 +42,7 @@ next-env.d.ts
 
 # partner applications (local)
 data/
+
+# python bytecode
+__pycache__/
+*.pyc
