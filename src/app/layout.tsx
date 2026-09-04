@@ -56,6 +56,7 @@ export default function RootLayout({
     // and the font-family declaration silently falls back to system sans.
     <html lang="en" className={`${fraunces.variable} ${jakarta.variable}`}>
       <head>
+        <meta name="msvalidate.01" content="925B5FF1AB585BD2B2EDF0F560407203" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
