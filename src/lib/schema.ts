@@ -6,9 +6,16 @@ export function organizationSchema(): object {
     "@type": "Organization",
     name: "Pets Crystal",
     url: "https://petscrystals.com",
+    logo: "https://petscrystals.com/logo.png",
     description:
-      "Matching crystal jewelry for humans and their animal companions. Healing stones for every spirit, one unbreakable bond.",
+      "Matching crystal jewelry for humans and their animal companions. Healing stones for every spirit, one unbreakable bond. Hand-strung in Singapore.",
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Ranklore Pte Ltd",
+      url: "https://ranklore.ai",
+    },
     sameAs: [
+      "https://www.instagram.com/petscrystal",
       "https://twitter.com/petscrystal",
       "https://ranklore.ai",
     ],
@@ -21,11 +28,6 @@ export function websiteSchema(): object {
     "@type": "WebSite",
     url: "https://petscrystals.com",
     name: "Pets Crystal",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://petscrystals.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
