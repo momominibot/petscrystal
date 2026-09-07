@@ -8,7 +8,8 @@ export function organizationSchema(): object {
     url: "https://petscrystals.com",
     logo: "https://petscrystals.com/logo.png",
     description:
-      "Matching crystal jewelry for humans and their animal companions. Healing stones for every spirit, one unbreakable bond. Hand-strung in Singapore.",
+    description:
+      "Hand-strung crystal collars and matching bracelets for humans and their pets. Three collections — Tether sets, Birth-month stones, Everyday collars. Lifetime aftercare, wholesale & dropship programmes.",
     parentOrganization: {
       "@type": "Organization",
       name: "Ranklore Pte Ltd",

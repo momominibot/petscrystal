@@ -24,4 +24,10 @@ export const cardShots: Record<string, { front: string; hover: string }> = {
   "starfall-galaxy": { front: "/art/bl-starfall-galaxy-2.jpg", hover: "/art/bl-starfall-galaxy-1.jpg" },
   "stone-path": { front: "/art/bl-stone-path-2.jpg", hover: "/art/bl-stone-path-1.jpg" },
   "tigers-vigil": { front: "/art/bl-tigers-vigil-2.jpg", hover: "/art/bl-tigers-vigil-1.jpg" },
+  "evil-eye-ward": { front: "/art/bl-evil-eye-ward-2.jpg", hover: "/art/bl-evil-eye-ward-1.jpg" },
+  "fluorite-mist": { front: "/art/bl-fluorite-mist-2.jpg", hover: "/art/bl-fluorite-mist-1.jpg" },
+  "chakra-wheel": { front: "/art/bl-chakra-wheel-2.jpg", hover: "/art/bl-chakra-wheel-1.jpg" },
+  "pearl-dusk": { front: "/art/bl-pearl-dusk-2.jpg", hover: "/art/bl-pearl-dusk-1.jpg" },
+  "carnelian-ember": { front: "/art/bl-carnelian-ember-2.jpg", hover: "/art/bl-carnelian-ember-1.jpg" },
+  "aventurine-glade": { front: "/art/bl-aventurine-glade-2.jpg", hover: "/art/bl-aventurine-glade-1.jpg" },
 };

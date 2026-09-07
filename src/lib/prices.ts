@@ -145,6 +145,37 @@ export const stripePrices: PriceMap = {
   },
   "everyday-tigers-eye": {
     "pet": "price_1TzDbO4JAWFfqt5JmVDdtMFf"
+  },
+  "evil-eye-ward": {
+    "pet": "",
+    "owner": "",
+    "set": ""
+  },
+  "fluorite-mist": {
+    "pet": "",
+    "owner": "",
+    "set": ""
+  },
+  "chakra-wheel": {
+    "pet": "",
+    "owner": "",
+    "set": ""
+  },
+  "pearl-dusk": {
+    "pet": "",
+    "owner": "",
+    "set": ""
+  },
+  "carnelian-ember": {
+    "pet": "",
+    "owner": "",
+    "set": ""
+  },
+  "aventurine-glade": {
+    "pet": "",
+    "owner": "",
+    "set": ""
+  }
   }
 };
 

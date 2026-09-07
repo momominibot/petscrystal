@@ -102,18 +102,8 @@ export default function Footer() {
               <br />
               7 Temasek Blvd, #12-07 Suntec Tower One, Singapore 038987
             </p>
-            {/* The © sits with the shop, and the design credit is stated
-                separately rather than under the ©. "© Designed by Bella & Lisa"
-                assigns copyright to a party outside the shop, which is the
-                exact fact pattern Etsy lists as a removal reason for "wasn't
-                designed by the seller". Ranklore is credited above as the
-                agency, so it does not hold the © here as well. */}
             <p className="text-[10px] text-ink-faint">
-              {/* One template literal rather than text-around-an-expression:
-                  JSX was dropping the space after the year, so this line has
-                  been rendering as "© 2026Pets Crystal" since before the
-                  credit changed. */}
-              {`© ${new Date().getFullYear()} Pets Crystal · Designs by Bella & Lisa`}
+              {`© ${new Date().getFullYear()} Pets Crystal`}
             </p>
           </div>
         </div>
