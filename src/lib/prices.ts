@@ -71,6 +71,36 @@ export const stripePrices: PriceMap = {
     "owner": "price_1TzAec4JAWFfqt5Ju085yP2Q",
     "set": "price_1TzAed4JAWFfqt5JihFUEVOs"
   },
+  "evil-eye-ward": {
+    "pet": "price_1UDCF94JAWFfqt5JuGz5Qy1i",
+    "owner": "price_1UDCF94JAWFfqt5JveDLgXQl",
+    "set": "price_1UDCF94JAWFfqt5JdniaPPid"
+  },
+  "fluorite-mist": {
+    "pet": "price_1UDCFA4JAWFfqt5J8rZpA75a",
+    "owner": "price_1UDCFA4JAWFfqt5JObfBKVQf",
+    "set": "price_1UDCFA4JAWFfqt5Jl99YqOBd"
+  },
+  "chakra-wheel": {
+    "pet": "price_1UDCFA4JAWFfqt5JykpW3xYT",
+    "owner": "price_1UDCFB4JAWFfqt5JAyfTj3oZ",
+    "set": "price_1UDCFB4JAWFfqt5JrLQje7Bd"
+  },
+  "pearl-dusk": {
+    "pet": "price_1UDCFB4JAWFfqt5JrBtE8R0T",
+    "owner": "price_1UDCFB4JAWFfqt5J18owt5Ym",
+    "set": "price_1UDCFC4JAWFfqt5JuOIbObnb"
+  },
+  "carnelian-ember": {
+    "pet": "price_1UDCFC4JAWFfqt5JK8YLU0ku",
+    "owner": "price_1UDCFC4JAWFfqt5J9EBFus8b",
+    "set": "price_1UDCFC4JAWFfqt5JUJ93QjO4"
+  },
+  "aventurine-glade": {
+    "pet": "price_1UDCFD4JAWFfqt5Jlc2QDYMt",
+    "owner": "price_1UDCFD4JAWFfqt5J64kcIfLB",
+    "set": "price_1UDCFD4JAWFfqt5J8wydmXBp"
+  },
   "january-red-agate": {
     "pet": "price_1TzAee4JAWFfqt5J9dwxNQxO",
     "owner": "price_1TzAef4JAWFfqt5JIHEiI1e1",
@@ -145,36 +175,6 @@ export const stripePrices: PriceMap = {
   },
   "everyday-tigers-eye": {
     "pet": "price_1TzDbO4JAWFfqt5JmVDdtMFf"
-  },
-  "evil-eye-ward": {
-    "pet": "",
-    "owner": "",
-    "set": ""
-  },
-  "fluorite-mist": {
-    "pet": "",
-    "owner": "",
-    "set": ""
-  },
-  "chakra-wheel": {
-    "pet": "",
-    "owner": "",
-    "set": ""
-  },
-  "pearl-dusk": {
-    "pet": "",
-    "owner": "",
-    "set": ""
-  },
-  "carnelian-ember": {
-    "pet": "",
-    "owner": "",
-    "set": ""
-  },
-  "aventurine-glade": {
-    "pet": "",
-    "owner": "",
-    "set": ""
   }
 };
 
