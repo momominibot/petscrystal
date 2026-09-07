@@ -176,7 +176,6 @@ export const stripePrices: PriceMap = {
     "owner": "",
     "set": ""
   }
-  }
 };
 
 export function priceIdFor(productId: string, variant: VariantKey): string | null {

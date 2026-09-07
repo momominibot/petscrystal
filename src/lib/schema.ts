@@ -8,7 +8,6 @@ export function organizationSchema(): object {
     url: "https://petscrystals.com",
     logo: "https://petscrystals.com/logo.png",
     description:
-    description:
       "Hand-strung crystal collars and matching bracelets for humans and their pets. Three collections — Tether sets, Birth-month stones, Everyday collars. Lifetime aftercare, wholesale & dropship programmes.",
     parentOrganization: {
       "@type": "Organization",
