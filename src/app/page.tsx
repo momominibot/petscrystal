@@ -157,7 +157,7 @@ export default function Home() {
           a rail — pleasant to scroll past, promising nothing — and the note
           underneath says plainly where the real photographs are.
 
-          All twelve run here rather than a curated four: with nowhere to click
+          All eighteen run here rather than a curated four: with nowhere to click
           there is no reason to choose on the reader's behalf, and four items
           do not make a scrolling gallery. */}
       <section className="bg-paper py-20 sm:py-28">
@@ -168,14 +168,14 @@ export default function Home() {
               The collection, styled
             </h2>
             <p className="mt-5 leading-relaxed text-ink-light">
-              Mood shots of all twelve designs. They are styled to show the
+              Mood shots of all eighteen designs. They are styled to show the
               colour of a stone, not the piece you receive — the photographs to
               buy from are on each design page.
             </p>
           </div>
 
           <div className="mt-14">
-            <Rail label="Styling gallery, twelve designs">
+            <Rail label="Styling gallery, eighteen designs">
               {products.map((p) => (
                 <figure
                   key={p.id}
