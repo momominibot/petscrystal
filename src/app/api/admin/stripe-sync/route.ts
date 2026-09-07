@@ -13,6 +13,14 @@ const VARIANTS = [
   { key: "set" as const, label: "Together", amount: 10900 },
 ];
 
+interface CatalogueItem {
+  id: string;
+  name: string;
+  description: string;
+  collection: string;
+  variants?: { key: "pet"; label: string; amount: number }[];
+}
+
 export async function POST(req: NextRequest) {
   const auth = req.headers.get("x-admin-token");
   if (auth !== process.env.ADMIN_SYNC_TOKEN) {
@@ -44,7 +52,7 @@ export async function POST(req: NextRequest) {
     variants: [{ key: "pet" as const, label: "The collar", amount: e.price * 100 }],
   }));
 
-  const catalogue = [...tether, ...birth, ...everyday];
+  const catalogue: CatalogueItem[] = [...tether, ...birth, ...everyday];
   const priceMap: Record<string, Record<string, string>> = {};
   const log: string[] = [];
 
