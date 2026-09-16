@@ -4,6 +4,7 @@ export function organizationSchema(): object {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://petscrystals.com/#organization",
     name: "Pets Crystal",
     url: "https://petscrystals.com",
     logo: "https://petscrystals.com/logo.png",
@@ -17,7 +18,6 @@ export function organizationSchema(): object {
     sameAs: [
       "https://www.instagram.com/petscrystal",
       "https://twitter.com/petscrystal",
-      "https://ranklore.ai",
     ],
   };
 }
@@ -26,6 +26,8 @@ export function websiteSchema(): object {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://petscrystals.com/#website",
+    publisher: { "@id": "https://petscrystals.com/#organization" },
     url: "https://petscrystals.com",
     name: "Pets Crystal",
   };
