@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import type { Metadata } from "next";
 import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
@@ -74,7 +75,8 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
-      </head>
+      <Script async src="https://news.google.com/swg/js/v1/publisher.js" strategy="afterInteractive"/>
+</head>
       <body className="antialiased">
         <CartProvider>
           <Nav />
