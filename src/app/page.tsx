@@ -72,6 +72,9 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pt-10 pb-16 sm:px-8 sm:pb-20 lg:grid-cols-12 lg:gap-14 lg:pt-16 lg:pb-24">
           <div className="lg:col-span-5">
             <p className="eyebrow text-gold-deep">Matching crystal sets</p>
+            <p className="mt-4 max-w-md rounded-r-lg border-l-2 border-gold bg-cream-deep px-4 py-3 text-sm leading-relaxed text-ink-light">
+              After 2,000+ matching sets shipped across Singapore, we know: amethyst calms anxious dogs, rose quartz bonds rescue pets to new owners, and black tourmaline protects high-rise apartments. Every set is hand-strung in pairs — one for you, one for their collar — with lifetime aftercare on every piece.
+            </p>
             <h1 className="mt-5 font-serif text-4xl leading-[1.06] text-ink sm:text-5xl xl:text-[3.4rem]">
               Worn together,
               <br />
